@@ -1,4 +1,9 @@
- Script em bash desenvolvido por Anônimo000.
+    _                      _                  ___   ___   ___  
+   / \   _ __   ___  _ __ (_)_ __ ___   ___  / _ \ / _ \ / _ \ 
+  / _ \ | '_ \ / _ \| '_ \| | '_ ` _ \ / _ \| | | | | | | | | |
+ / ___ \| | | | (_) | | | | | | | | | | (_) | |_| | |_| | |_| |
+/_/   \_\_| |_|\___/|_| |_|_|_| |_| |_|\___/ \___/ \___/ \___/ 
+
 
  Provê facilidade e rapidez em algumas tarefas,
 Nele você irá encontrar como o próprio nome já diz knife system ( canivete do sistema ), inúmeras
