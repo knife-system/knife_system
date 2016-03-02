@@ -113,7 +113,7 @@ pequeno firewall que o script prove.
  
  # bash knife
 
-                                  ATENÇÃO!
+####                             ATENÇÃO!
 
   Esse script requer o pacote pv instalado, para exibição da barra de progresso na execução de suas tarefas
   portanto caso não possua ele instalado o script se encarregará de fazer o mesmo. 
