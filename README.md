@@ -11,14 +11,14 @@ pequeno firewall que o script prove.
  ATENÇÃO! Esse script só funcionará em derivados do debian ( Ubuntu, Mint, ElementaryOS, DuZeru, e etc... ).
 
 
-
+![Imagem](http://i.imgur.com/cdXNGK9.png)
 
 
  Como estão organizados os menus: 
 
  Opção A - Instalação de programas digitando apenas o nome do mesmo;
   
- Opção B - Remover programas diigitando apenas o nome do mesmo;
+ Opção B - Remover programas digitando apenas o nome do mesmo;
 
  Opção C - Reparar erros nas dependências ( Em algumas situações isso não vai ser possível );
  
@@ -37,7 +37,7 @@ pequeno firewall que o script prove.
     Opção 3 -  Move a pasta do ícone para /usr/share/icons, facilitando esse processo, porém para instalar defitivamente, deverá ter
              instalado um programa como 'Gnome-Tweak-Tool' em seu sistema.
 
-    Opção 4 - Instalado o programa que lhe permitirá a intalação dos tema, ícones e cursores.
+        Opção 4 - Instalado o programa que lhe permitirá a intalação dos tema, ícones e cursores.
 
  
  Opção G - Atualiza a sua distribuição para uma versão mais recente por exemplo atualiza do ubuntu 14.04 LTS para o 16.04 LTS;
