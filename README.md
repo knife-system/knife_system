@@ -90,8 +90,9 @@ pequeno firewall que o script prove.
  
             <----------------------------EXECUTANDO O SCRIPT ----------------------------------->
 
- Para um melhor proveito do script por favor instale-o bastando apenas executar o script de instalação com o comando
-
+ Para um melhor proveito do script por favor instale-o bastando apenas executar o script de instalação com o comando.
+ Entre na pasta corrente do script e execute os seguintes comandos:
+ 
  # chmod +x instalar.sh <-- Para dar permissões de execução, o mesmo deve ser feito com knife caso não queira instala-lo
  # bash instalar.sh <-- Instalar
 
