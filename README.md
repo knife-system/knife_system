@@ -17,7 +17,7 @@ pequeno firewall que o script prove.
   Mas nada será arquivado ou enviado, se tiver receio confira o script, logo no inicio a variável "myip",
   e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/cdXNGK9.png)
+![Imagem](http://i.imgur.com/szrDICK.png)
 
 
  Como estão organizados os menus: 
