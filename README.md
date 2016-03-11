@@ -8,8 +8,14 @@ Nele você irá encontrar como o próprio nome já diz knife system ( canivete d
 ferramentas para auxília-lo em suas tarefas sejam elas uma simples instalação de programas até um
 pequeno firewall que o script prove.
 
- ATENÇÃO! Esse script só funcionará em derivados do debian ( Ubuntu, Mint, ElementaryOS, DuZeru, e etc... ).
-
+                                                ATENÇÃO!
+ 
+  Esse script só funcionará em derivados do debian ( Ubuntu, Mint, ElementaryOS, DuZeru, e etc... ). 
+  E para melhor proveito deve-se estar conectado a internet.
+  Inicialmente será apresentado uma tela de download(comando curl), não se assuste aquele tela 
+  será útil para uma das opções do script (Informações do computador), para obter seu endereço IP externo.
+  Mas nada será arquivado ou enviado, se tiver receio confira o script, logo no inicio a variável "myip",
+  e mais a abaixo no comentário "Informações do hardware e etc....".
 
 ![Imagem](http://i.imgur.com/cdXNGK9.png)
 
@@ -78,6 +84,18 @@ pequeno firewall que o script prove.
      Opção 5 - Equivale á git init
 
      Opção 6 - Equivale á git status
+     
+  Opção L - Você será levado a um submenu onde encontrará as seguintes opções:
+
+     Opção 1 - Obter informações sobre sua rede interna.
+   
+     Opção 2 - Mostará informações do seu HD, seu CPU e sua memória RAM.
+
+     Opção 3 - Mostará informções sobre o kernel do sistema, sua versão por exemplo.
+
+     Opção 4- Mostraá a arquitetura do seu processador pode variar de 64bits a 32bits.
+
+
 
 
 
