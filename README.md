@@ -93,7 +93,9 @@ pequeno firewall que o script prove.
 
      Opção 3 - Mostará informções sobre o kernel do sistema, sua versão por exemplo.
 
-     Opção 4- Mostraá a arquitetura do seu processador pode variar de 64bits a 32bits.
+     Opção 4 - Mostraá a arquitetura do seu processador pode variar de 64bits a 32bits.
+     
+     Opção 5 - Usa o escaner de portas nmap, para verificar as portas e serviços rodando na sua máquina.
 
 
 
