@@ -8,7 +8,7 @@ Nele você irá encontrar como o próprio nome já diz knife system ( canivete d
 ferramentas para auxília-lo em suas tarefas sejam elas uma simples instalação de programas até um
 pequeno firewall que o script prove.
 
-  ###                                              ATENÇÃO!
+###                                              ATENÇÃO!
  
   Esse script só funcionará em derivados do debian ( Ubuntu, Mint, ElementaryOS, DuZeru, e etc... ). 
   E para melhor proveito deve-se estar conectado a internet.
