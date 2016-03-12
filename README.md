@@ -139,7 +139,7 @@ pequeno firewall que o script prove.
   Esse script requer o pacote pv instalado, para exibição da barra de progresso na execução de suas tarefas
   portanto caso não possua ele instalado o script se encarregará de fazer o mesmo. 
  
-  pv é um pequeno programa que serve para criar uma barra e progresso enquanto se é feito algum erviço em
+  pv é um pequeno programa que serve para criar uma barra e progresso enquanto se é feito algum serviço em
   segundo plano, caso queira testar o pv e conferir como ele funciona, mostrarei um exemplo de uso:
  
   $sudo su <-- Entre como usuário root
