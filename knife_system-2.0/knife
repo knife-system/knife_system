@@ -1054,7 +1054,7 @@ function infos() {
   fi
   }
 
-  echo -e "${amarelo}Obter informaçõe do seu computador ou notebook:${NORMAL}"
+  echo -e "${amarelo}Obter informações do seu computador ou notebook:${NORMAL}"
   echo -e "${branco}Seu IP(externo): $myip"
   echo ""
   echo -e "${verm}1) ${verde}Informações de rede${NORMAL}"
