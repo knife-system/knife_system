@@ -102,7 +102,8 @@ NORMAL=`echo "\033[m"`
 echo -e "${azul}Verificando sua conexão...${NORMAL}"
 ping -c1 google.com > /dev/null
 if [ $? = 0 ];then
-myip=`curl https://wtfismyip.com/text`
+echo -e "${verde}Conectado${NORMAL}"
+myip=`curl -s https://wtfismyip.com/text`
 echo ""
 echo -e "${azul}Verificando se o pacote pv está instalado...${NORMAL}"
 which pv > /dev/null ||echo -e ${verde}Instalando o PV... Aguarde...${NORMAL};apt-get -y install pv > /dev/null
