@@ -12,10 +12,7 @@ pequeno firewall que o script prove.
  
   Esse script só funcionará em derivados do debian ( Ubuntu, Mint, ElementaryOS, DuZeru, e etc... ). 
   E para melhor proveito deve-se estar conectado a internet.
-  Inicialmente será apresentado uma tela de download(comando curl), não se assuste aquele tela 
-  será útil para uma das opções do script (Informações do computador), para obter seu endereço IP externo.
-  Mas nada será arquivado ou enviado, se tiver receio confira o script, logo no inicio a variável "myip",
-  e mais a abaixo no comentário "Informações do hardware e etc....".
+  O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
 ![Imagem](http://i.imgur.com/szrDICK.png)
 
