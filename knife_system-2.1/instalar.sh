@@ -1,5 +1,5 @@
 #!/bin/bash
-# Esse pequeno script serve para você instalar o knife_system 
+# Esse pequeno script serve para você instalar o knife_system
 # para maior proveito.
 # execute esse script como root.
 
@@ -11,6 +11,12 @@ NORMAL="\033[m"
 function global() {
 
 function inst() {
+  if [ -e /bin/knife ];then
+    echo -e "${verm}Script já instalado${NORMAL}"
+    sleep 2
+    reset
+    global
+  else
 echo -e "${amarelo}Instalando script...${NORMAL}"
 sleep 2
 mv knife /bin
@@ -20,14 +26,22 @@ echo -e "${verde}script instalado com sucesso${NORMAL}"
 echo ""
 sleep 1
 echo -e "${amarelo}Agora para inicia-lo basta apenas digitar no terminal ${verm}knife${NORMAL}"
+fi
 }
 
 function desi() {
+  if [ -e /bin/knife ];then
  echo -e "${verm}Desinstalando script...${NORMAL}"
  sleep 2
  rm /bin/knife
  echo -e "${verde}Script desinstalado com sucesso!${NORMAL}"
- sleep 1 
+ sleep 1
+ else
+   echo -e "${verm}Script não instalado${NORMAL}"
+   sleep 2
+   reset
+   global
+ fi
 }
 
 reset
