@@ -14,7 +14,7 @@ pequeno firewall que o script prove.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/szrDICK.png)
+![Imagem](http://i.imgur.com/4UUNOk9.png)
 
 
  Como estão organizados os menus: 
@@ -94,8 +94,16 @@ pequeno firewall que o script prove.
      
      Opção 5 - Usa o escaner de portas nmap, para verificar as portas e serviços rodando na sua máquina.
 
+  Opção M - Você será levado para um submenu onde encontrará opções para downloads de arquivos:
 
+     Opção 1 - Nesta opção você deverá digitar o link do arquivo que pretende baixar.
+               Em seguida digite o caminho do para onde o arquivo irá ser baixado, e digite o nome dele,
+               não esqueça de colocar a extensão do arquivo (ex: .deb-.txt-.tar.gz).
 
+     Opção 2 - Nesta opção se você já tiver iniciado algum download anteriormente ele será encarregado de continua-lo.
+
+     Opção 3 - Nesta opção você irá deletar os arquivos que contém o o link e o diretório, do arquivo que iria a ser baixado
+               este arquivo de log está contido em /var/log/KS_*.log
 
 
  Sinta-se livre em edita-lo a seu gosto.
