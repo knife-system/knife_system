@@ -110,7 +110,11 @@ echo -e "${verde}Conectado${NORMAL}"
 myip=`curl -s https://wtfismyip.com/text`
 echo ""
 echo -e "${azul}Verificando se o pacote pv está instalado...${NORMAL}"
-which pv > /dev/null ||echo -e ${verde}Instalando o PV... Aguarde...${NORMAL};apt-get -y install pv > /dev/null
+which pv > /dev/null
+if [ $? != 0 ];then
+  echo -e ${verde}Instalando o PV... Aguarde...${NORMAL}
+  apt-get -y install pv > /dev/null
+fi
 sleep 1
 echo ""
 else
@@ -120,7 +124,10 @@ else
   echo ""
   echo -e "${azul}Verificando se o pacote pv está instalado...${NORMAL}"
   sleep 1
-  which pv > /dev/null || echo -e "${verm}Não instalado, por favor instale quando possível${NORMAL}"
+  which pv > /dev/null
+  if [ $? != 0 ];then
+  echo -e "${verm}Não instalado, por favor instale quando possível${NORMAL}"
+fi
   sleep 1
   echo ""
 fi
