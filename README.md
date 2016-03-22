@@ -19,6 +19,7 @@ pequeno firewall que o script prove.
  Como estão organizados os menus: 
 
 Opção A - Você será levado para um submenu onde encontrará as seguintes opções:
+
       1)Pacote .deb - Nessa opção você deverá ter baixado um arquivo .deb equivale à um executável
                       do Windows, informe o caminho onde se encontra o pacote mas não esqueça de 
                       escrever seu nome corretamente e certifique-se de colocar a extensão .deb;
