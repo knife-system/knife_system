@@ -13,96 +13,86 @@ pequeno firewall que o script prove.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/4UUNOk9.png)
+![Imagem](http://i.imgur.com/nRvYJZT.png)
 
 
  Como estão organizados os menus: 
 
- Opção A - Instalação de programas digitando apenas o nome do mesmo;
-  
- Opção B - Remover programas digitando apenas o nome do mesmo;
+Opção A - Você será levado para um submenu onde encontrará as seguintes opções:
+      1)Pacote .deb - Nessa opção você deverá ter baixado um arquivo .deb equivale à um executável
+                      do Windows, informe o caminho onde se encontra o pacote mas não esqueça de 
+                      escrever seu nome corretamente e certifique-se de colocar a extensão .deb;
 
- Opção C - Reparar erros nas dependências ( Em algumas situações isso não vai ser possível );
- 
- Opção D - Procura por programas estejam eles ou não instalados em sua máquina;
+      2)Direto do repositório - Nessa opção você irá instalar um programa que esteja em sua lista de repoitórios
+                                bastando apenas digitar o nome do pacote (programa).
 
- Opção E - Procura por arquivos existêntes em sua máquina;
+Opção B) - Nessa opção você poderá remover pacotes(programas) instalados bastando apenas digitar seu nome,
+           certifique-se de digitar o nome do pacote corretamente.
 
- Opção F - Leva para um submenu que você encontrará as seguintes opções;
+Opção C) - Nessa opção você poderá locaizar programas, estejam ele instalados ou não. Porém o script procurará pelo nome do programa,
+           isto é, se tiver mais pacotes com o mesme nome será mostrado também.
 
-    Opção 1 - Move a pasta do tema para /usr/share/themes, facilitando esse processo, porém para instalar defitivamente, deverá ter
-             instalado um programa como 'Gnome-Tweak-Tool' em seu sistema.
+Opção D) - Nessa opção você irá reparar os erros mais comuns encontrados em pacotes quebrados.
+           Em alguns casos isso pode não funcionar.
 
-    Opção 2 - Move a pasta do cursor para ~/.icons, se o mesmo não existir o script se encarregará de criar e mover. Porém para instala-lo
-             você deverá ter o 'Gnome-Tweak-Tool' instalado ou algum programa que possa fazer o mesmo.
+Opção E) - Nessa opção você irá atualizar toda sua distribuição para uma versão mais recente.
+           Em alguns casos isso poderá acarretar em perda total da distro GNU/Linux instalada.
 
-    Opção 3 -  Move a pasta do ícone para /usr/share/icons, facilitando esse processo, porém para instalar defitivamente, deverá ter
-             instalado um programa como 'Gnome-Tweak-Tool' em seu sistema.
+Opção F) - Nessa opção você será levado para um submenu onde poderá escolher um programa que deseja instalar
+           Os programas que serão listados normalmente não se encontram na lista de repositórios oficiais de algumas distros.
+           Alguns dos programas listados são o Skype e Conky-Manager.
 
-        Opção 4 - Instalado o programa que lhe permitirá a intalação dos tema, ícones e cursores.
+Opção G) - Essa opção você poderá localizar arquivos ou pastas no seu HD.
+           O script iráa atualizar seu banco de dados para mostrar a lcocalização de um determinado arquivo,
+           portando dependendo do espaço ocupado no seu HD poderá levar um certo tempo para ser localizado.
 
- 
- Opção G - Atualiza a sua distribuição para uma versão mais recente por exemplo atualiza do ubuntu 14.04 LTS para o 16.04 LTS;
+Opção H) - Nessa opção você será levado para um submenu onde encontrará as seguintes opções:
 
- Opção H - Deleta os temas das respectivas pastas ( Você deverá escrever o nome do tema corretamente ).
+           1)Temas - Você instalará um tema que desejar, não esqueça de colocar o nome corretamente e
+                     certifique-se de ter extraído o tema, essa opção irá mover a pasta do tema para /usr/share/themes
+                     mas não instalará de fato, você precisará de um programa como o Gnome-Tweak-Tool para fazer isso;
 
- Opção I - Nessa opção você irá para um sub-menu onde encontrará opções que serão explicadas:
+           2)Cursor - Informe o caminho e o nome da pasta onde se encontra o cursor e certifique-se de escrever corretamente o nome;
 
-    Opção 1 - Você instalará uma lista de programas para internet como navegadores, clientes torrents, etc...
-              
-    Opção 2 - Você instalará uma lista de programas para escritório como libreoffice, ABiword, Pluma, etc...
+           3)Ícones -  Você instalará um ícone que desejar, não esqueça de colocar o nome corretamente e
+                     certifique-se de ter extraído o ícone, essa opção irá mover a pasta do ícone para /usr/share/icons
+                     mas não instalará de fato, você precisará de um programa como o Gnome-Tweak-Tool para fazer isso; 
 
-    Opção 3 - Você instalará uma lista de programas para gráficos como Gimp, Blender, Inkscape, etc...
+           4) Gnome-Tweak-Tool - Instalará o programa para a instalação de fato dos temas determinados;
 
-    Opção 4 - Você instalará uma lista de programas para jogos ou emuladores como wine, PlayOnLinux.
 
-    Opção 5 - Você instalará uma lista de programas para mídia como reprodutores de áudio, vídeo, etc...
+Opção I) - Você será levado para um submenu ond encontrará opções de remover temas e ícones que tens instalado, 
+           certifique-se de escrever o nome do tema ou ícone corretamente;
 
-    Opção 6 - Você instalará uma lista de programas para desenvolvimeto como IDE's, editores de texto e etc...
+Opção J) Você será levado para um sub menu onde encontrará opçoes de ativar o firewall e desativar,
+         Ativa-lo permanentemente apenas fazerá com que o firewall não desative a cada inicaliação do sistemas,
+         Este é apenas um pequeno firewall para uso doméstico, é altamente recomendado que edite ele de acordo
+         com os serviços que rodam em sua máquina.
 
-    Opção 7 - Você será levado para um sub-menu onde encontrará opções de programas básicos para instalar após uma formatação.
+Opção K) Será mostrado seu IP externo mas nada será enviado ou arquivado
+         Caso queira que isso seja feito edite o script a seu gosto.
+         Você será levado para um submenu onde encontrá as seguintes opções:
 
-    Opção 8 - Você instalará Todas as listas de programas citadas
+         1)Informações de rede - Será apresentado algumas informações da sua rede interna;
 
- Opção J - Você será levado para um sub-menu onde poderá escolher entre ativar um simples firewall ou desativa-lo.
+         2)Informações do sistema - Será apresentado algumas informações do seu sistema como
+                                    espaço ocupado em disco, memória ocupada e etc.
 
- Opção K - Opção ainda em fase "beta", isto é não está totalmente eficiente apesar de já poder ser usada.
-           Você será levado a um sub-menu onde encontrará algumas opções referentes ao git:
-    
-     Opção 1 - Equivale á git clone
-
-     Opção 2 - Equivale á git add
+         3)Informações do kernel - Será apresentado algumas informações do kernel como versão.
    
-     Opção 3 - Equivale á git push
+         4)Arquitetura do processador - Será mostrado em qual arquitetura seu procesador trabalha,
+                                        que pode variar de 64bits para 32bits, no caso seria assim:
+                                        x86_64(64bits)  e i386(32bits). 
 
-     Opção 4 - Equivale á git commit
+         5)Serviços e portas - Irá apresentar quais serviçoes estão em execução em sua máquina e quais
+                               portas estão abertas;
 
-     Opção 5 - Equivale á git init
+Opção L) Aqui você poderá baixar arquivos grandes da internet sem se preocupar com a banda,
+         Você terá de colocar o endereço (link) do arquivo a ser baixado e indicar o caminho e o nome com a extensão
+         como exemplo seria assim /home/fulano/Downloads/arquivo.deb.
+         Caso queira continuar um download anterior clique na opção 2)Continuar Download
+         Você será notificado caso tenha algum download pendente ainda não concluído.
 
-     Opção 6 - Equivale á git status
-     
-  Opção L - Você será levado a um submenu onde encontrará as seguintes opções:
-
-     Opção 1 - Obter informações sobre sua rede interna.
-   
-     Opção 2 - Mostará informações do seu HD, seu CPU e sua memória RAM.
-
-     Opção 3 - Mostará informções sobre o kernel do sistema, sua versão por exemplo.
-
-     Opção 4 - Mostraá a arquitetura do seu processador pode variar de 64bits a 32bits.
-     
-     Opção 5 - Usa o escaner de portas nmap, para verificar as portas e serviços rodando na sua máquina.
-
-  Opção M - Você será levado para um submenu onde encontrará opções para downloads de arquivos:
-
-     Opção 1 - Nesta opção você deverá digitar o link do arquivo que pretende baixar.
-               Em seguida digite o caminho do para onde o arquivo irá ser baixado, e digite o nome dele,
-               não esqueça de colocar a extensão do arquivo (ex: .deb-.txt-.tar.gz).
-
-     Opção 2 - Nesta opção se você já tiver iniciado algum download anteriormente ele será encarregado de continua-lo.
-
-     Opção 3 - Nesta opção você irá deletar os arquivos que contém o o link e o diretório, do arquivo que iria a ser baixado
-               este arquivo de log está contido em /var/log/KS_*.log
 
 
  Sinta-se livre em edita-lo a seu gosto.
@@ -116,21 +106,23 @@ pequeno firewall que o script prove.
 
  Para um melhor proveito do script por favor instale-o bastando apenas executar o script de instalação com o comando.
  Entre na pasta corrente do script e execute os seguintes comandos:
- 
- # chmod +x instalar.sh <-- Para dar permissões de execução, o mesmo deve ser feito com knife caso não queira instala-lo
- # bash instalar.sh <-- Instalar
 
- o script fará todo o resto.
+  # sudo su <-- Para entrar como usuário root
+  # chmod +x instalar.sh <-- Para dar permissões de execução, o mesmo deve ser feito com knife caso não queira instala-lo
+  # bash instalar.sh <-- Instalar
+
+ Caso tenha o script instaldo já selecione a opção 2) Remover e em seguida a Opção 1)Instalar.
+ Será criado um ícone do script para maior facilidade, olhe no menu acessórios ou algo equivalente
 
  <--Caso não queira instala-lo basta abrir o terminal, entrar na pasta corrente do script com: -->
 
-  $ cd ~/knife_system-x.x <-- Onde x.x é a versão do script
+  $ cd /caminho/knife_system-x.x/Knife-System <-- Onde x.x é a versão do script
   
  Entrar como usuário root com o comando:
 
   $ sudo su
   
- E dar permissões de execução ao script com o comando:
+  E dar permissões de execução ao script com o comando:
 
   # chmod +x knife
 
