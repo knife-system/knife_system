@@ -109,7 +109,9 @@ Opção L) Aqui você poderá baixar arquivos grandes da internet sem se preocup
  Entre na pasta corrente do script e execute os seguintes comandos:
 
   # sudo su <-- Para entrar como usuário root
+  
   # chmod +x instalar.sh <-- Para dar permissões de execução, o mesmo deve ser feito com knife caso não queira instala-lo
+  
   # bash instalar.sh <-- Instalar
 
  Caso tenha o script instaldo já selecione a opção 2) Remover e em seguida a Opção 1)Instalar.
