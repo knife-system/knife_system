@@ -21,7 +21,7 @@ function inst() {
 echo -e "${amarelo}Instalando script...${NORMAL}"
 sleep 2
 mv Knife-System /opt
-chmod 7777 /opt/Knife-System/*
+chmod -R 7777 /opt/Knife-System
 echo "
 [Desktop Entry]
 Name=Knife System
@@ -59,7 +59,7 @@ function atual() {
   rm -r /opt/Knife-System
   rm /usr/share/applications/Knife.desktop
   mv Knife-System /opt
-  chmod 7777 /opt/Knife-System/*
+  chmod -R 7777 /opt/Knife-System
   echo "
   [Desktop Entry]
   Name=Knife System
