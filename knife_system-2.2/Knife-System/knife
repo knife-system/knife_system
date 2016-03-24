@@ -102,7 +102,6 @@
 # Retirado a opção GIT                    #
 # Melhorada a opção de instalar programas #
 # Informa se há downloads a serem continuados
-
 ###########################################
 
 verm="\033[1;31m"
@@ -415,7 +414,6 @@ function instTema() {
     read curso
 
    if [ -e .icons ];then
-    clear
     mv $curso .icons
     sleep 2
     echo -e "${verde}Cursor adicionado com sucesso!${NORMAL}"
@@ -466,7 +464,6 @@ function instTema() {
 }
 
 function tool() {
-  clear
   echo -e "${azul}Instalando gnome-tweak-tool${NORMAL}"
   sleep 2
   apt-get -y install gnome-tweak-tool
@@ -786,10 +783,52 @@ function permStopFire() {
  firew
 }
 
+function newFire() {
+  function fireExpert() {
+    echo -e "${ciano}O que desja fazer?${NORMAL}"
+    echo ""
+    echo -e "${verde}1) ${verm}Listar regras${NORMAL}"
+    echo -e "${verde}2) ${verm}Criar regra${NORMAL}"
+    echo -e "${verde}3) ${verm}Deletar regra${NORMAL}"
+    echo -e "${verde}4) ${verm}Criar"
+  }
+  echo -e ${ciano}Você se considera um usuário:${NORMAL}
+  echo ""
+  echo -e "${verm}1) ${amarelo}Avançado${NORMAL}"
+  echo -e "${verm}2) ${amarelo}Iniciante${NORMAL}"
+  echo ""
+  echo -e "${branco}Pressine [Q] para voltar${NORMAL}"
+  echo -e "${ciano}Escolha uma das opções:${NORMAL}"
+  read -n1 newFireResp
+  case $newFireResp in
+    1)reset;
+      fireExpert;
+      exit;
+      ;;
+
+      2)reset;
+        fireBeginner;
+        exit;
+        ;;
+
+        Q | q)fazer;
+        ;;
+
+        *)echo -e "${verm}Opção inválida!${NORMAL}"
+          sleep 1;
+          reset;
+          newFire;
+
+esac
+
+
+}
+
  echo -e "${amarelo}1)${verde} Iniciar firewall${NORMAL}"
  echo -e "${amarelo}2)${verde} Iniciar firewall ${branco}(Permanente)${NORMAL}"
  echo -e "${amarelo}0)${verm} Parar firewall${NORMAL}"
  echo -e "${amarelo}9)${verm} Parar firewall ${branco}(Permanente)${NORMAL}"
+ echo -e "${amarelo}5)${ciano} Crie seu firewall${branco}(em desenvolvimento)${NORMAL}"
  echo ""
  echo -e "${verde}X)${amarelo}Voltar ao menu princípal${NORMAL}"
 
@@ -800,18 +839,27 @@ function permStopFire() {
 
   1) startFire;
      reset;
+     firew;
      ;;
     2) permFire;
        reset;
+       firew;
        ;;
 
    0) stopFire;
-      reset
+      reset;
+      firew;
       ;;
 
    9) permStopFire;
       reset;
+      firew;
       ;;
+
+      5)reset;
+        newFire;
+        firew;
+        ;;
 
     X | x) fazer;
            ;;
@@ -1171,14 +1219,18 @@ deb http://archive.canonical.com/ubuntu/ trusty partner" >> /etc/apt/sources.lis
 echo -e "${ciano}Realizando update e instalando o Skype...${NORMAL}"
 apt-get update | pv -W > /dev/null
 apt-get -y install skype | pv -W > /dev/null
+apt-get -fy | pv -W /dev/null
 echo -e "${verde}Instalação concluída!${NORMAL}"
 echo -e "${branco}O skype pode não funcionar em algumas distros.${NORMAL}"
 sleep 2
 else
   echo -e "${ciano}Baixando e instalando o Skype...${NORMAL}"
   wget https://www.dropbox.com/s/dnwhqt9xxt0l0n0/skype-debian_4.3.0.37-1_i386.deb -O skype.deb
+  clear
   dpkg -i skype.deb | pv -W >/dev/null
   apt-get install -fy | pv -W > /dev/null
+  rm skype.deb
+  echo "" 
   echo -e "${verde}Instalação concluída${NORMAL}"
   sleep 1
 fi
@@ -1190,6 +1242,7 @@ function chrom() {
   clear
   dpkg -i chrome.deb | pv -W > /dev/null
   apt-get install -fy | pv -W > /dev/null
+  rm chrome.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
   sleep 1
@@ -1201,11 +1254,13 @@ function atm() {
   clear
   dpkg -i atom.deb | pv -W > /dev/null
   apt-get install -fy | pv -W > /dev/null
+  rm atom.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
   sleep 1
 }
-
+ping -c1 google.com > /dev/null
+if [ $? = 0 ];then
 echo -e "${verm}*************************************${NORMAL}"
 sleep 0.1
 echo -e "${verde}            PROGRAMAS               ${NORMAL}"
@@ -1255,6 +1310,18 @@ read -n1 proResp
 
 esac
 done
+else
+  echo -e "${verm}Não conectado${NORMAL}"
+  echo ""
+  echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
+  read -n1 notCon
+  case $notCon in
+    Q | q)fazer;
+    ;;
+
+    *)fazer;
+esac
+  fi
 }
 ######################################
 #      Setar os comandos do menu     #
