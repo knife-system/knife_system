@@ -791,7 +791,7 @@ function newFire() {
     echo -e "${verde}2) ${verm}Criar regra${NORMAL}"
     echo -e "${verde}3) ${verm}Deletar regra${NORMAL}"
   }
-  echo -e "${branco}Não funcional, em desenvolvimanto${NORMAL}"
+  echo -e "${branco}Não funcional, em desenvolvimento${NORMAL}"
   echo -e ${ciano}Você se considera um usuário:${NORMAL}
   echo ""
   echo -e "${verm}1) ${amarelo}Avançado${NORMAL}"
