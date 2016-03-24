@@ -1222,6 +1222,7 @@ else
   sleep 1
   reset
   programas
+fi
 }
 ping -c1 google.com /dev/null
 if [ $? = 0 ];then
