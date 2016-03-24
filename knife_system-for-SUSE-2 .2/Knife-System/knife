@@ -1224,7 +1224,7 @@ else
   programas
 fi
 }
-ping -c1 google.com /dev/null
+ping -c1 google.com > /dev/null
 if [ $? = 0 ];then
 echo -e "${verm}*************************************${NORMAL}"
 sleep 0.1
