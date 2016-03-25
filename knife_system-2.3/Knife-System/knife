@@ -133,7 +133,7 @@ echo -e "${azul}Verificando se o pacote pv está instalado...${NORMAL}"
 which pv > /dev/null
 if [ $? != 0 ];then
   echo -e ${verde}Instalando o PV... Aguarde...${NORMAL}
-  apt-get -y install pv > /dev/null
+  apt-get -y --force-yes install pv > /dev/null
 fi
 sleep 1
 echo ""
@@ -212,7 +212,7 @@ function instal() {
       echo -e "${azul}Instalando pacote aguarde...${NORMAL}"
       sleep 1
       dpkg -i $debResp | pv -W > /dev/null
-      apt-get install -f | pv -W /dev/null
+      apt-get install -f --force-yes | pv -W /dev/null
       echo ""
       echo -e "${verde}Instalação concluída!${NORMAL}"
       sleep 1
@@ -232,7 +232,7 @@ function instal() {
     read pacResp
     clear
     echo -e "${azul}Instalando pacote aguarde...${NORMAL}"
-    apt-get -y install $pacResp | pv -W > /dev/null
+    apt-get -y --force-yes install $pacResp | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -277,8 +277,8 @@ function remov() {
    read rmove
    sleep 1
    echo -e "${azul}Removendo $rmove. Por favor, aguarde...${NORMAL}"
-   apt-get -y remove --purge $rmove | pv -W > /tmp/KS_remove.log
-   apt-get -y autoremove | pv -W > /tmp/KS_aremove.log
+   apt-get -y --force-yes remove --purge $rmove | pv -W > /tmp/KS_remove.log
+   apt-get -y --force-yes autoremove | pv -W > /tmp/KS_aremove.log
    echo ""
    echo -e "${verde}$rmove removido com sucesso${NORMAL}"
    sleep 2
@@ -295,7 +295,7 @@ function repair() {
    echo ""
    sleep 1
    apt-get -f install | pv -W > /tmp/KS_finstall.log
-   apt-get -y autoremove | pv -W > /tmp/KS_autremove.log
+   apt-get -y --force-yes autoremove | pv -W > /tmp/KS_autremove.log
    apt-get clean | pv -W > /tmp/KS_clean.log
    dpkg --configure -a | pv -W > /tmp/KS_configa.log
    echo -e "${verde}Dependências reparadas com sucesso${NORMAL}"
@@ -376,7 +376,7 @@ function atual() {
     sleep 2
     echo ""
     echo -e "${azul}Atualizando seu sistema, isso pode demorar algun minutos${NORMAL}"
-    apt-get -uy dist-upgrade | pv -W > /dev/null
+    apt-get -uy --force-yes  dist-upgrade | pv -W > /dev/null
     echo ""
     echo -e $verde"Atualização terminada"
     sleep 1
