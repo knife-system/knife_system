@@ -737,13 +737,12 @@ function firew() {
    echo -e "${verm} ATENÇÃO!${NORMAL}"
    echo ""
    sleep 1
-   echo -e ${amarelo}"Este é apenas um símples firewall criado por"
-   echo -e ${amarelo}"Tácio de Jesus Andrade e editado por mim"
-   echo ""
    echo -e ${amarelo}"Ele pode não funcionar em algumas máquinas"
    echo -e ${amarelo}"dependendo muito dos serviços que nela roda"
    echo ""
    echo -e ${amarelo}"Edite-o de acordo com suas necessidades"
+   echo -e "${branco}Caso tenha alguns serviços que o firewall bloqueia${NORMAL}"
+   echo -e "${branco}basta apenas descomentar a linha com o nome do serviço no firewall${NORMAL}"
    sleep 10
    clear
       iptables -F INPUT
