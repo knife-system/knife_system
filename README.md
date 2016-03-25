@@ -13,7 +13,7 @@ pequeno firewall que o script prove.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/nRvYJZT.png)
+![Imagem](http://i.imgur.com/nc9m83e.png)
 
 
  Como estão organizados os menus: 
@@ -53,22 +53,23 @@ Opção H) - Nessa opção você será levado para um submenu onde encontrará a
                      certifique-se de ter extraído o tema, essa opção irá mover a pasta do tema para /usr/share/themes
                      mas não instalará de fato, você precisará de um programa como o Gnome-Tweak-Tool para fazer isso;
 
-           2)Cursor - Informe o caminho e o nome da pasta onde se encontra o cursor e certifique-se de escrever corretamente o nome;
+           2)Cursor - Informe o caminho e o nome da pasta onde se encontra o cursor e certifique-se de escrever                                  corretamente o nome;
 
            3)Ícones -  Você instalará um ícone que desejar, não esqueça de colocar o nome corretamente e
                      certifique-se de ter extraído o ícone, essa opção irá mover a pasta do ícone para /usr/share/icons
                      mas não instalará de fato, você precisará de um programa como o Gnome-Tweak-Tool para fazer isso; 
+                
+           4)Conky  - Aqui você poderá instalar temas para o conky, não esqueça de digitar corretamente o nome da pasta já                       descompactada em sua home, para ver o tema do conky funcional baixe o Conky Manager, no próprio                            script na opção F)Lista de programa no menu princípal.
 
-           4) Gnome-Tweak-Tool - Instalará o programa para a instalação de fato dos temas determinados;
+           5) Gnome-Tweak-Tool - Instalará o programa para a instalação de fato dos temas determinados;
 
 
-Opção I) - Você será levado para um submenu ond encontrará opções de remover temas e ícones que tens instalado, 
+Opção I) - Você será levado para um submenu onde encontrará opções de remover temas e ícones que tens instalado, 
            certifique-se de escrever o nome do tema ou ícone corretamente;
 
 Opção J) Você será levado para um sub menu onde encontrará opçoes de ativar o firewall e desativar,
-         Ativa-lo permanentemente apenas fazerá com que o firewall não desative a cada inicaliação do sistemas,
-         Este é apenas um pequeno firewall para uso doméstico, é altamente recomendado que edite ele de acordo
-         com os serviços que rodam em sua máquina.
+         Ativa-lo permanentemente apenas fazerá com que o firewall não desative a cada inicaliação do sistemas,e também             poderá criar um firewall que irá automaticamente iniciar a cada inicialização do sistema. 
+         O fireall incluso no script pode e deve ser modificado de acordo com suas necessidades e dos servições que rodam           em sua máquina.
 
 Opção K) Será mostrado seu IP externo mas nada será enviado ou arquivado
          Caso queira que isso seja feito edite o script a seu gosto.
@@ -109,7 +110,7 @@ Opção L) Aqui você poderá baixar arquivos grandes da internet sem se preocup
  Entre na pasta corrente do script e execute os seguintes comandos:
 
   # sudo su <-- Para entrar como usuário root
-  
+ 
   # chmod +x instalar.sh <-- Para dar permissões de execução, o mesmo deve ser feito com knife caso não queira instala-lo
   
   # bash instalar.sh <-- Instalar
