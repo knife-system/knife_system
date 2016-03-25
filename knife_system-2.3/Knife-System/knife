@@ -294,7 +294,7 @@ function repair() {
    echo -e "${amarelo}Reparando... aguarde...${NORMAL}"
    echo ""
    sleep 1
-   apt-get -f install | pv -W > /tmp/KS_finstall.log
+   apt-get -f -y --force-yes install | pv -W > /tmp/KS_finstall.log
    apt-get -y --force-yes autoremove | pv -W > /tmp/KS_autremove.log
    apt-get clean | pv -W > /tmp/KS_clean.log
    dpkg --configure -a | pv -W > /tmp/KS_configa.log
@@ -1568,7 +1568,7 @@ function programas() {
     wget https://www.dropbox.com/s/5fg0n1ls1wnvxhn/conky-manager-latest-amd64.deb?dl=0 -O Conky-Manager.deb
     clear
     dpkg -i Conky-Manager.deb | pv -W >/dev/null
-    apt-get install -f | pv -W >/dev/null
+    apt-get install -f -y --force-yes| pv -W >/dev/null
     rm Conky-Manager.deb
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -1594,7 +1594,7 @@ deb http://archive.canonical.com/ubuntu/ trusty partner" >> /etc/apt/sources.lis
 echo -e "${ciano}Realizando update e instalando o Skype...${NORMAL}"
 apt-get update | pv -W > /dev/null
 apt-get -y install skype | pv -W > /dev/null
-apt-get -f | pv -W /dev/null
+apt-get -f -y --force-yes | pv -W /dev/null
 echo -e "${verde}Instalação concluída!${NORMAL}"
 echo -e "${branco}O skype pode não funcionar em algumas distros.${NORMAL}"
 sleep 2
@@ -1603,7 +1603,7 @@ else
   wget https://www.dropbox.com/s/vkygoriipuzmncq/skype-debian_4.3.0.37-1_i386.deb?dl=0 -O skype.deb
   clear
   dpkg -i skype.deb | pv -W >/dev/null
-  apt-get install -f | pv -W > /dev/null
+  apt-get install -f -y --force-yes| pv -W > /dev/null
   rm skype.deb
   echo ""
   echo -e "${verde}Instalação concluída${NORMAL}"
@@ -1616,7 +1616,7 @@ function chrom() {
   wget https://www.dropbox.com/s/amp2lb1ww8zylil/google-chrome-stable_current_amd64.deb?dl=0 -O chrome.deb
   clear
   dpkg -i chrome.deb | pv -W > /dev/null
-  apt-get install -f | pv -W > /dev/null
+  apt-get install -f -y --force-yes | pv -W > /dev/null
   rm chrome.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
@@ -1628,7 +1628,7 @@ function atm() {
   wget https://www.dropbox.com/s/8fpxvr803zm7xlg/atom-amd64.deb?dl=0 -O atom.deb
   clear
   dpkg -i atom.deb | pv -W > /dev/null
-  apt-get install -f | pv -W > /dev/null
+  apt-get install -f -y --force-yes | pv -W > /dev/null
   rm atom.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
