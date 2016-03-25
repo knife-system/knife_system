@@ -1193,7 +1193,7 @@ function programas() {
     wget https://www.dropbox.com/s/5fg0n1ls1wnvxhn/conky-manager-latest-amd64.deb?dl=0 -O Conky-Manager.deb
     clear
     dpkg -i Conky-Manager.deb | pv -W >/dev/null
-    apt-get install -f | pv -W >/dev/null
+    apt-get install -fy | pv -W >/dev/null
     rm Conky-Manager.deb
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
