@@ -39,7 +39,7 @@ echo -e "${verde}script instalado com sucesso${NORMAL}"
 echo ""
 sleep 1
 echo -e "${amarelo}Procure pelo script em acessórios ou algo equivalente${NORMAL}"
-ehco -e "${amarelo}ou digite no terminal ${ciano}knife${NORMAL}"
+echo -e "${amarelo}ou digite no terminal ${ciano}knife${NORMAL}"
 fi
 }
 
