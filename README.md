@@ -4,8 +4,8 @@
 
  Provê facilidade e rapidez em algumas tarefas,
 Nele você irá encontrar como o próprio nome já diz knife system ( canivete do sistema ), inúmeras
-ferramentas para auxília-lo em suas tarefas sejam elas uma simples instalação de programas até um
-pequeno firewall que o script prove.
+ferramentas para auxília-lo em suas tarefas sejam elas uma símples instalação de programas até um
+pequeno firewall que o script provê.
 
 ###                                              ATENÇÃO!
  
@@ -13,25 +13,25 @@ pequeno firewall que o script prove.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/nc9m83e.png)
+![Imagem](http://i.imgur.com/PUDXHSH.png)
 
 
  Como estão organizados os menus: 
 
 Opção A - Você será levado para um submenu onde encontrará as seguintes opções:
 
-      1)Pacote .deb - Nessa opção você deverá ter baixado um arquivo .deb equivale à um executável
-                      do Windows, informe o caminho onde se encontra o pacote mas não esqueça de 
+      1)Pacote .deb - Nessa opção você deverá ter baixado um arquivo .deb (equivale à um executável
+                      do Windows), informe o caminho onde se encontra o pacote mas não esqueça de 
                       escrever seu nome corretamente e certifique-se de colocar a extensão .deb;
 
-      2)Direto do repositório - Nessa opção você irá instalar um programa que esteja em sua lista de repoitórios
+      2)Direto do repositório - Nessa opção você irá instalar um programa que esteja em sua lista de repositórios
                                 bastando apenas digitar o nome do pacote (programa).
 
 Opção B) - Nessa opção você poderá remover pacotes(programas) instalados bastando apenas digitar seu nome,
            certifique-se de digitar o nome do pacote corretamente.
 
-Opção C) - Nessa opção você poderá locaizar programas, estejam ele instalados ou não. Porém o script procurará pelo nome do programa,
-           isto é, se tiver mais pacotes com o mesme nome será mostrado também.
+Opção C) - Nessa opção você poderá localizar programas, estejam ele instalados ou não. Porém o script procurará pelo nome do programa,
+           isto é, se tiver mais pacotes com o mesmo nome será mostrado também.
 
 Opção D) - Nessa opção você irá reparar os erros mais comuns encontrados em pacotes quebrados.
            Em alguns casos isso pode não funcionar.
