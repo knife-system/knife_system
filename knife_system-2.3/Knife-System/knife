@@ -1594,7 +1594,7 @@ deb http://archive.canonical.com/ubuntu/ trusty partner" >> /etc/apt/sources.lis
 echo -e "${ciano}Realizando update e instalando o Skype...${NORMAL}"
 apt-get update | pv -W > /dev/null
 apt-get -y install skype | pv -W > /dev/null
-apt-get -f -y --force-yes | pv -W /dev/null
+apt-get install -f -y --force-yes | pv -W /dev/null
 echo -e "${verde}Instalação concluída!${NORMAL}"
 echo -e "${branco}O skype pode não funcionar em algumas distros.${NORMAL}"
 sleep 2
@@ -1659,21 +1659,25 @@ read -n1 proResp
 
    1)reset;
      skyp;
+     reset;
      programas;
      ;;
 
      2)reset;
       conky-manage;
+      reset;
       programas;
       ;;
 
       3)reset;
        chrom;
+       reset;
        programas;
        ;;
 
        4)reset;
          atm;
+         reset;
          programas;
          ;;
 
