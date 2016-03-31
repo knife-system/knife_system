@@ -93,10 +93,10 @@ Opção K) Será mostrado seu IP externo mas nada será enviado ou arquivado
                                                           aberta ou não em um host remoto, opção interessante para administradores de rede
                                                           para usar essa opção basta inserir o IP da máquina que se deseja realizar o scan
                                                           em seguida colocar o número da porta, caso não saiba a porta de determinado serviço
->                                                          [consulte aqui](http://www.portalchapeco.com.br/jackson/portas.htm)
+                                                          consulte aqui -> http://www.portalchapeco.com.br/jackson/portas.htm
                                                           Aguarde alguns instântes e será mostrado na tela se a porta está aberta ou não.
                                                           Para essa opção é necessário ter o netcat instalado para mais informações consulte
->                                                          [esse site](http://netcat.sourceforge.net/)
+                                                          esse site -> http://netcat.sourceforge.net/
 
 Opção L) Aqui você poderá baixar arquivos grandes da internet sem se preocupar com a banda,
          Você terá de colocar o endereço (link) do arquivo a ser baixado e indicar o caminho e o nome com a extensão
