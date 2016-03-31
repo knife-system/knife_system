@@ -1873,11 +1873,13 @@ esac
 
 #### Opção extra instalar interface gráfica no Archlinux #########
 function arch-interface() {
-  pacInstall=" vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior skype conky conky-manager docky flashplugin gnome-tweak-tool xf86-input-synaptics"
+  pacInstall=" slim gdm vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior skype conky conky-manager docky flashplugin gnome-tweak-tool xf86-input-synaptics"
   function arch-mate() {
     echo -e "${ciano}Instalando interface MATE e configurando programas${NORMAL}"
     sleep 1
     pacman -S mate-desktop-environment $pacInstall
+    systemctl start slim.service
+    systemctl enable slim.service
     systemctl start gdm.service
     systemctl enable gdm.service
     clear
@@ -1888,6 +1890,8 @@ function arch-interface() {
     echo -e "${ciano}Instalando interface XFCE e configurando programas${NORMAL}"
     sleep 1
     pacman -S xfce4 $pacInstall
+    systemctl start slim.service
+    systemctl enable slim.service
     systemctl start gdm.service
     systemctl enable gdm.service
     clear
@@ -1898,6 +1902,8 @@ function arch-interface() {
     echo -e "${ciano}Instalando interface GNOME e configurando programas${NORMAL}"
     sleep 1
     pacman -S gnome $pacInstall
+    systemctl start slim.service
+    systemctl enable slim.service
     systemctl start gdm.service
     systemctl enable gdm.service
     clear
@@ -1909,7 +1915,9 @@ function arch-interface() {
     echo -e "${ciano}Instalando interface KDE e configurando programas${NORMAL}"
     sleep 1
     pacman -S plasma sddm $pacInstall
-    systemctl enable gdm.service
+    systemctl start slim.service
+    systemctl enable slim.service
+    systemctl start sddm.service
     systemctl enable sddm.service
     clear
     echo -e "${verde}Concluído!${NORMAL}"
