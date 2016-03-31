@@ -1440,7 +1440,7 @@ function infos() {
       read remotePort
       reset
       echo -e "${azul}Realizando scaneamento...${NORMAL}"
-      netcat -w 2 $remoteHost $remotePort >/dev/null
+      netcat -w 1 $remoteHost $remotePort >/dev/null
       if [ $? == 0 ];then
         echo -e "${verde}Porta $remotePort aberta!${NORMAL}"
         sleep 2
