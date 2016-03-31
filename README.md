@@ -13,7 +13,7 @@ pequeno firewall que o script provê.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/PUDXHSH.png)
+![Imagem](http://i.imgur.com/LmUg4Ka.png)
 
 
  Como estão organizados os menus: 
@@ -89,12 +89,45 @@ Opção K) Será mostrado seu IP externo mas nada será enviado ou arquivado
          5)Serviços e portas - Irá apresentar quais serviçoes estão em execução em sua máquina e quais
                                portas estão abertas;
 
+         6) Verificar serviço de um host remoto(netcat) - Nesa opção você poderá realizar um sacan para verificar se uma porta está
+                                                          aberta ou não em um host remoto, opção interessante para administradores de rede
+                                                          para usar essa opção basta inserir o IP da máquina que se deseja realizar o scan
+                                                          em seguida colocar o número da porta, caso não saiba a porta de determinado serviço
+                                                          consulte aqui -> http://www.portalchapeco.com.br/jackson/portas.htm
+                                                          Aguarde alguns instântes e será mostrado na tela se a porta está aberta ou não.
+                                                          Para essa opção é necessário ter o netcat instalado para mais informações consulte
+                                                          esse site -> http://netcat.sourceforge.net/
+
 Opção L) Aqui você poderá baixar arquivos grandes da internet sem se preocupar com a banda,
          Você terá de colocar o endereço (link) do arquivo a ser baixado e indicar o caminho e o nome com a extensão
          como exemplo seria assim /home/fulano/Downloads/arquivo.deb.
          Caso queira continuar um download anterior clique na opção 2)Continuar Download
          Você será notificado caso tenha algum download pendente ainda não concluído.
 
+Opção 1) Uma opção extra implantada no script, funcional apenas no Arch. Nessa opção você poderá instalar uma interface gráfica
+         que desejar bastando apenas escolher, também serão instalados alguns programas úteis para o usuário como um navegador
+         um editor de texto e de imagem entre outros, por tanto não se preocupe se demorar muito para finalizar tal função
+         dependendo da sua conexão poderá levar mais ou menos tempo, não imterrompa a instalação. 
+         Caso não saiba como baixar o script no seu Arch em modo texto aqui vai um breve tutorial levando em conta que já esteja como root:
+         
+         Instale o git em sua máquina com o comando:
+         # pacman -S git
+   
+         Em seguida baixe o repositório do script com 
+         # git clone https://github.com/anony000/knife_system
+
+         Entre na pasta do script com
+         # cd /knife_system/knife_system-x.x/Knife-System <-- Onde x.x é a versão do script
+
+         Dê permissões de execussão ao script com:
+         # chmod +x knife
+
+         Em seguida execute-o com:
+          # bash knife
+
+         Escolha a opção --> 1) Instalar interface para Archlinux(extra)
+
+         Algumas opções como Instalar programas e remover não funcionarão no Arch, apenas a opção 1 foi feita exlusivamente para ele.
 
 
  Sinta-se livre em edita-lo a seu gosto.
