@@ -117,7 +117,7 @@ Opção 1) Uma opção extra implantada no script, funcional apenas no Arch. Nes
          # git clone https://github.com/anony000/knife_system
 
          Entre na pasta do script com
-         # cd /knife_system/knife_system-x.x/Knife-System <-- Onde x.x é a versão do script
+         # cd knife_system/knife_system-x.x/Knife-System <-- Onde x.x é a versão do script
 
          Dê permissões de execussão ao script com:
          # chmod +x knife
