@@ -1873,11 +1873,12 @@ esac
 
 #### Opção extra instalar interface gráfica no Archlinux #########
 function arch-interface() {
-  pacInstall=" slim gdm vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior conky conky-manager docky flashplugin gnome-tweak-tool xf86-input-synaptics"
+  preInstall="xorg-server xorg-xinit xorg-server-utils xf86-input-synaptics xf86-video-vesa mesa xorg-twm xorg-xclock xterm ttf-dejavu"
+  posInstall="slim gdm vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior conky conky-manager docky flashplugin gnome-tweak-tool"
   function arch-mate() {
     echo -e "${ciano}Instalando interface MATE e configurando programas${NORMAL}"
     sleep 1
-    pacman -S mate $pacInstall
+    pacman -S $preInstall mate $posInstall
     systemctl start slim.service
     systemctl enable slim.service
     systemctl start gdm.service
@@ -1885,11 +1886,14 @@ function arch-interface() {
     clear
     echo -e "${verde}Concluído!${NORMAL}"
     sleep 1
+    echo ""
+    echo -e "${azul}Reiniciando...${NORMAL}"
+    reboot
   }
   function arch-xfce() {
     echo -e "${ciano}Instalando interface XFCE e configurando programas${NORMAL}"
     sleep 1
-    pacman -S xfce4 $pacInstall
+    pacman -S $preInstall xfce4 $posInstall
     systemctl start slim.service
     systemctl enable slim.service
     systemctl start gdm.service
@@ -1897,11 +1901,14 @@ function arch-interface() {
     clear
     echo -e "${verde}Concluído!${NORMAL}"
     sleep 1
+    echo ""
+    echo -e "${azul}Reiniciando...${NORMAL}"
+    reboot
   }
   function arch-gnome() {
     echo -e "${ciano}Instalando interface GNOME e configurando programas${NORMAL}"
     sleep 1
-    pacman -S gnome $pacInstall
+    pacman -S $preInstall gnome $posInstall
     systemctl start slim.service
     systemctl enable slim.service
     systemctl start gdm.service
@@ -1909,12 +1916,15 @@ function arch-interface() {
     clear
     echo -e "${verde}Concluído!${NORMAL}"
     sleep 1
+    echo ""
+    echo -e "${azul}Reiniciando...${NORMAL}"
+    reboot
   }
 
   function arch-kde() {
     echo -e "${ciano}Instalando interface KDE e configurando programas${NORMAL}"
     sleep 1
-    pacman -S plasma sddm $pacInstall
+    pacman -S $preInstall plasma sddm $posInstall
     systemctl start slim.service
     systemctl enable slim.service
     systemctl start sddm.service
@@ -1922,6 +1932,9 @@ function arch-interface() {
     clear
     echo -e "${verde}Concluído!${NORMAL}"
     sleep 1
+    echo ""
+    echo -e "${azul}Reiniciando...${NORMAL}"
+    reboot
   }
 
   echo -e "${ciano}Opção extra!${NORMAL}"
