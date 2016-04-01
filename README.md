@@ -10,7 +10,7 @@ pequeno firewall que o script provê.
 ###                                              ATENÇÃO!
  
   Esse script só funcionará em derivados do debian ( Ubuntu, Mint, ElementaryOS, DuZeru, e etc... ). 
-  Apenas apção 1) é exclusiva do Arch, e caso apareça alguma mensagem pedindo para instalar um programa confirme com S
+  Apenas a pção 1) é exclusiva do Arch, e caso apareça alguma mensagem pedindo para instalar um programa confirme com S
   será instalado o pacote PV descrito logo abaixo.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
