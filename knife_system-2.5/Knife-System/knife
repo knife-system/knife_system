@@ -1873,11 +1873,11 @@ esac
 
 #### Opção extra instalar interface gráfica no Archlinux #########
 function arch-interface() {
-  pacInstall=" slim gdm vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior skype conky conky-manager docky flashplugin gnome-tweak-tool xf86-input-synaptics"
+  pacInstall=" slim gdm vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior conky conky-manager docky flashplugin gnome-tweak-tool xf86-input-synaptics"
   function arch-mate() {
     echo -e "${ciano}Instalando interface MATE e configurando programas${NORMAL}"
     sleep 1
-    pacman -S mate-desktop-environment $pacInstall
+    pacman -S mate $pacInstall
     systemctl start slim.service
     systemctl enable slim.service
     systemctl start gdm.service
