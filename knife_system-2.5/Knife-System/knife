@@ -1877,7 +1877,9 @@ function arch-interface() {
   posInstall="slim gdm vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior conky conky-manager docky flashplugin gnome-tweak-tool"
   function arch-mate() {
     echo -e "${ciano}Instalando interface MATE e configurando programas${NORMAL}"
-    sleep 1
+    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suas necessidades{NORMAL}"
+    echo -e "${branco}Ou escolha um opção${NORMAL}"
+    sleep 5
     pacman -S $preInstall mate $posInstall
     systemctl start slim.service
     systemctl enable slim.service
@@ -1892,7 +1894,9 @@ function arch-interface() {
   }
   function arch-xfce() {
     echo -e "${ciano}Instalando interface XFCE e configurando programas${NORMAL}"
-    sleep 1
+    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suas snecessidades{NORMAL}"
+    echo -e "${branco}Ou escolha um opção${NORMAL}"
+    sleep 5
     pacman -S $preInstall xfce4 $posInstall
     systemctl start slim.service
     systemctl enable slim.service
@@ -1907,7 +1911,9 @@ function arch-interface() {
   }
   function arch-gnome() {
     echo -e "${ciano}Instalando interface GNOME e configurando programas${NORMAL}"
-    sleep 1
+    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suas necessidades{NORMAL}"
+    echo -e "${branco}Ou escolha um opção${NORMAL}"
+    sleep 5
     pacman -S $preInstall gnome $posInstall
     systemctl start slim.service
     systemctl enable slim.service
@@ -1923,7 +1929,9 @@ function arch-interface() {
 
   function arch-kde() {
     echo -e "${ciano}Instalando interface KDE e configurando programas${NORMAL}"
-    sleep 1
+    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suaS necessidades{NORMAL}"
+    echo -e "${branco}Ou escolha um opção${NORMAL}"
+    sleep 5
     pacman -S $preInstall plasma sddm $posInstall
     systemctl start slim.service
     systemctl enable slim.service
