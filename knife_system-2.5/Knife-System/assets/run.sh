@@ -1,7 +1,6 @@
 #!/bin/bash
 verm=`echo "\033[01;31m"`
 verde=`echo "\033[01;32m"`
-amare=`echo "\033[01;33m"`
 ciano=`echo "\033[01;36m"`
 nml=`echo "\033[m"`
 HORA=$(date +%H)
