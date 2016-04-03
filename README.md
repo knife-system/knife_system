@@ -15,7 +15,7 @@ pequeno firewall que o script provê.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/LmUg4Ka.png)
+![Imagem](http://i.imgur.com/d1Xjz10.png)
 
 
  Como estão organizados os menus: 
@@ -153,7 +153,7 @@ Opção 1) Uma opção extra implantada no script, funcional apenas no Arch. Nes
  Caso tenha o script instaldo já selecione a opção 2) Remover e em seguida a Opção 1)Instalar.
  Será criado um ícone do script para maior facilidade, olhe no menu acessórios ou algo equivalente
 
- <--Caso não queira instala-lo basta abrir o terminal, entrar na pasta corrente do script com: -->
+####Caso não queira instala-lo basta abrir o terminal, entrar na pasta corrente do script com:
 
   $ cd /caminho/knife_system-x.x/Knife-System <-- Onde x.x é a versão do script
   
@@ -185,10 +185,17 @@ Opção 1) Uma opção extra implantada no script, funcional apenas no Arch. Nes
  
   caso queira conferir a documentação consulte em /usr/share/doc/pv
 
+  Também é necessário ter o pacote zenity instalado, ele é responsável por apresentar uma interface gráfica
+  e mais agradável ao usuário, a interface gráfica está sendo implementada pouco a pouco no script em breve 
+  ele será todo em interface gráfica ou quase. Caso queira conferir como o zenity funciona faça o teste:
 
+  $sudo su <-- Entre como usuário root
 
+  #apt-get install zenity <-- Comando para instalar o zenity
 
+  #zenity --entry <-- Este é apenas um símples exemplo do comando 
 
+  Caso queira saber mais confira em zenity --help
 
  Atualizações são lançadas constântementes. Porém não se á um site ou uma equipe por trás do script portanto
 fique sempre de olho no meu git para conferir as atualizações.
