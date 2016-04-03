@@ -420,7 +420,12 @@ function instTema() {
     sleep 3
     theme=`zenity --file-selection --directory --title="Selecione a pasta do tema"`
 
-    if [ -e $theme ];then
+    if [ -z $theme ];then
+      echo -e "${verm}Nenhum tema selecionado!${NORMAL}"
+      sleep 1
+      reset
+      tema
+    else
     clear
     mv -f $theme /usr/share/themes
     sleep 2
@@ -441,7 +446,12 @@ function instTema() {
    curso=`zenity --file-selection --directory title="Selecione a pasta do cursor"`
 
    if [ -e .icons ];then
-     if [ -e $curso ];then
+     if [ -z $curso ];then
+       echo -e "${verm}Nenhum cursor selecionado!${NORMAL}"
+       sleep 1
+       reset
+       tema
+     else
     mv $curso .icons
     sleep 2
     echo -e "${verde}Cursor adicionado com sucesso!${NORMAL}"
@@ -477,7 +487,12 @@ function instTema() {
     sleep 3
     icon=`zenity --file-selection --directory --title="Selecione seu ícone"`
 
-    if [ -e $icon ];then
+    if [ -z $icon ];then
+      echo -e "${verm}Nenhum ícone selecionado!${NORMAL}"
+      sleep 1
+      reset
+      tema
+    else
     clear
     mv -f $icon /usr/share/icons
     sleep 2
@@ -508,7 +523,12 @@ function conk() {
   sleep 3
   conkyResp=`zenity --file-selection --directory --title="Selecione seu tema para o conky"`
   if [ -e .conky ];then
-    if [ -e $conkyResp ];then
+    if [ -z $conkyResp ];then
+      echo -e "${verm}Nenhum tema para o conky selecionado!${NORMAL}"
+      sleep 1
+      reset
+      tema
+    else
       echo -e "${azul}Instalando conky...${NORMAL}"
       mv $conkyResp .conky
       sleep 1
