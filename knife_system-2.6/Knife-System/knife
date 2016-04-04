@@ -235,7 +235,12 @@ function instal() {
     echo -e "${ciano}Selecione o pacote .deb a ser instalado:${NORMAL}"
     sleep 1
     debResp=`zenity --file-selection --file-filter=*.deb --title="Selecione o pacote .deb a ser instalado"`
-    if [ -e $debResp ];then
+    if [ -z $debResp ];then
+      echo -e "${verm}Nenhum pacote .deb selecionado!${NORMAL}"
+      sleep 1
+      reset
+      install
+     else
       echo -e "${azul}Instalando pacote aguarde...${NORMAL}"
       sleep 1
       dpkg -i $debResp | pv -W > /dev/null
@@ -243,11 +248,6 @@ function instal() {
       echo ""
       echo -e "${verde}Instalação concluída!${NORMAL}"
       sleep 1
-    else
-      echo -e "${verm}Erro!, tente novamente.${NORMAL}"
-      sleep 1
-      reset
-      deb
     fi
   }
 
