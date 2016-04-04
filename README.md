@@ -150,7 +150,7 @@ Opção 1) Uma opção extra implantada no script, funcional apenas no Arch. Nes
   
   # bash instalar.sh <-- Instalar
 
- Caso tenha o script instaldo já selecione a opção 2) Remover e em seguida a Opção 1)Instalar.
+ Caso tenha o script instaldo já selecione a opção 3) Atualizar.
  Será criado um ícone do script para maior facilidade, olhe no menu acessórios ou algo equivalente
 
 ####Caso não queira instala-lo basta abrir o terminal, entrar na pasta corrente do script com:
