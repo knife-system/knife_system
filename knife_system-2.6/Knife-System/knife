@@ -233,8 +233,10 @@ read -n1 inst
 function instal() {
   function deb() {
     echo -e "${ciano}Selecione o pacote .deb a ser instalado:${NORMAL}"
+    echo -e "${ciano}Selecione múltiplos pacotes caso for necessário também${NORMAL}"
+    ECHO -E "${ciano}Basta selecionar${NORMAL}"
     sleep 1
-    debResp=`zenity --file-selection --file-filter=*.deb --title="Selecione o pacote .deb a ser instalado"`
+    debResp=`zenity --file-selection --multiple --separator=" " --file-filter=*.deb --title="Selecione o pacote .deb a ser instalado"`
     if [ -z $debResp ];then
       echo -e "${verm}Nenhum pacote .deb selecionado!${NORMAL}"
       sleep 1
