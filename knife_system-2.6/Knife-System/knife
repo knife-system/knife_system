@@ -155,7 +155,7 @@ fi
 which zenity > /dev/null
 if [ $? != 0 ];then
   echo -e ${verde}Instalando o zenity... Aguarde...${NORMAL}
-  apt-get -y --force-yes install zenity > /dev/null
+  apt-get -y --force-yes install zenity > /dev/null || pacman -S zenity
 fi
 sleep 1
 echo ""
