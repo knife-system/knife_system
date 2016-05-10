@@ -15,7 +15,7 @@ pequeno firewall que o script provê.
   E para melhor proveito deve-se estar conectado a internet.
   O script irá obter seu endereço IP externo, mas nada será arquivado ou enviado, se tiver receio confira o script, logo no   inicio a variável "myip", e mais a abaixo no comentário "Informações do hardware e etc....".
 
-![Imagem](http://i.imgur.com/d1Xjz10.png)
+![Imagem](http://i.imgur.com/gJJRbpQ.png)
 
 
  Como estão organizados os menus: 
@@ -51,29 +51,33 @@ Opção G) - Essa opção você poderá localizar arquivos ou pastas no seu HD.
 
 Opção H) - Nessa opção você será levado para um submenu onde encontrará as seguintes opções:
 
-           1)Temas - Você instalará um tema que desejar, não esqueça de colocar o nome corretamente e
-                     certifique-se de ter extraído o tema, essa opção irá mover a pasta do tema para /usr/share/themes
-                     mas não instalará de fato, você precisará de um programa como o Gnome-Tweak-Tool para fazer isso;
+           1)Temas - Você poderá instalar e remover temas do seu computador certifique-se de extrai-lo antes,
+                     e também poderá instalar temas
+                     remotos bastando escolher na opção temas online, você poderá escolher o tema que
+                     deseja instalar em todos os casos você deverá ter um programas como o Gnome-Tweak-Tool
+                     para efetuar a mudança.
 
            2)Cursor - Informe o caminho e o nome da pasta onde se encontra o cursor e certifique-se de escrever                                  corretamente o nome;
 
-           3)Ícones -  Você instalará um ícone que desejar, não esqueça de colocar o nome corretamente e
-                     certifique-se de ter extraído o ícone, essa opção irá mover a pasta do ícone para /usr/share/icons
-                     mas não instalará de fato, você precisará de um programa como o Gnome-Tweak-Tool para fazer isso; 
+           3)Ícones - Você poderá instalar e remover ícones do seu computador certifique-se de extrai-lo antes,
+                     e também poderá instalar ícones
+                     remotos bastando escolher na opção ícones online, você poderá escolher o ícone que
+                     deseja instalar em todos os casos você deverá ter um programas como o Gnome-Tweak-Tool
+                     para efetuar a mudança.
                 
-           4)Conky  - Aqui você poderá instalar temas para o conky, não esqueça de digitar corretamente o nome da pasta já                       descompactada em sua home, para ver o tema do conky funcional baixe o Conky Manager, no próprio                            script na opção F)Lista de programa no menu princípal.
+           4)Conky  - Aqui você poderá instalar e remover temas para o conky,  descompactar a pasta em sua home, para ver o tema do conky funcional baixe o Conky Manager, no próprio       
+                     script na opção F)Lista de programa no menu princípal.
 
            5) Gnome-Tweak-Tool - Instalará o programa para a instalação de fato dos temas determinados;
 
+           6)Opção extra que ermitirá a instalação do tema para o gimp PhotoGimp, desenvolvido pelo Diolinux 
+             blog dele http://diolinux.com.br, em caso de problemas delete a pasta de sua home .gimp
 
-Opção I) - Você será levado para um submenu onde encontrará opções de remover temas e ícones que tens instalado, 
-           certifique-se de escrever o nome do tema ou ícone corretamente;
-
-Opção J) Você será levado para um sub menu onde encontrará opçoes de ativar o firewall e desativar,
+Opção I) Você será levado para um sub menu onde encontrará opçoes de ativar o firewall e desativar,
          Ativa-lo permanentemente apenas fazerá com que o firewall não desative a cada inicaliação do sistemas,e também             poderá criar um firewall que irá automaticamente iniciar a cada inicialização do sistema. 
          O fireall incluso no script pode e deve ser modificado de acordo com suas necessidades e dos servições que rodam           em sua máquina.
 
-Opção K) Será mostrado seu IP externo mas nada será enviado ou arquivado
+Opção J) Será mostrado seu IP externo mas nada será enviado ou arquivado
          Caso queira que isso seja feito edite o script a seu gosto.
          Você será levado para um submenu onde encontrá as seguintes opções:
 
@@ -100,7 +104,7 @@ Opção K) Será mostrado seu IP externo mas nada será enviado ou arquivado
                                                           Para essa opção é necessário ter o netcat instalado para mais informações consulte
                                                           esse site -> http://netcat.sourceforge.net/
 
-Opção L) Aqui você poderá baixar arquivos grandes da internet sem se preocupar com a banda,
+Opção K) Aqui você poderá baixar arquivos grandes da internet sem se preocupar com a banda,
          Você terá de colocar o endereço (link) do arquivo a ser baixado e indicar o caminho e o nome com a extensão
          como exemplo seria assim /home/fulano/Downloads/arquivo.deb.
          Caso queira continuar um download anterior clique na opção 2)Continuar Download
