@@ -103,6 +103,10 @@ Opção J) Será mostrado seu IP externo mas nada será enviado ou arquivado
                                                           Aguarde alguns instântes e será mostrado na tela se a porta está aberta ou não.
                                                           Para essa opção é necessário ter o netcat instalado para mais informações consulte
                                                           esse site -> http://netcat.sourceforge.net/
+                                                       
+           7) Verificar vulnerabilidades do sistema(debsecan) - Como o próprio nome já diz o script irá procurar por vulnerabilidades do seu sistema, lembrando que ele apenas irá listar não corrigir.
+           
+           8) Obter geolocalização de um IP(lynx) - Obtém a localização de um IP determinado pelo usuário, lembrando que não é 100% preciso a localição.
 
 Opção K) Aqui você poderá baixar arquivos grandes da internet sem se preocupar com a banda,
          Você terá de colocar o endereço (link) do arquivo a ser baixado e indicar o caminho e o nome com a extensão
