@@ -2276,6 +2276,7 @@ function infos() {
     dns=`cat /etc/resolv.conf`
     rot=`route`
     mywifi=`awk -F= '/^(psk|id)/{print $2}' /etc/NetworkManager/system-connections/"$(iwgetid -r)"`
+    conexoes=`netstat -ant | awk '{print $NF,$3,$4,$5}' | grep -v '[a-z]' | sort | uniq -c`
     echo -e "${amarelo}Informações sobre a sua rede${NORMAL}"
     echo ""
     sleep 2
@@ -2298,6 +2299,10 @@ function infos() {
     echo -e "${amarelo}Rede que está conectado e senha:${NORMAL}"
     sleep 1
     echo -e "${azul}$mywifi${NORMAL}"
+    echo ""
+    echo -e "${amarelo}Lista de conexões estabelecidas:${NORMAL}"
+    sleep 1
+    echo -e "${azul}$conexoes${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
     read -n1 redeResp
@@ -2523,6 +2528,22 @@ function infos() {
     fi
   }
 
+function geoip() {
+  echo -e "${ciano}Digite o IP a ser localizado:${NORMAL}"
+  read geoResp
+  echo -e "${verde}Obtendo localização...${NORMAL}"
+  sleep 1
+  echo ""
+  lynx -dump http://www.ip-adress.com/ip_tracer/$geoResp | awk '/IP country code/,/Local time in/' | tail -12 | sort | uniq -c | sort -n | awk {'print $2,$3,$4,$5,$6,$7,$8,$9'}
+  echo ""
+  echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
+  read -n1 geoResp
+  case $geResp in
+    q | Q)reset;
+          infos;
+        esac
+}
+
   echo -e "${amarelo}Obter informaçõe do seu computador ou notebook:${NORMAL}"
   echo -e "${branco}Seu IP(externo): $myip"
   echo ""
@@ -2539,6 +2560,8 @@ function infos() {
   echo -e "${verm}6) ${verde}Verificar serviço de um host remoto${branco}(netcat)${NORMAL}"
   sleep 0.1
   echo -e "${verm}7) ${verde}Verificar vulnerabilidades do sistema${branco}(debsecan)${NORMAL}"
+  sleep 0.1
+  echo -e "${verm}8) ${verde}Obter geolocalização de um IP${branco}(lynx)${NORMAL}"
   echo ""
   echo -e "${verde}Q) ${verm}Voltar ao menú princípal${NORMAL}"
   read -n1 respInfo
@@ -2584,6 +2607,12 @@ function infos() {
                    reset;
                    infos;
                    ;;
+
+                   8)reset;
+                     geoip;
+                     reset;
+                     infos;
+                     ;;
 
              Q | q)fazer;
                    ;;
@@ -2806,6 +2835,7 @@ function team-view(){
     dpkg -i TeamViewer.deb | pv -W >/dev/null
     apt-get install -f -y --force-yes | pv -W > /dev/null
     rm TeamViewer.deb
+    apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -2814,6 +2844,7 @@ function team-view(){
     clear
     dpkg -i TeamViewer.deb | pv -W >/dev/null
     rm TeamViewer.deb
+    apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -2828,6 +2859,7 @@ function videodown() {
   clear
   dpkg -i 4KVideoDownloader.deb
   rm 4KVideoDownloader.deb
+  apt-get install -f -y --force-yes | pv -W > /dev/null
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
   sleep 1
@@ -2842,6 +2874,7 @@ function sublime() {
     clear
     dpkg -i sublime-text3.deb
     rm sublime-text3.deb
+    apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -2850,6 +2883,7 @@ function sublime() {
     clear
     dpkg -i sublime-text3.deb
     rm sublime-text3.deb
+    apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -2862,6 +2896,7 @@ function pycharm() {
     wget https://www.dropbox.com/s/p9kmuyh90cie450/pycharm-community-2016.1.2.tar.gz?dl=0 -O /opt/PyCharm-Community
     cd /opt;tar -zxvf PyCharm-Community;rm -rf PyCharm-Community
     cd pycharm-community-2016.1.2/bin;cp -Rf pycharm.sh /bin;mv pycha;chmod +x /bin/pycharm;
+    apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -2884,6 +2919,30 @@ case $pyrResp in
       *)reset;
         programas;
   esac
+}
+
+function earth() {
+  echo -e "${ciano}Baixando e instalando o Google Earth...${NORMAL}"
+  sleep 1
+  if [ $arch = x86_64 ];then
+    wget https://www.dropbox.com/s/gt0tpbmntogy19j/google-earth-stable_current_amd64.deb?dl=0 -O google-earth.deb
+    clear
+    dpkg -i google-earth.deb
+    rm google-earth.deb
+    apt-get install -f -y --force-yes | pv -W > /dev/null
+    echo ""
+    echo -e "${verde}Instalação concluída!${NORMAL}"
+    sleep 1
+  else
+    wget https://www.dropbox.com/s/pd9fh5xr57v5pf4/google-earth-stable_current_i386.deb?dl=0 -O google-earth.deb
+    clear
+    dpkg -i google-earth.deb
+    rm google-earth.deb
+    apt-get install -f -y --force-yes | pv -W > /dev/null
+    echo ""
+    echo -e "${verde}Instalação concluída!${NORMAL}"
+    sleep 1
+  fi
 }
 ping -c1 google.com > /dev/null
 if [ $? = 0 ];then
@@ -2909,6 +2968,8 @@ sleep 0.1
 echo -e "${amarelo} 7)${azul} Sublime-Text3${branco}(amd64+i386)${NORMAL}"
 sleep 0.1
 echo -e "${amarelo} 8)${azul} PyCharm${branco}(amd64)${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} 9)${azul} GoogleEarth${branco}(amd64)${NORMAL}"
 echo ""
 echo "pressione [ Q ] para voltar ao menu principal"
 echo -e "${verm}Escolha qual pacote deseja instalar:${NORMAL}"
@@ -2963,6 +3024,12 @@ read -n1 proResp
                  reset;
                  programas;
                  ;;
+
+                 9)reset;
+                   earth;
+                   reset;
+                   programas;
+                   ;;
 
          Q | q)fazer;
          ;;
