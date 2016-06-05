@@ -1,4 +1,5 @@
-#Knife System ![Imagem](http://i.imgur.com/eqLZVDm.png)
+#Knife System 
+![Imagem](http://i.imgur.com/eqLZVDm.png)
 
 O script agora possuí um web site onde você encontrará todas as suas funcionalidades descritas uma a uma na sua documentação
 caso queira conferir e deixar sua opinião acesse http://knifesystem.pe.hu
