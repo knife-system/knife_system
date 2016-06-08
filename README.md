@@ -2,7 +2,7 @@
 ![Imagem](http://i.imgur.com/eqLZVDm.png)
 
 O script agora possuí um web site onde você encontrará todas as suas funcionalidades descritas uma a uma na sua documentação
-caso queira conferir e deixar sua opinião acesse http://knifesystem.pe.hu
+caso queira conferir e deixar sua opinião acesse [Clicando aqui](http://knifesystem.pe.hu)
 
 novo email para contato: contato@knifesystem.pe.hu
 
