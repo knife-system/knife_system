@@ -1,5 +1,5 @@
 #Knife System 
-![Imagem](http://i.imgur.com/eqLZVDm.png)
+<img src="http://i.imgur.com/eqLZVDm.png" width="35px" height="35px">
 
 O script agora possuí um web site onde você encontrará todas as suas funcionalidades descritas uma a uma na sua documentação
 caso queira conferir e deixar sua opinião acesse [Clicando aqui](http://knifesystem.pe.hu)
