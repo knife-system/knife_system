@@ -3067,7 +3067,7 @@ function earth() {
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   else
-    wget https://www.dropbox.com/s/pd9fh5xr57v5pf4/google-earth-stable_current_i386.deb?dl=0 -O google-earth.deb
+    wget https://www.dropbox.com/s/d0zubhqb322ys2v/google-earth-stable_current_i386.deb?dl=0 -O google-earth.deb
     clear
     dpkg -i google-earth.deb
     rm google-earth.deb
