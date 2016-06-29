@@ -1021,6 +1021,9 @@ function arquivos() {
 
 function arqpgp() {
 
+ which pgp > /dev/null
+ if [ $? == 0 ];then
+
 function arqCrypt() {
   echo -e "${ciano}Selecione o arquivoque deseja criptografar:${NORMAL}"
   sleeep 2
@@ -1081,6 +1084,11 @@ case $cryptResp in
     ;;
 
   esac
+
+else
+  echo -e "${verm}Você precisa ter o ${amarelo}pgp${verm} instalado para usar essa opção.${NORMAL}"
+  sleep 2
+fi
 
 }
 function location() {
