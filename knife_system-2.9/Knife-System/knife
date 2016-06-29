@@ -2948,7 +2948,7 @@ function chrom() {
 function atm() {
   echo -e "${ciano}Baixando e instalando o Atom...${NORMAL}"
   sleep 1
-  wget https://www.dropbox.com/s/o4l09tyooye45dp/atom-amd64.deb?dl=0 -O atom.deb
+  wget https://www.dropbox.com/s/d1otfajsv2w906w/atom-amd64.deb?dl=0 -O atom.deb
   clear
   dpkg -i atom.deb | pv -W > /dev/null
   apt-get install -f -y --force-yes | pv -W > /dev/null
