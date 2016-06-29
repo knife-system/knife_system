@@ -2973,7 +2973,7 @@ function team-view(){
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   else
-    wget https://www.dropbox.com/s/kn598kuw6c8s6xp/teamviewer_11.0.53191_i386.deb?dl=0 -O TeamViewer.deb
+    wget https://www.dropbox.com/s/ul79g1jno1bojt5/teamviewer_11.0.57095_i386.deb?dl=0 -O TeamViewer.deb
     clear
     dpkg -i TeamViewer.deb | pv -W >/dev/null
     rm TeamViewer.deb
