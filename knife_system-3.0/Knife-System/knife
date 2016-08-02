@@ -1,16 +1,20 @@
 #!/bin/bash
 
-############################### Informações #############################
-# Autor: Anônimo000                                                     #
-# Data: 05/02/2016                                                      #
-# Descrição: Para inúmeras finalidades descritas no Readme.md           #
-# Versão: 2.9                                                           #
-# Data de modificação: 28/06/2016                                       #
-# OS: Apenas para derivados do Debian.                                  #
-#                                                                       #
-# Sinta-se livre para mudar o código, e deixa-lo a seu gosto            #
-# Não retire os devidos créditos                                        #
-#########################################################################
+############################### Informações #########################################
+# Autor: Anônimo000                                                                 #
+# Data: 05/02/2016                                                                  #
+# Descrição: Para inúmeras finalidades descritas no site http://knifesystem.pe.hu   #
+# Versão: 3.0                                                                       #
+# Data de modificação: 01/07/2016                                                   #
+# OS: Apenas para derivados do Debian.                                              #
+#                                                                                   #
+# Sinta-se livre para mudar o código, e deixa-lo a seu gosto                        #
+# Não retire os devidos créditos                                                    #
+# Site: knifesystem.pe.hu                                                           #
+# Página no face: https://facebook.com/knifesystem                                  #
+# Email: contato@knifesytem.pe.hu                                                   #
+# Parceiros: http://www.goscripts.com.br - GoScripts                                #
+#####################################################################################
 
 
 ###### versão 1.0 #########################
@@ -213,7 +217,7 @@ sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
 sleep 0.1
 echo -e $verm" ====================================== ${NORMAL}"
-echo -e "${branco}                             versão 3.0"
+echo -e "${branco} http://knifesystem.pe.hu    versão 3.0"
 echo ""
 sleep 0.1
 echo -e "${amarelo} A)${ciano} Instalar programas${NORMAL}"
@@ -2417,7 +2421,7 @@ function gerarSenha() {
   lista="$letras$num$especial"
   tamanho=${#lista}
   echo -e "${ciano}Digite o números de caractéres que a senha terá:"
-  read contSenha 
+  read contSenha
   echo -ne "${branco}Sua senha é: ${NORMAL}"
     for ((i=0;i<$contSenha;i++))
     do
