@@ -174,7 +174,7 @@ ciano=`echo "\033[01;36m"`
 ########################################################
 echo -e "${azul}Verificando sua conexão...${NORMAL}"
 ping -c1 google.com > /dev/null
-if [ $? = 0 ];then
+if [ $? == 0 ];then
 myip=`curl -s https://wtfismyip.com/text`
 echo -e "${verde}Conectado${NORMAL}"
 sleep 1
