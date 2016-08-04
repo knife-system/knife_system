@@ -2986,6 +2986,9 @@ pycharmCom="https://www.dropbox.com/s/p9kmuyh90cie450/pycharm-community-2016.1.2
 earth64="https://www.dropbox.com/s/ne76ai5uc8u8rte/google-earth-stable_current_amd64.deb?dl=0"
 earth32="https://www.dropbox.com/s/d0zubhqb322ys2v/google-earth-stable_current_i386.deb?dl=0"
 
+#Determinar arquitetura da distro
+arch=`uname -m`
+
 # Funções para instalar os programa
 
 function programas() {
@@ -3004,29 +3007,14 @@ function programas() {
 
 
 function skyp() {
-  arch=`uname -m`
-  if [ $arch = x86_64 ];then
-    echo -e "${ciano}Para isso será necessário editar sua source.list${NORMAL}"
-    echo ""
-    echo -e "${ciano}Editando sources.list aguarde...${NORMAL}"
-    sleep 1
-    echo "
-##Mint 17 - Skype for x86_64
-deb cdrom:[Linux Mint 17 _Qiana_ - Release i386 20140513]/ trusty contrib main non-free
-deb http://packages.linuxmint.com qiana main upstream import #id:linuxmint_main
-deb http://extra.linuxmint.com qiana main #id:linuxmint_extra
-deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse
-deb http://security.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://archive.canonical.com/ubuntu/ trusty partner" >> /etc/apt/sources.list
-reset
-echo -e "${ciano}Realizando update e instalando o Skype...${NORMAL}"
-apt-get update | pv -W > /dev/null
-apt-get -y install skype | pv -W > /dev/null
-apt-get install -f -y --force-yes | pv -W /dev/null
-echo -e "${verde}Instalação concluída!${NORMAL}"
-echo -e "${branco}O skype pode não funcionar em algumas distros.${NORMAL}"
-sleep 2
+if [ $arch = x86_64 ];then
+  echo -e "${ciano}Instalando Skype. Aguarde...${NORMAL}"
+  echo ""
+  sleep 1
+  apt-get -y install skype | pv -W > /dev/null
+  apt-get install -f -y --force-yes | pv -W /dev/null
+  echo -e "${verde}Instalação concluída!${NORMAL}"
+  sleep 2
 else
   echo -e "${ciano}Baixando e instalando o Skype...${NORMAL}"
   wget $skype32 -O skype.deb
