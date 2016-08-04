@@ -208,7 +208,7 @@ fi
 fi
 echo -e "${azul}Checando sua distribuição...${NORMAL}"
 sleep 1
-if [ -e /etc/debian_version ] || [ -e /etc/pacman.conf ];then
+if [ -e /etc/debian_version ];then
 
 function menu {
 clear
@@ -241,10 +241,6 @@ sleep 0.1
 echo -e "${amarelo} J)${ciano} Informações PC${NORMAL}"
 sleep 0.1
 echo -e "${amarelo} K)${ciano} Baixar arquivos${NORMAL}"
-if [ -e /etc/pacman.conf ];then
-  sleep 0.1
-  echo -e "${verm} 1)${ciano} Instalar interface para Archlinux${branco}(extra)${NORMAL}"
-fi
 sleep 0.1
 
 echo ""
@@ -3310,133 +3306,7 @@ esac
   fi
 }
 
-#### Opção extra instalar interface gráfica no Archlinux #########
-function arch-interface() {
-  preInstall="xorg-server xorg-xinit xorg-server-utils xf86-input-synaptics xf86-video-vesa mesa xorg-twm xorg-xclock xterm ttf-dejavu"
-  posInstall="slim gdm vlc gnome-font-viewer blueman gedit atril rhythmbox gdm network-manager-applet gimp libreoffice firefox viewnior conky conky-manager docky flashplugin gnome-tweak-tool"
-  function arch-mate() {
-    echo -e "${ciano}Instalando interface MATE e configurando programas${NORMAL}"
-    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suas necessidades${NORMAL}"
-    echo -e "${branco}Ou escolha um opção${NORMAL}"
-    sleep 5
-    pacman -S $preInstall mate $posInstall
-    systemctl start slim.service
-    systemctl enable slim.service
-    systemctl start gdm.service
-    systemctl enable gdm.service
-    clear
-    echo -e "${verde}Concluído!${NORMAL}"
-    sleep 1
-    echo ""
-    echo -e "${azul}Reiniciando...${NORMAL}"
-    reboot
-  }
-  function arch-xfce() {
-    echo -e "${ciano}Instalando interface XFCE e configurando programas${NORMAL}"
-    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suas snecessidades${NORMAL}"
-    echo -e "${branco}Ou escolha um opção${NORMAL}"
-    sleep 5
-    pacman -S $preInstall xfce4 $posInstall
-    systemctl start slim.service
-    systemctl enable slim.service
-    systemctl start gdm.service
-    systemctl enable gdm.service
-    clear
-    echo -e "${verde}Concluído!${NORMAL}"
-    sleep 1
-    echo ""
-    echo -e "${azul}Reiniciando...${NORMAL}"
-    reboot
-  }
-  function arch-gnome() {
-    echo -e "${ciano}Instalando interface GNOME e configurando programas${NORMAL}"
-    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suas necessidades${NORMAL}"
-    echo -e "${branco}Ou escolha um opção${NORMAL}"
-    sleep 5
-    pacman -S $preInstall gnome $posInstall
-    systemctl start slim.service
-    systemctl enable slim.service
-    systemctl start gdm.service
-    systemctl enable gdm.service
-    clear
-    echo -e "${verde}Concluído!${NORMAL}"
-    sleep 1
-    echo ""
-    echo -e "${azul}Reiniciando...${NORMAL}"
-    reboot
-  }
 
-  function arch-kde() {
-    echo -e "${ciano}Instalando interface KDE e configurando programas${NORMAL}"
-    echo -e "${branco}Leia atentamente o que for aparecendo e aperte enter conforme suaS necessidades${NORMAL}"
-    echo -e "${branco}Ou escolha um opção${NORMAL}"
-    sleep 5
-    pacman -S $preInstall plasma sddm $posInstall
-    systemctl start slim.service
-    systemctl enable slim.service
-    systemctl start sddm.service
-    systemctl enable sddm.service
-    clear
-    echo -e "${verde}Concluído!${NORMAL}"
-    sleep 1
-    echo ""
-    echo -e "${azul}Reiniciando...${NORMAL}"
-    reboot
-  }
-
-  echo -e "${ciano}Opção extra!${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}****************************************************${NORMAL}"
-  sleep 0.1
-  echo -e "${azul}Qual interface gráfica para o arch deseja instalar?${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}****************************************************${NORMAL}"
-  sleep 0.1
-  echo ""
-  echo -e "${verde}1) ${amarelo}MATE${NORMAL}"
-  sleep 0.1
-  echo -e "${verde}2) ${amarelo}Gnome${NORMAL}"
-  sleep 0.1
-  echo -e "${verde}3) ${amarelo}XFCE${NORMAL}"
-  sleep 0.1
-  echo -e "${verde}4) ${amarelo}KDE${NORMAL}"
-  sleep 0.1
-  echo ""
-  echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
-  echo -e "${ciano}Escolha umas das opções:${NORMAL}"
-  read -n1 archInterface
-  case $archInterface in
-    1)reset;
-      arch-mate;
-      reset;
-      arch-interface;
-      ;;
-
-      2)reset;
-        arch-gnome;
-        reset;
-        arch-interface;
-        ;;
-
-        3)reset;
-          arch-xfce;
-          reset;
-          arch-interface;
-          ;;
-
-          4)reset;
-            arch-kde;
-            reset;
-            arch-interface;
-            ;;
-
-            Q | q)fazer;
-                  ;;
-
-                  *)reset;
-                    arch-interface;
-  esac
-}
 ######################################
 #      Setar os comandos do menu     #
 #####################################
@@ -3500,11 +3370,6 @@ while [ inst != '' ]
                                                                         down;
                                                                         menu;
                                                                         ;;
-
-                                                                                  1)reset;
-                                                                                   arch-interface;
-                                                                                   menu;
-                                                                                   ;;
 
           0)reset;
            echo -e "${ciano}Até mais${NORMAL}"
