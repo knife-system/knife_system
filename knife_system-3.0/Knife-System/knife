@@ -5,7 +5,7 @@
 # Data: 05/02/2016                                                                  #
 # Descrição: Para inúmeras finalidades descritas no site                            #
 # Versão: 3.0                                                                       #
-# Data de modificação: 01/07/2016                                                   #
+# Data de modificação: 03/08/2016                                                   #
 # OS: Apenas para derivados do Debian.                                              #
 #                                                                                   #
 # Sinta-se livre para mudar o código, e deixa-lo a seu gosto                        #
@@ -2418,13 +2418,20 @@ function gerarSenha() {
   tamanho=${#lista}
   echo -e "${ciano}Digite o números de caractéres que a senha terá:"
   read contSenha
+  if [[ $contSenha = ?(+|-)+([0-9]) ]];then #confere se a variável é numérica ou não
+  clear
   echo -ne "${branco}Sua senha é: ${NORMAL}"
     for ((i=0;i<$contSenha;i++))
     do
-      ordem=$((RANDOM % $tamanho + 1))
+      ordem=$((RANDOM % $tamanho + 1))''
       senha=$(echo $lista | cut -c "$ordem")
       echo -ne "${verde}$senha${NORMAL}"
     done
+
+else
+  clear
+  echo -e "${verm}Digite apenas um valor numério sem letras${NORMAL}"
+fi
   echo ""
   echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
   read -n1 pass
