@@ -1375,21 +1375,8 @@ case $arquivosResposta in
 ##### Atualizar distro ######
 
 function github() {
-  echo -e "${azul}Antes de tudo vamos configurar seu email, digite o mesmo do github${NORMAL}"
-  read gitMail
-  sleep 1
-  echo ""
-  git config --global user.email "$gitMail"
-  clear
-  echo -e "${azul}Agora digite seu nome de usuário${NORMAL}"
-  read igtUser
-  sleep 1
-  echo ""
-  git config --global user.name "$gitUser"
-  echo ""
-  echo "${verde}Tudo certo! Vamos começar${NORMAL}"
-  clear
-  if [ -e /var/log/gitlog.log ];then
+  if [ -e /var/log/git1.log ];then
+  if [ -e /var/log/git2.log ];then
     echo -e "${verm}Você está na pasta do projeto?[s/n]${NORMAL}"
     read gitCheck
     if [[ $gitCheck = Y || $gitCheck = y ]];then
@@ -1406,7 +1393,7 @@ function github() {
       git push
       if [ $? == 0 ];then
         rm /var/log/gitlog.log
-        echo -e "${verde}Trabalho finalizado! Símples não :)${NORMAL}"
+        echo -e "${verde}Trabalho finalizado! Símples não.${NORMAL}"
         sleep 1
       else
         echo -e "${verm}Ops! Algo deu errado, tente novamente${NORMAL}"
@@ -1418,7 +1405,7 @@ function github() {
       exit 1
     fi
   else
-    echo "Você passou por essa etapa" > /var/log/gitlog.log
+    echo "Segunda etapa" > /var/log/git2.log
     echo -e "${verm}Lembre-se você deve realizar o fork do projeto para o seu github${NORMAL}"
     sleep 2
     clear
@@ -1429,9 +1416,28 @@ function github() {
     echo ""
     echo -e "${amarelo}OK!, faça as modificações necessárias, quando terminar volte aqui${NORMAL}"
     echo -e "${amarelo}Mas lembre-se esteja na pasta do seu projeto, caso contrário nada dará certo, OK?${NORMAL}"
-    echo -e "${amarelo}Até logo :)${NORMAL}"
+    echo -e "${amarelo}Até logo!${NORMAL}"
     sleep 3
   fi
+
+else
+  echo "primeira etapa" > /var/log/git1.log
+  echo -e "${azul}Antes de tudo vamos configurar seu email, digite o mesmo do github${NORMAL}"
+  read gitMail
+  sleep 1
+  echo ""
+  git config --global user.email "$gitMail"
+  clear
+  echo -e "${azul}Agora digite seu nome de usuário${NORMAL}"
+  read igtUser
+  sleep 1
+  echo ""
+  git config --global user.name "$gitUser"
+  echo ""
+  echo "${azul}Volte aqui quando desejar iniciar ${NORMAL}"
+  sleep 1
+  clear
+fi
 
 }
 
@@ -1571,6 +1577,17 @@ function instTema() {
       sleep 3
     }
 
+    function temaon-flat() {
+      echo -e "${ciano}Baixando e instalando tema Flatbulous, aguarde...${NORMAL}"
+      sleep 1
+      echo ""
+      wget https://www.dropbox.com/s/y1mxjlyp1h25jjp/flatabulous.zip?dl=0 -O flatabulous.zip
+      unzip flatabulous.zip -d /usr/share/themes;rm -rf flatbulous.zip
+      echo ""
+      echo -e "${verde}Tudo pronto! Basta você ir em configurações do tweak-tool e setar seu tema"
+      sleep 1
+    }
+
     echo -e "${amarelo}Obter temas online, basta selecionar e será instalado${NORMAL}"
     echo ""
     echo -e "${azul}1) ${ciano}Ambiance-Gnome${NORMAL}"
@@ -1581,6 +1598,7 @@ function instTema() {
     echo -e "${azul}6) ${ciano}Acvamarin${branco}(+ícone)${NORMAL}"
     echo -e "${azul}7) ${ciano}Switch${NORMAL}"
     echo -e "${azul}8) ${ciano}Gela${NORMAL}"
+    echo -e "${azul}9) ${ciano}Flatbulous${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
     echo -e "${verm}Escolha uma opção:${NORMAL}"
@@ -1633,6 +1651,12 @@ function instTema() {
                   reset;
                   tema;
                   ;;
+
+                  9)reset;
+                    temaon-flat;
+                    reset;
+                    tema;
+                    ;;
 
                 q | Q)reset;
                       aparencia;
