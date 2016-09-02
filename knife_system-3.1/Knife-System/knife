@@ -448,10 +448,6 @@ function repair() {
   sleep 0.5
   sudo rm -rf ~/root/.local/share/Trash/*
   sleep 0.5
-  cd /root/Downloads/
-  sleep 0.5
-  rm -i /root/Downloads/* --force
-  sleep 0.5
   echo ""
   echo ""
   sleep 0.5
