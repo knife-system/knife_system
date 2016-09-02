@@ -3301,7 +3301,7 @@ teamViewer="https://www.dropbox.com/s/kn598kuw6c8s6xp/teamviewer_11.0.53191_i386
 video32="https://www.dropbox.com/s/lo6yaqztq9e6hy8/4kvideodownloader_4.1-1_i386.deb?dl=0"
 sublime64="https://www.dropbox.com/s/c7h411dg697qj44/sublime-text_build-3114_amd64.deb?dl=0"
 sublime32="https://www.dropbox.com/s/s6hxv2s7gt1p1yy/sublime-text_build-3114_i386.deb?dl=0"
-pycharmPro="https://www.dropbox.com/s/ulyuxx9r5la7c1g/pycharm-professional-2016.1.2.tar.gz?dl=0"
+pycharmPro="https://www.dropbox.com/s/4x7v130x8t0bjqa/pycharm-professional-2016.2.2.tar.gz?dl=0"
 pycharmCom="https://www.dropbox.com/s/0fn4iszi47u093r/pycharm-community-2016.2.2.tar.gz?dl=0"
 earth64="https://www.dropbox.com/s/ne76ai5uc8u8rte/google-earth-stable_current_amd64.deb?dl=0"
 earth32="https://www.dropbox.com/s/d0zubhqb322ys2v/google-earth-stable_current_i386.deb?dl=0"
@@ -3455,7 +3455,7 @@ function pycharm() {
     sleep 1
     wget $pycharmPro -O /opt/PyCharm-Professional
     cd /opt;tar -zxvf PyCharm-Professional;rm -rf PyCharm-Professional
-    cd pycharm-professional-2016.1.2/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
+    cd pycharm-2016.2.2/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
     apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
