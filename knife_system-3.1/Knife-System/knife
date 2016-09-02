@@ -1269,7 +1269,7 @@ function arqCrypt() {
 }
 
 function arqdecry() {
-  echo -e "${ciano}Selecione o arquivo .pgp que deseja criptografar, em seguida digite a senha dele:${NORMAL}"
+  echo -e "${ciano}Selecione o arquivo .pgp que deseja descriptografar, em seguida digite a senha dele:${NORMAL}"
   sleep 3
   arqDcry=`zenity --file-selection --file-filter=*.pgp --title="Selecione o arquivo .pgp"`
   reset
