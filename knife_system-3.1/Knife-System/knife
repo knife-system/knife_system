@@ -1379,7 +1379,7 @@ function github() {
       echo -e"${verde}OK! Então vamos continuar${NORMAL}"
       sleep 1
       echo -e "${amarelo}Adicionando todas as suas mudanças ao servidor local...${NORMAL}"
-      git add *
+      git add .
       echo ""
       echo -e "${azul}Adicione um comentário para seu projeto:${NORMAL}"
       read gitComent

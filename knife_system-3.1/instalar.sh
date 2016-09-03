@@ -25,7 +25,7 @@ cp -Rf knife /bin
 chmod +x /bin/knife
 cd ..
 mv Knife-System /opt
-chmod-R 7777 /opt/Knife-System
+chmod -R 7777 /opt/Knife-System
 echo "
 [Desktop Entry]
 Name=Knife System
