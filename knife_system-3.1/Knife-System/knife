@@ -1385,7 +1385,7 @@ function github() {
       read gitComent
       git commit -m "$gitComent"
       echo ""
-      echo -e"${verde}OK! Tudo terminado, seu projeto será lonaçado no github, insira seu login e senha para terminar${NORMAL}"
+      echo -e"${verde}OK! Tudo terminado, seu projeto será lançado no github, insira seu login e senha para terminar${NORMAL}"
       git push
       if [ $? == 0 ];then
         rm /var/log/gitlog.log
@@ -1396,7 +1396,7 @@ function github() {
         exit 1
       fi
     else
-      echo -e "${verm}Você precisa estar na pasta do projeto para o cript funcionar corretamente!${NORMAL}"
+      echo -e "${verm}Você precisa estar na pasta do projeto para o script funcionar corretamente!${NORMAL}"
       sleep 1
       exit 1
     fi
