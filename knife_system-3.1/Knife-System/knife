@@ -3103,7 +3103,7 @@ function geoip() {
   sleep 0.1
   echo -e "${verm}8) ${verde}Obter geolocalização de um IP${branco}(lynx)${NORMAL}"
   echo ""
-  echo -e "${verde}Q) ${verm}Voltar ao menú princípal${NORMAL}"
+  echo -e "${verde}Q) ${verm}Voltar ao menu princípal${NORMAL}"
   read -n1 respInfo
   case $respInfo in
     1) reset;
