@@ -5,10 +5,10 @@
 # Data: 05/02/2016                                                                  #
 # Descrição: Para inúmeras finalidades descritas no site                            #
 # Versão: 3.1                                                                       #
-# Data de modificação: 02/09/2016                                                   #
+# Data de modificação: 01/10/2016                                                   #
 # OS: Apenas para derivados do Debian.                                              #
 #                                                                                   #
-# Sinta-se livre para mudar o código, e deixa-lo a seu gosto                        #
+# Reporte os erros que encontrar para o email abaixo                                #
 # Não retire os devidos créditos                                                    #
 # Site: knifesystem.pe.hu                                                           #
 # Página no face: https://facebook.com/knifesystem                                  #
@@ -168,7 +168,14 @@
 # Mais opções de prgramas em achar
 # Novas opções de temas para instalação adicionadas
 ################################################
-
+#
+###### versão 3.2 #############################
+# Opção de verificar previsão do tempo adicionada
+# Mais informações adicionadas em obter informações
+# Menu mudado
+# Verificar ditro completamete com Lynis
+################################################
+#
 verm="\033[1;31m"
 verde="\033[1;32m"
 amarelo=`echo "\033[1;33m"`
@@ -226,7 +233,7 @@ sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
 sleep 0.1
 echo -e $verm" ====================================== ${NORMAL}"
-echo -e "${branco} http://knifesystem.pe.hu    versão 3.1"
+echo -e "${branco} http://knifesystem.pe.hu    versão 3.2"
 echo ""
 sleep 0.1
 echo -e "${amarelo} A)${ciano} Instalar programas${NORMAL}"
@@ -247,7 +254,7 @@ echo -e "${amarelo} H)${ciano} Aparência${NORMAL}"
 sleep 0.1
 echo -e "${amarelo} I)${ciano} Segurança${NORMAL}"
 sleep 0.1
-echo -e "${amarelo} J)${ciano} Informações PC${NORMAL}"
+echo -e "${amarelo} J)${ciano} Informações diversas${NORMAL}"
 sleep 0.1
 echo -e "${amarelo} K)${ciano} Baixar arquivos${NORMAL}"
 sleep 0.1
@@ -2837,6 +2844,7 @@ function infos() {
     fre=`free -m`
     srNum=`dmidecode -s system-serial-number`
     distroInfo=`lsb_release -a`
+    totpacotes=`dpkg -l | grep -c ^i`
     echo -e "${amarelo}Informações da CPU e memória(HD)"
     echo ""
     echo -e "${amarelo}CPU:${NORMAL}"
@@ -2857,9 +2865,13 @@ function infos() {
     sleep 1
     echo -e "${azul}$srNum${NORMAL}"
     echo ""
-    echo -e "${amarelo}Informaçao da distro instalada:${NORMAL}"
+    echo -e "${amarelo}Informação da distro instalada:${NORMAL}"
     sleep 1
     echo -e "${azul}$distroInfo${NORMAL}"
+    echo ""
+    echo -e "${amarelo}Total de pacotes instalados${NORMAL}"
+    sleep 1
+    echo -e "${azul}$totpacotes${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
     read -n1 hardResp
@@ -3084,6 +3096,59 @@ function geoip() {
  fi
 }
 
+function checar() {
+  function check-inst {
+    echo -e "${verm}Lynis não instalado${NORMAL}"
+    sleep 1
+    echo -e "${verde}Deseja instalar o Lynx? [N/S]${NORMAL}"
+    read -n1 lynisInstall
+    case $lynisInstall in
+      S | s)echo "";
+          echo -e "${azul}Instalando Lynis.... Aguarde...${NORMAL}";
+          echo "";
+          apt-get -y --force-yes install lynis | pv -W > /dev/null;
+          reset;
+          infos;
+           ;;
+
+      N | n)reset;
+            infos;
+            ;;
+
+    esac
+  }
+  which lynis > /dev/null
+  if [ $? == 0 ];then
+  sleep 1
+  echo ""
+  lynis --check-all
+  echo ""
+  echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
+  read -n1 checkoutResp
+  case $checkoutResp in
+    q | Q)reset;
+          infos;
+        esac
+
+ else
+   reset;
+   check-inst
+ fi
+}
+
+function tempo() {
+  echo -e "${ciano}Previsão do tempo para todo o Brasil${NORMAL}"
+  echo ""
+  curl wttr.in/brasil
+  echo ""
+  echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
+  read -n1 tempResp
+  case $tempResp in
+    q | Q)reset;
+          infos;
+        esac
+}
+
   echo -e "${amarelo}Obter informaçõe do seu computador ou notebook:${NORMAL}"
   echo -e "${branco}Seu IP(externo): $myip"
   echo ""
@@ -3102,9 +3167,13 @@ function geoip() {
   echo -e "${verm}7) ${verde}Verificar vulnerabilidades do sistema${branco}(debsecan)${NORMAL}"
   sleep 0.1
   echo -e "${verm}8) ${verde}Obter geolocalização de um IP${branco}(lynx)${NORMAL}"
+  sleep 0.1
+  echo -e "${verm}9) ${verde}Verificar distro completamente${branco}(lynis)${NORMAL}"
+  sleep 0.1
+  echo -e "${verm}10) ${verde}Previsão do tempo${NORMAL}"
   echo ""
   echo -e "${verde}Q) ${verm}Voltar ao menu princípal${NORMAL}"
-  read -n1 respInfo
+  read -n2 respInfo
   case $respInfo in
     1) reset;
        rede;
@@ -3153,6 +3222,18 @@ function geoip() {
                      reset;
                      infos;
                      ;;
+
+                     9)reset;
+                      checar;
+                      reset;
+                      infos;
+                      ;;
+
+                      10)reset;
+                         tempo;
+                         reset;
+                         infos;
+                         ;;
 
              Q | q)fazer;
                    ;;
