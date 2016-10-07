@@ -9,7 +9,7 @@ Script desenvolvido por Anônimo000, apenas para Debian e derivados.
 
 A sua opinião é muito importante para ajudar o desenvolvimento do script, não deixe de comentar e dizer o que achou do script, e caso ele apresente bugs, por favor reporte os erros.
 
-Quer ficar por dentro de tudo o que rola sobre o Knife Syste? Confira nossas redes socias:
+Quer ficar por dentro de tudo o que rola sobre o Knife System? Confira nossas redes socias:
 
 [Comunidade no Google](https://plus.google.com/communities/107206313729931554307)
 
