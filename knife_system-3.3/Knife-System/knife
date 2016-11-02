@@ -4,16 +4,17 @@
 # Autor: Anônimo000                                                                 #
 # Data: 05/02/2016                                                                  #
 # Descrição: Para inúmeras finalidades descritas no site                            #
-# Versão: 3.1                                                                       #
-# Data de modificação: 01/10/2016                                                   #
+# Versão: 3.3                                                                       #
+# Data de modificação: 01/11/2016                                                   #
 # OS: Apenas para derivados do Debian.                                              #
 #                                                                                   #
 # Reporte os erros que encontrar para o email abaixo                                #
 # Não retire os devidos créditos                                                    #
 # Site: knifesystem.pe.hu                                                           #
 # Página no face: https://facebook.com/knifesystem                                  #
-# Email: contato@knifesytem.pe.hu                                                   #
-# Parceiros: http://www.goscriptsnet - GoScripts                                    #
+# Comunidade: https://plus.google.com/communities/107206313729931554307             #
+# Email: contato@knifesystem.pe.hu                                                  #
+# Parceiros: http://www.goscripts.net - GoScripts                                   #
 #            https://brasilblackhat.com.br - Brasil Black Hat                       #
 #####################################################################################
 
@@ -176,6 +177,10 @@
 # Verificar ditro completamete com Lynis
 ################################################
 #
+###### versão 3.3 #############################
+# Verificação de pacotes instalados removidas
+# Corrigindo informações do cabeçalho
+
 verm="\033[1;31m"
 verde="\033[1;32m"
 amarelo=`echo "\033[1;33m"`
@@ -195,37 +200,12 @@ myip=`curl -s https://wtfismyip.com/text`
 echo -e "${verde}Conectado${NORMAL}"
 sleep 1
 echo ""
-echo -e "${azul}Verificando se o pacote pv e o zenity estão instalados...${NORMAL}"
-which pv > /dev/null
-if [ $? != 0 ];then
-  echo -e ${verde}Instalando o PV... Aguarde...${NORMAL}
-  apt-get -y --force-yes install pv > /dev/null
-fi
-which zenity > /dev/null
-if [ $? != 0 ];then
-  echo -e ${verde}Instalando o zenity... Aguarde...${NORMAL}
-  apt-get -y --force-yes install zenity > /dev/null
-fi
-sleep 1
-echo ""
 else
   myip=`echo -e "${verm}Não conectado${NORMAL}"`
   echo -e "${verm}Não conectado a internet${NORMAL}"
   sleep 1
   echo ""
-  echo -e "${azul}Verificando se o pacote pv e o zenity estão instalado...${NORMAL}"
-  sleep 1
-  which pv > /dev/null && which zenity >/dev/null
-  if [ $? != 0 ];then
-  echo -e "${verm}zenity e/ou pv não instalados, por favor instale-os quando possível${NORMAL}"
 fi
-  sleep 1
-  echo ""
-fi
-echo -e "${azul}Checando sua distribuição...${NORMAL}"
-sleep 1
-if [ -e /etc/debian_version ];then
-
 function menu {
 clear
 echo -e $verm "====================================== ${NORMAL}"
@@ -233,7 +213,7 @@ sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
 sleep 0.1
 echo -e $verm" ====================================== ${NORMAL}"
-echo -e "${branco} http://knifesystem.pe.hu    versão 3.2"
+echo -e "${branco} http://knifesystem.pe.hu    versão 3.3"
 echo ""
 sleep 0.1
 echo -e "${amarelo} A)${ciano} Instalar programas${NORMAL}"
@@ -2669,8 +2649,8 @@ function blockSite() {
   echo "0.0.0.0 $blockResp" >> /etc/hosts
   echo -e "${verde}Site bloqueado!${branco}(você não terá mais acesso a esse site)${NORMAL}"
   echo -e "${branco}Para desfazer acesse o arquivo /etc/hosts e delete a linha:"
-  echo -e "${branco}0.0.0.0 $blockResp"
-  sleep 10
+  echo -e "${branco}0.0.0.0 $blockResp ${NORMAL}"
+  sleep 5
 }
 
  echo -e "${amarelo}1)${verde} Iniciar firewall${NORMAL}"
@@ -2762,8 +2742,82 @@ fi
           esac
 }
 
+function anonimato() {
+  function anonyStart() {
+    which tor > /dev/null
+    if [ $? == 0 ];then
+      echo -e "${ciano}Iniciando serviço...${NORMAL}"
+      service tor start > /dev/null
+      clear
+      echo -e "${verde}Serviço inicializado!${NORMAL}"
+      echo -e "${branco}Lembrando que essa opção não é 100% eficaz${NORMAL}"
+      echo -e "${branco}Pois o script apenas inicializa o serviço tor, isto é sua conexão irá passar por proxys${NORMAL}"
+      sleep 7
+    else
+      echo -e "${verm}Você precisa ter o TOR instaldo em sua máquina${NORMAL}"
+      sleep 1
+      clear
+      echo -e "${ciano}Deseja instala-lo?[s/n]"
+      read -n1 torInstResp
+      case $torInstResp in
+        s | S)echo -e "${ciano}Instalado o TOR...Aguarde${NORMAL}";
+              echo "";
+              apt-get install -y --force-yes tor | pv -W > /dev/null;
+              echo "";
+              echo -e "${verde}TOR instalado!${NORMAL}";
+              sleep 1;
+              anonyStart;
+              ;;
+
+        n | N) seguranca
+        ;;
+
+        *) fazer
+      esac
+    fi
+  }
+
+function anonyStop() {
+  echo -e "${ciano}Parando serviço de anonimato...${NORMAL}"
+  service tor stop > /dev/null
+  echo ""
+  echo -e "${verde}Serviço parado!${NORMAL}"
+  sleep 1
+}
+
+echo -e "${amarelo}Selecione uma das opções:${NORMAL}"
+echo ""
+echo -e "${verde}1) ${azul}Iniciar serviço${NORMAL}"
+echo -e "${verde}2) ${azul}Parar serviço${NORMAL}"
+echo ""
+echo -e "${branco}Voltar [Q]${NORMAL}"
+read -n1 anonimatoResp
+case $anonimatoResp in
+
+  1)reset;
+    anonyStart;
+    reset;
+    seguranca;
+    ;;
+
+    2)reset;
+      anonyStop;
+      reset;
+      seguranca;
+      ;;
+
+      q | Q)reset;
+            seguranca;
+            ;;
+
+            *)fazer;
+
+          esac
+}
+
 echo -e "${amarelo}1) ${verde}Firewall${NORMAL}"
 echo -e "${amarelo}2) ${verde}Senhas${NORMAL}"
+echo -e "${amarelo}3)${verde} Anonimato${NORMAL}"
 echo ""
 echo -e "${branco}Escolha uma das opção ou [Q] para voltar${NORMAL}"
 read -n1 segResp
@@ -2778,6 +2832,11 @@ case $segResp in
       gerarSenha;
       seguranca;
       ;;
+
+      3)reset;
+        anonimato;
+        seguranca;
+        ;;
 
       q | Q)fazer;
       ;;
@@ -3370,26 +3429,30 @@ esac
 ########### Instalação de programas ###################
 # Variáveis do links
 
-conky64="https://www.dropbox.com/s/jna3nbf05ormm8e/conky-manager-latest-amd64.deb?dl=0"
-skype32="https://www.dropbox.com/s/h8kwmijmxv5qy26/skype-debian_4.3.0.37-1_i386.deb?dl=0"
-chrome64="https://www.dropbox.com/s/4h2xa7keqzv5nqu/google-chrome-stable_current_amd64.deb?dl=0"
-atom64="https://www.dropbox.com/s/d1otfajsv2w906w/atom-amd64.deb?dl=0"
+conky64="https://www.dropbox.com/s/of4pehd4ky4v418/conky-manager_2.4-136-ubuntu16.04.1_amd64.deb?dl=0"
+conky32="https://www.dropbox.com/s/gl7fboel7p622xz/conky-manager_2.4-136-ubuntu16.04.1_i386.deb?dl=0"
+skype32="https://www.dropbox.com/s/1akgb1bivoblz7g/skype-debian_4.3.0.37-1_i386.deb?dl=0"
+chrome64="https://www.dropbox.com/s/61tpxbl9eacfll9/google-chrome-stable_current_amd64.deb?dl=0"
+atom64="https://www.dropbox.com/s/s2otjos45sigrp5/atom-amd64.deb?dl=0"
 teamViewer="https://www.dropbox.com/s/kn598kuw6c8s6xp/teamviewer_11.0.53191_i386.deb?dl=0"
 video32="https://www.dropbox.com/s/lo6yaqztq9e6hy8/4kvideodownloader_4.1-1_i386.deb?dl=0"
-sublime64="https://www.dropbox.com/s/c7h411dg697qj44/sublime-text_build-3114_amd64.deb?dl=0"
-sublime32="https://www.dropbox.com/s/s6hxv2s7gt1p1yy/sublime-text_build-3114_i386.deb?dl=0"
-pycharmPro="https://www.dropbox.com/s/4x7v130x8t0bjqa/pycharm-professional-2016.2.2.tar.gz?dl=0"
-pycharmCom="https://www.dropbox.com/s/0fn4iszi47u093r/pycharm-community-2016.2.2.tar.gz?dl=0"
-earth64="https://www.dropbox.com/s/ne76ai5uc8u8rte/google-earth-stable_current_amd64.deb?dl=0"
+video64="https://www.dropbox.com/s/3ha6d9tjhus6x9a/4kvideodownloader_4.1-1_amd64.deb?dl=0"
+sublime64="https://www.dropbox.com/s/89jqnnessefbjn6/sublime-text_build-3126_amd64.deb?dl=0"
+sublime32="https://www.dropbox.com/s/m7dzmfzfut8wb7y/sublime-text_build-3126_i386.deb?dl=0"
+pycharmPro="https://www.dropbox.com/s/8qg98lz1ls8ipo4/pycharm-professional-2016.2.3.tar.gz?dl=0"
+pycharmCom="https://www.dropbox.com/s/ddhhq3lmqjqo5sv/pycharm-community-2016.2.3.tar.gz?dl=0"
+earth64="https://www.dropbox.com/s/lm88k992eto51vw/google-earth-stable_current_amd64.deb?dl=0"
 earth32="https://www.dropbox.com/s/d0zubhqb322ys2v/google-earth-stable_current_i386.deb?dl=0"
 
 #Determinar arquitetura da distro
 arch=`uname -m`
-
+1
 # Funções para instalar os programa
 
 function programas() {
+
   function conky-manage() {
+  if [ $arch == x86_64 ];then
     echo -e "${ciano}Baixando e instalando o Conky-Manager${NORMAL}"
     sleep 1
     wget $conky64 -O Conky-Manager.deb
@@ -3399,23 +3462,36 @@ function programas() {
     rm Conky-Manager.deb
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
-
+  else
+    echo -e "${ciano}Baixando e instalando o Conky-Manager${NORMAL}"
+    sleep 1
+    wget $conky32 -O Conky-Manager.deb
+    clear
+    dpkg -i Conky-Manager.deb | pv -W >/dev/null
+    apt-get install -f -y --force-yes| pv -W >/dev/null
+    rm Conky-Manager.deb
+    echo -e "${verde}Instalação concluída!${NORMAL}"
+    sleep 1
+  fi
   }
 
 
 function skyp() {
 if [ $arch = x86_64 ];then
   echo -e "${ciano}Instalando Skype. Aguarde...${NORMAL}"
-  echo ""
-  sleep 1
-  apt-get -y install skype | pv -W > /dev/null
-  apt-get install -f -y --force-yes | pv -W /dev/null
-  echo -e "${verde}Instalação concluída!${NORMAL}"
-  sleep 2
-else
-  echo -e "${ciano}Baixando e instalando o Skype...${NORMAL}"
   wget $skype32 -O skype.deb
   clear
+  dpkg -i skype.deb | pv -W >/dev/null
+  apt-get install -f -y --force-yes| pv -W > /dev/null
+  rm skype.deb
+  echo -e "${verde}Instalação concluída!${NORMAL}"
+  sleep 1
+else
+  echo -e "${ciano}Baixando e instalando o Skype...${NORMAL}"
+  dpkg --add-architecture i386
+  wget $skype32 -O skype.deb
+  clear
+  apt-get update | pv -e > /dev/null
   dpkg -i skype.deb | pv -W >/dev/null
   apt-get install -f -y --force-yes| pv -W > /dev/null
   rm skype.deb
@@ -3478,17 +3554,29 @@ function team-view(){
 }
 
 function videodown() {
+if [ $arch == x86_64 ];then
+  echo -e "${ciano}Baixando e instalando o 4KVideoDownloader...${NORMAL}"
+  sleep 1
+  wget $video64 -O 4KVideoDownloader.deb
+  clear
+  dpkg -i 4KVideoDownloader.deb | pv -W > /dev/null
+  apt-get install -f -y --force-yes | pv -W > /dev/null
+  rm 4KVideoDownloader.deb
+  echo ""
+  echo -e "${verde}Instalação concluída!${NORMAL}"
+  sleep 1
+else
   echo -e "${ciano}Baixando e instalando o 4KVideoDownloader...${NORMAL}"
   sleep 1
   wget $video32 -O 4KVideoDownloader.deb
   clear
-  dpkg -i 4KVideoDownloader.deb
-  rm 4KVideoDownloader.deb
+  dpkg -i 4KVideoDownloader.deb | pv -W > /dev/null
   apt-get install -f -y --force-yes | pv -W > /dev/null
+  rm 4KVideoDownloader.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
   sleep 1
-
+fi
 }
 
 function sublime() {
@@ -3520,7 +3608,7 @@ function pycharm() {
     sleep 1
     wget $pycharmCom -O /opt/PyCharm-Community
     cd /opt;tar -zxvf PyCharm-Community;rm -rf PyCharm-Community
-    cd pycharm-community-2016.2.2/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
+    cd pycharm-community-2016.2.3/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
     apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
@@ -3532,7 +3620,7 @@ function pycharm() {
     sleep 1
     wget $pycharmPro -O /opt/PyCharm-Professional
     cd /opt;tar -zxvf PyCharm-Professional;rm -rf PyCharm-Professional
-    cd pycharm-2016.2.2/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
+    cd pycharm-2016.2.3/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
     apt-get install -f -y --force-yes | pv -W > /dev/null
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
@@ -3593,7 +3681,7 @@ sleep 0.1
 echo ""
 echo -e "${amarelo} 1)${azul} Skype${branco}(amd64+i386)${NORMAL}"
 sleep 0.1
-echo -e "${amarelo} 2)${azul} Conky-Manager${branco}(amd64)${NORMAL}"
+echo -e "${amarelo} 2)${azul} Conky-Manager${branco}(amd64+i386)${NORMAL}"
 sleep 0.1
 echo -e "${amarelo} 3)${azul} Chrome${branco}(amd64)${NORMAL}"
 sleep 0.1
@@ -3601,7 +3689,7 @@ echo -e "${amarelo} 4)${azul} Atom${branco}(amd64)${NORMAL}"
 sleep 0.1
 echo -e "${amarelo} 5)${azul} Team-Viewer${branco}(amd64+i386)${NORMAL}"
 sleep 0.1
-echo -e "${amarelo} 6)${azul} 4KVideoDownloader${branco}(amd64)${NORMAL}"
+echo -e "${amarelo} 6)${azul} 4KVideoDownloader${branco}(amd64+i386)${NORMAL}"
 sleep 0.1
 echo -e "${amarelo} 7)${azul} Sublime-Text3${branco}(amd64+i386)${NORMAL}"
 sleep 0.1
@@ -3774,8 +3862,4 @@ else
     echo ""
 	echo -e $verm "Você precisa ser root digite sua senha e tente novamente${NORMAL}"
     sudo su
-fi
-
-else
-  echo "Desculpe, esse script só funciona em derivados do Debian"
 fi
