@@ -4,16 +4,15 @@
 # Autor: Anônimo000                                                                 #
 # Data: 05/02/2016                                                                  #
 # Descrição: Para inúmeras finalidades descritas no site                            #
-# Versão: 3.3                                                                       #
-# Data de modificação: 01/11/2016                                                   #
+# Versão: 3.4                                                                       #
+# Data de modificação: 06/12/2016                                                   #
 # OS: Apenas para derivados do Debian.                                              #
 #                                                                                   #
 # Reporte os erros que encontrar para o email abaixo                                #
 # Não retire os devidos créditos                                                    #
-# Site: knifesystem.pe.hu                                                           #
+# Site: knifesystem.com.br                                                           #
 # Página no face: https://facebook.com/knifesystem                                  #
 # Comunidade: https://plus.google.com/communities/107206313729931554307             #
-# Email: contato@knifesystem.pe.hu                                                  #
 # Parceiros: http://www.goscripts.net - GoScripts                                   #
 #            https://brasilblackhat.com.br - Brasil Black Hat                       #
 #####################################################################################
@@ -180,7 +179,15 @@
 ###### versão 3.3 #############################
 # Verificação de pacotes instalados removidas
 # Corrigindo informações do cabeçalho
-
+################################################
+#
+###### versão 3.4 ##############################
+# Bugs com instalação de temas resolvidos
+# grande parte dos temas onlines foram retirados
+# Problema com o remover pacotes resolvidos
+# Implementado opção de atualizar KS
+# Problemas em limpeza do sistema corrigidos
+#############################################
 verm="\033[1;31m"
 verde="\033[1;32m"
 amarelo=`echo "\033[1;33m"`
@@ -213,7 +220,7 @@ sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
 sleep 0.1
 echo -e $verm" ====================================== ${NORMAL}"
-echo -e "${branco} http://knifesystem.pe.hu    versão 3.3"
+echo -e "${branco} http://knifesystem.com.br    versão 3.4"
 echo ""
 sleep 0.1
 echo -e "${amarelo} A)${ciano} Instalar programas${NORMAL}"
@@ -240,6 +247,7 @@ echo -e "${amarelo} K)${ciano} Baixar arquivos${NORMAL}"
 sleep 0.1
 
 echo ""
+echo -e "${ciano}1)${amarelo} Atualizar script${NORMAL}"
 echo -e "${ciano}0)${amarelo} Sair${NORMAL}"
 echo -e $verm "Escolha uma das opções:"
 
@@ -326,8 +334,15 @@ function remov() {
    read rmove
    sleep 1
    echo -e "${azul}Removendo $rmove. Por favor, aguarde...${NORMAL}"
-   apt-get -y --force-yes purge $rmove | pv -W > /tmp/KS_remove.log
-   apt-get -y --force-yes autoremove | pv -W > /tmp/KS_aremove.log
+   apt-get -y --force-yes purge $rmove | pv -W > /var/log/KS_remove.log
+   if [ $? != 0 ];then
+     echo -e "${verm}Erro ao remover programa! Para mais informações consulte /var/log/KS_remove.log"
+     sleep 2
+     reset
+     exit 1
+   fi
+
+   apt-get -y --force-yes autoremove | pv -W > /var/log/KS_aremove.log
    echo ""
    echo -e "${verde}$rmove removido com sucesso${NORMAL}"
    sleep 2
@@ -337,10 +352,10 @@ function remov() {
 
 function repair() {
   echo -e $ciano "Reparando erros de dependencias... Isso pode demorar um pouco"$NORMAL
-  apt-get -f -y --force-yes install | pv -W > /tmp/KS_finstall.log
-  apt-get -y --force-yes autoremove | pv -W > /tmp/KS_autremove.log
-  apt-get clean | pv -W > /tmp/KS_clean.log
-  dpkg --configure -a | pv -W > /tmp/KS_configa.log
+  apt-get -f -y --force-yes install | pv -W > /var/log/KS_finstall.log
+  apt-get -y --force-yes autoremove | pv -W > /var/log/KS_autremove.log
+  apt-get clean | pv -W > /var/log/KS_clean.log
+  dpkg --configure -a | pv -W > /var/log/KS_configa.log
   clear
   sleep 1
   echo -e $ciano "Trecho de código desenvolvido Black Hat Sec e traduzido por Anônimo000"
@@ -363,75 +378,14 @@ function repair() {
   sleep 0.5
   cd /var/tmp/
   sleep 0.5
-  rm -i /var/tmp/kdecache-bhs/* --force
-  rm -i /var/tmp/kdecache-bhs/* --force
-  rm -i /var/tmp/kdecache-bhs/http/* --force
-  rm -i /var/tmp/kdecache-bhs/plasma-wallpapers/usr/share/wallpapers/* --force
-  rm -i /var/tmp/kdecache-root/plasma-wallpapers/* --force
-  rm -i /var/tmp/kdecache-root/plasma-wallpapers/usr/share/wallpapers/* --force
-  rm -i /var/tmp/kdecache-root/libphonon/* --force
-  rm -i /var/tmp/kdecache-bhs/ksplashx/* --force
-  rm -i /var/tmp/kdecache-bhs/ksplashx/* -f
-  rm -i /var/tmp/kdecache-bhs/plasma-wallpapers/home/bhs/Projects/* --force
-  rm -i /var/tmp/kdecache-bhs/plasma-wallpapers/home/bhs/Pictures/* --force
-  rm -i /var/tmp/kdecache-bhs/plasma-wallpapers/home/bhs/Desktop/* --force
-  rm -i /var/tmp/kdecache-root/favicons/* --force
-  rm -i /var/tmp/kdecache-bhs/favicons/* --force
-  rm -i /var/tmp/kdecache-root/ksplashx/* --force
-  rm -i /var/tmp/kdecache-root/plasma-wallpapers/root/Desktop/* --force
-  rm -i /var/tmp/kdecache-root/plasma-wallpapers/root/Pictures/* --force
-  rm -i /var/tmp/kdecache-root/plasma-wallpapers/usr/share/wallpapers/* --force
-  rm -i /var/tmp/kdecache-root/* --force
-  rm -i /var/tmp/yum-bhs-mPVJ7M/* --force
-  sleep 0.5
-  echo -e $azul"Corrigindo erros em pacotes quebrados"$NORMAL
-  for package in $(apt-get upgrade 2>&1 | grep "warning: files list file" | sed "s/.*'//; s/://"); do apt-get install --reinstall "$package"; done
-  sleep 1
-  echo  "Finalizado !"
-  echo ""
+  rm -fr /var/tmp/* --force
+  clear
   echo -e $amarelo"[SFAGEAS]:Limpando /var/log/..."$NORMAL
-  rm -i /var/log/* -f
-  rm -i /var/cache/* -f
-  rm -i /var/log/upstart/* -f
-  rm -i /var/log/wicd/* -f
-  rm -i /var/log/unattended-upgrades/* -f
-  rm -i /var/log/tor/* -f
-  rm -i /var/log/stunnel4/* -f
-  rm -i /var/log/squid3/* -f
-  rm -i /var/log/speech-dispatcher/* -f
-  rm -i /var/log/rebuildd/build_logs/* -f
-  rm -i /var/log/rebuildd/* -f
-  rm -i /var/log/privoxy/* -f
-  rm -i /var/log/postgresql/* -f
-  rm -i /var/log/polipo/* -f
-  rm -i /var/log/openvas/* -f
-  rm -i /var/log/ntpstats/* -f
-  rm -i /var/log/news/* -f
-  rm -i /var/log/mysql/* -f
-  rm -i /var/log/mdm/* -f
-  rm -i /var/log/installer/* -f
-  rm -i /var/log/hp/* -f
-  rm -i /var/log/hp/tmp/* -f
-  rm -i /var/log/fsck/* -f
-  rm -i /var/log/dradis/* -f
-  rm -i /var/log/dist-upgrade/* -f
-  rm -i /var/log/dirmngr/* -f
-  rm -i /var/log/cups/* -f
-  rm -i /var/log/ConsoleKit/* -f
-  rm -i /var/log/chkrootkit/* -f
-  rm -i /var/log/boot-sav/mbr_backups/* -f
-  rm -i /var/log/boot-sav/* -f
-  rm -i /var/log/boot-sav/log/* -f
-  rm -i /var/log/boot-sav/log/2013-10-07__10h14boot-repair27/* -f
-  rm -i /var/log/apt/* -f
-  rm -i /var/log/apache2/* -f
+  rm -rf /var/log/* -f
+  rm -rf /var/cache/* -f
   echo ""
   echo -e $amarelo"[SFAGEAS]:Limpando /var/cache/..."$NORMAL
-  sudo rm -v /var/cache/apt/archives/*.deb
-  sleep 0.5
-  sudo rm -v /var/log/*.gz  -f
-  sleep 0.5
-  cd ..
+  echo ""
   sleep 0.5
   sudo rm -rf ~/root/.local/share/Trash/*
   sleep 0.5
@@ -474,7 +428,7 @@ function repair() {
   echo -e $amarelo"[SFAGEAS]:Removendo arquivos de configuração antigos novamente..."$NORMAL
   sudo aptitude purge $OLDCONF
   sleep 0.5
-  apt-get autoremove | pv -W >> /tmp/KS_autremove.log
+  apt-get autoremove | pv -W >> /var/log/KS_autremove.log
   sleep 0.5
   apt-get clean | pv -W > /dev/null
   sleep 0.5
@@ -1479,33 +1433,7 @@ function instTema() {
 
   #### Obter tema online #####
   function temaOn() {
-    function temaon-ambi() {
-      echo -e "${ciano}Instalando tema Ambiance, aguarde...${NORMAL}"
-      wget https://www.dropbox.com/s/ne0krrzu9k9axah/166632-Ambiance-Gnome.tar.gz?dl=0 -O Ambiance.tar.gz
-      tar -zxvf Ambiance.tar.gz;rm Ambiance.tar.gz; mv -f Ambiance-Gnome /usr/share/themes
-      clear
-      echo -e "${branco}O tema já está pronto para ser instalado, basta apenas${NORMAL}"
-      echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
-      sleep 3
-    }
-    function temaon-nvsh() {
-      echo -e "${ciano}Instalando tema Nova Shell, aguarde...${NORMAL}"
-      wget https://www.dropbox.com/s/kwkgrq5od17igwh/NovaShell.zip?dl=0 -O NovaShel.zip
-      unzip NovaShell.zip -d /usr/share/themes;rm -f NovaShel.zip
-      clear
-      echo -e "${branco}O tema já está pronto para ser instalado, basta apenas${NORMAL}"
-      echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
-      sleep 3
-    }
-    function temaon-zuki() {
-      echo -e "${ciano}Instalando tema Zukitre, aguarde...${NORMAL}"
-      wget https://www.dropbox.com/s/e0o3pesqy7yd2jl/zukitre_shell.zip?dl=0 -O Zukitre.zip
-      unzip Zukitre.zip -d /usr/share/themes;rm -f Zukitre.zip
-      clear
-      echo -e "${branco}O tema já está pronto para ser instalado, basta apenas${NORMAL}"
-      echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
-      sleep 3
-    }
+
     function temaon-arc() {
       echo -e "${ciano}Instalando tema ARC, aguarde...${NORMAL}"
       echo "deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_15.04/ /" >> /etc/apt/sources.list.d/arc-theme.list
@@ -1542,6 +1470,7 @@ function instTema() {
 
     function temaon-swt() {
       echo -e "${ciano}Instalando tema Switch, aguarde...${NORMAL}"
+      apt-add-repository ppa:numix/ppa | pv -W > /dev/null
       apt-get install -y --force-yes switch-theme | pv -W > /dev/null
       apt-get install -f -y --force-yes | pv -W > /dev/null
       clear
@@ -1550,15 +1479,6 @@ function instTema() {
       sleep 3
     }
 
-    function temaon-gel() {
-      echo -e "${ciano}Instalando tema Gela, aguarde...${NORMAL}"
-      apt-get install -y --force-yes gela-theme | pv -W > /dev/null
-      apt-get install -f -y --force-yes | pv -W > /dev/null
-      clear
-      echo -e "${branco}O tema já está pronto para ser instalado, basta apenas${NORMAL}"
-      echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
-      sleep 3
-    }
 
     function temaon-flat() {
       echo -e "${ciano}Baixando e instalando tema Flatbulous, aguarde...${NORMAL}"
@@ -1573,73 +1493,46 @@ function instTema() {
 
     echo -e "${amarelo}Obter temas online, basta selecionar e será instalado${NORMAL}"
     echo ""
-    echo -e "${azul}1) ${ciano}Ambiance-Gnome${NORMAL}"
-    echo -e "${azul}2) ${ciano}Nova-Shell${NORMAL}"
-    echo -e "${azul}3) ${ciano}Zukitre${NORMAL}"
-    echo -e "${azul}4) ${ciano}ARC${NORMAL}"
-    echo -e "${azul}5) ${ciano}Xenlism${NORMAL}"
-    echo -e "${azul}6) ${ciano}Acvamarin${branco}(+ícone)${NORMAL}"
-    echo -e "${azul}7) ${ciano}Switch${NORMAL}"
-    echo -e "${azul}8) ${ciano}Gela${NORMAL}"
-    echo -e "${azul}9) ${ciano}Flatbulous${NORMAL}"
+    echo -e "${azul}1) ${ciano}Acvamarin${branco}(+ícone)${NORMAL}"
+    echo -e "${azul}2) ${ciano}ARC${NORMAL}"
+    echo -e "${azul}3) ${ciano}Xenlism${NORMAL}"
+    echo -e "${azul}4) ${ciano}Switch${NORMAL}"
+    echo -e "${azul}5) ${ciano}Flatbulous${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
     echo -e "${verm}Escolha uma opção:${NORMAL}"
     read -n1 temaOnResp
     case $temaOnResp in
       1)reset;
-        temaon-ambi;
+        temaon-acv;
         reset;
         tema;
         ;;
 
         2)reset;
-          temaon-nvsh;
+          temaon-arc;
           reset;
           tema;
           ;;
 
           3)reset;
-            temaon-zuki;
+            temaon-xen;
             reset;
             tema;
             ;;
 
             4)reset;
-              temaon-arc;
+              temaon-swt;
               reset;
               tema;
               ;;
 
               5)reset;
-                temaon-xen;
+                temaon-flat;
                 reset;
                 tema;
                 ;;
 
-                6)reset;
-                  temaon-acv;
-                  reset;
-                  tema;
-                  ;;
-
-                  7)reset;
-                  temaon-swt;
-                  reset;
-                  tema;
-                  ;;
-
-                  8)reset;
-                  temaon-gel;
-                  reset;
-                  tema;
-                  ;;
-
-                  9)reset;
-                    temaon-flat;
-                    reset;
-                    tema;
-                    ;;
 
                 q | Q)reset;
                       aparencia;
@@ -1843,7 +1736,7 @@ function instTema() {
       echo -e "${ciano}Instalando ícone Paper, aguarde...${NORMAL}"
       add-apt-repository ppa:snwh/pulp -y
       apt-get update | pv -W > /dev/null
-      apt-get install -y --force-yes paper-icon-theme paper-gtk-theme | pv -W > /dev/null
+      apt-get install -y --force-yes paper-icon-theme | pv -W > /dev/null
       clear
       echo -e "${branco}O ícone já está pronto para ser instalado, basta apenas${NORMAL}"
       echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
@@ -3780,6 +3673,26 @@ esac
 }
 
 
+# Função que serve para atuzalizar o script Knife System para versão mais recente
+function atualizarKs() {
+  echo -e "${ciano}Atualizando script aguarde...${NORMAL}"
+  echo ""
+  wget https://anony000.github.io/assets/knifesystem.deb
+  dpkg -i knifesystem.deb | pv -W > /var/log/attKS.log
+  if [ $? == 0 ];then
+    clear
+    echo -e "${verde}Atualização concluída!${NORMAL}"
+    sleep 1
+    rm knifesystem.deb
+  else
+    echo -e "${verm}Erro na atualização, para mais informações confira em /var/log/attKS.log"
+    sleep 1
+    knifesystem.deb
+    fazer
+  fi
+}
+
+
 ######################################
 #      Setar os comandos do menu     #
 #####################################
@@ -3843,6 +3756,13 @@ while [ inst != '' ]
                                                                         down;
                                                                         menu;
                                                                         ;;
+
+
+
+          1) reset;
+             atualizarKs;
+             exit;
+             ;;
 
           0)reset;
            echo -e "${ciano}Até mais${NORMAL}"
