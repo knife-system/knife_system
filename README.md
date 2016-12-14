@@ -1,9 +1,6 @@
 #Knife System <img src="http://i.imgur.com/VvXt9CP.png" width="200px" height="100px">
 
-O script agora possuí um web site onde você encontrará todas as suas funcionalidades descritas uma a uma na sua documentação
-caso queira conferir e deixar sua opinião acesse [clicando aqui](http://knifesystem.pe.hu)
-
-Email para contato: contato@knifesystem.pe.hu
+Shell script que traz consigo inúmeras funções que podem ser úteis para o seu dia-a-dia, para mais informações confira os vídeos demonstrativos e caso queira baixar o .deb dele acesse o seu site [clicando aqui](http://knifesystem.com.br)
 
 Script desenvolvido por Anônimo000, apenas para Debian e derivados.
 
