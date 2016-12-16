@@ -1371,7 +1371,7 @@ else
   echo ""
   git config --global user.name "$gitUser"
   echo ""
-  echo "${azul}Volte aqui quando desejar iniciar ${NORMAL}"
+  echo -e "${azul}Volte aqui quando desejar iniciar ${NORMAL}"
   sleep 1
   clear
 fi
