@@ -1,0 +1,239 @@
+#!/bin/bash
+
+############################### Informações #########################################
+# Autor: Anônimo000                                                                 #
+# Data: 05/02/2016                                                                  #
+# Descrição: Para inúmeras finalidades descritas no site                            #
+# Versão: 3.4                                                                       #
+# Data de modificação: 06/12/2016                                                   #
+# OS: Apenas para derivados do Debian.                                              #
+#                                                                                   #
+# Reporte os erros que encontrar para o email abaixo                                #
+# Não retire os devidos créditos                                                    #
+# Site: knifesystem.com.br                                                           #
+# Página no face: https://facebook.com/knifesystem                                  #
+# Comunidade: https://plus.google.com/communities/107206313729931554307             #
+# Parceiros: http://www.goscripts.net - GoScripts                                   #
+#            https://brasilblackhat.com.br - Brasil Black Hat                       #
+#####################################################################################
+source assets/variaveis.sh
+########################################################
+#                menu principal                        #
+########################################################
+echo -e "${azul}Verificando sua conexão...${NORMAL}"
+ping -c1 google.com > /dev/null
+if [ $? == 0 ];then
+myip=`curl -s https://wtfismyip.com/text`
+echo -e "${verde}Conectado${NORMAL}"
+sleep 1
+echo ""
+else
+  myip=`echo -e "${verm}Não conectado${NORMAL}"`
+  echo -e "${verm}Não conectado a internet${NORMAL}"
+  sleep 1
+  echo ""
+fi
+
+function menu {
+clear
+echo -e $verm "====================================== ${NORMAL}"
+sleep 0.1
+echo -e $amarelo "            Knife System             ${NORMAL}"
+sleep 0.1
+echo -e $verm" ====================================== ${NORMAL}"
+echo -e "${branco} http://knifesystem.com.br          $versaoKS"
+echo ""
+sleep 0.1
+echo -e "${amarelo} A)${ciano} Instalar programas${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} B)${ciano} Remover programas${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} C)${ciano} Procurar programas${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} D)${ciano} Reparar e limpar${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} E)${ciano} Usando o git de forma fácil${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} F)${ciano} Lista de programas${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} G)${ciano} Arquivos${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} H)${ciano} Aparência${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} I)${ciano} Segurança${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} J)${ciano} Informações diversas${NORMAL}"
+sleep 0.1
+echo -e "${amarelo} K)${ciano} Baixar arquivos${NORMAL}"
+sleep 0.1
+
+echo ""
+echo -e "${ciano}1)${amarelo} Atualizar script${NORMAL}"
+echo -e "${ciano}0)${amarelo} Sair${NORMAL}"
+echo -e $verm "Escolha uma das opções:"
+
+read -n1 inst
+}
+
+
+########################################################
+#               Funções do menu principal              #
+########################################################
+
+##### Instalar programas #####
+
+source assets/funcoes/instalar-programas.sh
+
+###### Remover programas #####
+
+source assets/funcoes/remover-programas.sh
+
+###### Repara dependências #####
+
+source assets/funcoes/reparar-erros.sh
+
+###### Procurar programas e instalar extras #####
+
+source assets/funcoes/procurar-programas.sh
+
+
+###### Procurar arquivos, criptografar e descriptografar #####
+
+source assets/funcoes/arquivos-criptografar-acha.sh
+
+###### Github para iniciantes ######
+
+source assets/funcoes/github-iniciantes.sh
+
+########### Aparência, personalizar ícones, temas, conky e terminal ##########
+
+source assets/funcoes/personalizacao.sh
+
+############# Segurança, firewall, anonimato, etc ##################
+
+source assets/funcoes/segurança-firewall-anonimato.sh
+
+########## Informações do hardware e etc.... #################
+
+source assets/funcoes/informacoes-hardware-software-rede.sh
+
+##### Download de arquivos ##############
+
+source assets/funcoes/baixar-arquivos-online.sh
+
+
+### Funções para instalar os programa que estão em armazenados online pelo KS
+
+source assets/funcoes/programas-onlines-instalar.sh
+
+
+# Função que serve para atuzalizar o script Knife System para versão mais recente
+function atualizarKs() {
+  echo -e "${ciano}Atualizando script aguarde...${NORMAL}"
+  echo ""
+  wget https://anony000.github.io/assets/knifesystem.deb
+  dpkg -i knifesystem.deb | pv -W > /var/log/attKS.log
+  if [ $? == 0 ];then
+    clear
+    echo -e "${verde}Atualização concluída!${NORMAL}"
+    sleep 1
+    rm knifesystem.deb
+  else
+    echo -e "${verm}Erro na atualização, para mais informações confira em /var/log/attKS.log"
+    sleep 1
+    knifesystem.deb
+    fazer
+  fi
+}
+
+
+######################################
+#      Setar os comandos do menu     #
+#####################################
+function fazer() {
+  reset
+  menu
+while [ inst != '' ]
+    do
+
+    case $inst in
+      A | a)reset;
+            instal;
+            menu;
+            ;;
+            B | b)reset;
+                  remov;
+                  menu;
+                  ;;
+
+                  C | c)reset;
+                        achar;
+                        menu;
+                        ;;
+
+                        D | d)reset;
+                              repair;
+                              menu;
+                              ;;
+
+                              E | e)reset;
+                                    github;
+                                    menu;
+                                    ;;
+
+                                    F | f)reset;
+                                          programas;
+                                          menu;
+                                          ;;
+
+                                          G | g)reset;
+                                                arquivos;
+                                                menu;
+                                                ;;
+
+                                                H | h)reset;
+                                                      aparencia;
+                                                      menu;
+                                                      ;;
+
+                                                      I | i)reset;
+                                                            seguranca;
+                                                             menu;
+                                                            ;;
+
+                                                            J | j)reset;
+                                                                  infos;
+                                                                  menu;
+                                                                  ;;
+
+                                                                  K | k)reset;
+                                                                        down;
+                                                                        menu;
+                                                                        ;;
+
+
+
+          1) reset;
+             atualizarKs;
+             exit;
+             ;;
+
+          0)reset;
+           echo -e "${ciano}Até mais${NORMAL}"
+           exit;
+           ;;
+
+     *) reset;
+        menu;
+        ;;
+    esac
+done
+}
+
+if [ `whoami` == "root" ]; then
+	fazer;
+else
+    echo ""
+	echo -e $verm "Você precisa ser root digite sua senha e tente novamente${NORMAL}"
+    sudo su
+fi
