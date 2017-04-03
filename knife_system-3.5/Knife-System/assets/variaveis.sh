@@ -30,7 +30,8 @@ earth64="https://www.dropbox.com/s/lm88k992eto51vw/google-earth-stable_current_a
 earth32="https://www.dropbox.com/s/d0zubhqb322ys2v/google-earth-stable_current_i386.deb?dl=0"
 
 #neofetch arquivo de configuração armazenado em ~/.config/neofetch/
-neofetchConfig="#!/usr/bin/env bash
+neofetchConfig="
+#!/usr/bin/env bash
 #
 # Neofetch config file
 # https://github.com/dylanaraps/neofetch
@@ -42,33 +43,33 @@ print_info() {
     info title
     info underline
 
-    info "OS" distro
-    info "Model" model
-    info "Kernel" kernel
-    info "Uptime" uptime
-    info "Packages" packages
-    info "Shell" shell
-    info "Resolution" resolution
-    info "DE" de
-    info "WM" wm
-    info "WM Theme" wm_theme
-    info "Theme" theme
-    info "Icons" icons
-    info "Terminal" term
-    info "Terminal Font" term_font
-    info "CPU" cpu
-    info "GPU" gpu
-    info "Memory" memory
+    info 'OS' distro
+    info 'Model' model
+    info 'Kernel' kernel
+    info 'Uptime' uptime
+    info 'Packages' packages
+    info 'Shell' shell
+    info 'Resolution' resolution
+    info 'DE' de
+    info 'WM' wm
+    info 'WM Theme' wm_theme
+    info 'Theme' theme
+    info 'Icons' icons
+    info 'Terminal' term
+    info 'Terminal Font' term_font
+    info 'CPU' cpu
+    info 'GPU' gpu
+    info 'Memory' memory
 
-    # info "CPU Usage" cpu_usage
-    # info "Disk" disk
-    # info "Battery" battery
-    # info "Font" font
-    # info "Song" song
-    # info "Local IP" local_ip
-    # info "Public IP" public_ip
-    # info "Users" users
-    # info "Install Date" install_date
+    # info 'CPU Usage' cpu_usage
+    # info 'Disk' disk
+    # info 'Battery' battery
+    # info 'Font' font
+    # info 'Song' song
+    # info 'Local IP' local_ip
+    # info 'Public IP' public_ip
+    # info 'Users' users
+    # info 'Install Date' install_date
 
     info line_break
     info cols
@@ -89,7 +90,7 @@ print_info() {
 # Example:
 # on:  '4.8.9-1-ARCH'
 # off: 'Linux 4.8.9-1-ARCH'
-kernel_shorthand="on"
+kernel_shorthand='on'
 
 
 # Distro
@@ -101,7 +102,7 @@ kernel_shorthand="on"
 # Values:   'on', 'off', 'tiny'
 # Flag:     --distro_shorthand
 # Supports: Everything except Windows and Haiku
-distro_shorthand="off"
+distro_shorthand='off'
 
 # Show/Hide OS Architecture.
 # Show 'x86_64', 'x86' and etc in 'Distro:' output.
@@ -113,7 +114,7 @@ distro_shorthand="off"
 # Example:
 # on:  'Arch Linux x86_64'
 # off: 'Arch Linux'
-os_arch="on"
+os_arch='on'
 
 
 # Uptime
@@ -129,7 +130,7 @@ os_arch="on"
 # on:   '2 days, 10 hours, 3 mins'
 # off:  '2 days, 10 hours, 3 minutes'
 # tiny: '2d 10h 3m'
-uptime_shorthand="on"
+uptime_shorthand='on'
 
 
 # Shell
@@ -144,7 +145,7 @@ uptime_shorthand="on"
 # Example:
 # on:  '/bin/bash'
 # off: 'bash'
-shell_path="off"
+shell_path='off'
 
 # Show $SHELL version
 #
@@ -155,7 +156,7 @@ shell_path="off"
 # Example:
 # on:  'bash 4.4.5'
 # off: 'bash'
-shell_version="on"
+shell_version='on'
 
 
 # CPU
@@ -168,7 +169,7 @@ shell_version="on"
 # Flag:    --speed_type
 # Supports: Linux with 'cpufreq'
 # NOTE: Any file in '/sys/devices/system/cpu/cpu0/cpufreq' can be used as a value.
-speed_type="bios_limit"
+speed_type='bios_limit'
 
 # Shorten the output of the CPU function
 #
@@ -182,7 +183,7 @@ speed_type="bios_limit"
 # tiny:  'i7-6500U (4)'
 # name:  'Intel i7-6500U (4)'
 # speed: '3.1GHz'
-cpu_shorthand="off"
+cpu_shorthand='off'
 
 # CPU Speed
 # Hide/Show CPU speed.
@@ -194,7 +195,7 @@ cpu_shorthand="off"
 # Example:
 # on:  'Intel i7-6500U (4) @ 3.1GHz'
 # off: 'Intel i7-6500U (4)'
-cpu_speed="on"
+cpu_speed='on'
 
 # CPU Cores
 # Display CPU cores in output
@@ -208,7 +209,7 @@ cpu_speed="on"
 # logical:  'Intel i7-6500U (4) @ 3.1GHz' (All virtual cores)
 # physical: 'Intel i7-6500U (2) @ 3.1GHz' (All physical cores)
 # off:      'Intel i7-6500U @ 3.1GHz'
-cpu_cores="logical"
+cpu_cores='logical'
 
 # CPU Temperature
 # Hide/Show CPU temperature.
@@ -223,7 +224,7 @@ cpu_cores="logical"
 # C:   'Intel i7-6500U (4) @ 3.1GHz [27.2°C]'
 # F:   'Intel i7-6500U (4) @ 3.1GHz [82.0°F]'
 # off: 'Intel i7-6500U (4) @ 3.1GHz'
-cpu_temp="off"
+cpu_temp='off'
 
 
 # GPU
@@ -238,7 +239,7 @@ cpu_temp="off"
 # Example:
 # on:  'AMD HD 7950'
 # off: 'HD 7950'
-gpu_brand="on"
+gpu_brand='on'
 
 # Which GPU to display
 #
@@ -257,7 +258,7 @@ gpu_brand="on"
 #
 # integrated:
 #   GPU1: Intel Integrated Graphics
-gpu_type="all"
+gpu_type='all'
 
 
 # Resolution
@@ -272,7 +273,7 @@ gpu_type="all"
 # Example:
 # on:  '1920x1080 @ 60Hz'
 # off: '1920x1080'
-refresh_rate="off"
+refresh_rate='off'
 
 
 # Gtk Theme / Icons / Font
@@ -287,7 +288,7 @@ refresh_rate="off"
 # Example:
 # on:  'Numix, Adwaita'
 # off: 'Numix [GTK2], Adwaita [GTK3]'
-gtk_shorthand="off"
+gtk_shorthand='off'
 
 
 # Enable/Disable gtk2 Theme / Icons / Font
@@ -299,7 +300,7 @@ gtk_shorthand="off"
 # Example:
 # on:  'Numix [GTK2], Adwaita [GTK3]'
 # off: 'Adwaita [GTK3]'
-gtk2="on"
+gtk2='on'
 
 # Enable/Disable gtk3 Theme / Icons / Font
 #
@@ -310,7 +311,7 @@ gtk2="on"
 # Example:
 # on:  'Numix [GTK2], Adwaita [GTK3]'
 # off: 'Numix [GTK2]'
-gtk3="on"
+gtk3='on'
 
 
 # IP Address
@@ -321,7 +322,7 @@ gtk3="on"
 # Default: 'http://ident.me'
 # Values:  'url'
 # Flag:    --ip_host
-public_ip_host="http://ident.me"
+public_ip_host='http://ident.me'
 
 
 # Disk
@@ -358,7 +359,7 @@ disk_show=('/')
 #
 # mount:  'Disk (/): 74G / 118G (66%)'
 #         'Disk (/mnt/Local Disk): 74G / 118G (66%)'
-disk_subtitle="mount"
+disk_subtitle='mount'
 
 
 # Song
@@ -375,7 +376,7 @@ disk_subtitle="mount"
 #      'Song: Chelsea Dagger'
 #
 # off: 'Song: The Fratellis - Chelsea Dagger'
-song_shorthand="off"
+song_shorthand='off'
 
 
 # Install Date
@@ -390,7 +391,7 @@ song_shorthand="off"
 # Example:
 # on:  'Thu 14 Apr 2016 11:50 PM'
 # off: 'Thu 14 Apr 2016'
-install_time="on"
+install_time='on'
 
 # Set time format in the output
 #
@@ -401,7 +402,7 @@ install_time="on"
 # Example:
 # 12h: 'Thu 14 Apr 2016 11:50 PM'
 # 24h: 'Thu 14 Apr 2016 23:50'
-install_time_format="12h"
+install_time_format='12h'
 
 
 # Text Colors
@@ -430,21 +431,21 @@ colors=(distro)
 # Default:  'on'
 # Values:   'on', 'off'
 # Flag:     --bold
-bold="on"
+bold='on'
 
 # Enable/Disable Underline
 #
 # Default:  'on'
 # Values:   'on', 'off'
 # Flag:     --underline
-underline_enabled="on"
+underline_enabled='on'
 
 # Underline character
 #
 # Default:  '-'
 # Values:   'string'
 # Flag:     --underline_char
-underline_char="-"
+underline_char='-'
 
 
 # Color Blocks
@@ -471,7 +472,7 @@ block_range=(0 7)
 # Default:  'on'
 # Values:   'on', 'off'
 # Flag:     --color_blocks
-color_blocks="on"
+color_blocks='on'
 
 # Color block width in spaces
 #
@@ -500,15 +501,15 @@ block_height=1
 # Example:
 # neofetch --bar_char 'elapsed' 'total'
 # neofetch --bar_char '-' '='
-bar_char_elapsed="-"
-bar_char_total="="
+bar_char_elapsed='-'
+bar_char_total='='
 
 # Toggle Bar border
 #
 # Default:  'on'
 # Values:   'on', 'off'
 # Flag:     --bar_border
-bar_border="on"
+bar_border='on'
 
 # Progress bar length in spaces
 # Number of chars long to make the progress bars.
@@ -528,8 +529,8 @@ bar_length=15
 # Example:
 # neofetch --bar_colors 3 4
 # neofetch --bar_colors distro 5
-bar_color_elapsed="distro"
-bar_color_total="distro"
+bar_color_elapsed='distro'
+bar_color_total='distro'
 
 
 # Info display
@@ -547,10 +548,10 @@ bar_color_total="distro"
 # infobar: 'info [---=======]'
 # barinfo: '[---=======] info'
 # off:     'info'
-cpu_display="off"
-memory_display="off"
-battery_display="off"
-disk_display="off"
+cpu_display='off'
+memory_display='off'
+battery_display='off'
+disk_display='off'
 
 
 # Backend Settings
@@ -560,7 +561,7 @@ disk_display="off"
 # Default:  'ascii'
 # Values:   'ascii', 'caca', 'catimg', 'jp2a', 'iterm2', 'off', 'tycat', 'w3m'
 # Flag:     --backend
-image_backend="w3m"
+image_backend='w3m'
 
 # Image Source
 #
@@ -573,7 +574,7 @@ image_backend="w3m"
 # NOTE: 'auto' will pick the best image source for whatever image backend is used.
 #       In ascii mode, distro ascii art will be used and in an image mode, your
 #       wallpaper will be used.
-image_source="terminalImgSelect"
+image_source='terminalImgSelect'
 
 
 # Ascii Options
@@ -592,7 +593,7 @@ image_source="terminalImgSelect"
 #       Change this to 'Lubuntu', 'Xubuntu', 'Ubuntu-GNOME' or 'Ubuntu-Budgie' to use the flavors.
 # NOTE: Arch, Crux and Gentoo have a smaller logo variant.
 #       Change this to 'arch_small', 'crux_small' or 'gentoo_small' to use the small logos.
-ascii_distro="auto"
+ascii_distro='auto'
 
 # Ascii Colors
 #
@@ -611,7 +612,7 @@ ascii_colors=(distro)
 # Default: 'on'
 # Values:  'on', 'off'
 # Flag:    --ascii_bold
-ascii_bold="on"
+ascii_bold='on'
 
 
 # Image Options
@@ -621,7 +622,7 @@ ascii_bold="on"
 #
 # Default: '~/.cache/thumbnails/neofetch'
 # Values:  'dir'
-thumbnail_dir="${XDG_CACHE_HOME:-${HOME}/.cache}/thumbnails/neofetch"
+thumbnail_dir='${XDG_CACHE_HOME:-${HOME}/.cache}/thumbnails/neofetch'
 
 # Crop mode
 #
@@ -631,7 +632,7 @@ thumbnail_dir="${XDG_CACHE_HOME:-${HOME}/.cache}/thumbnails/neofetch"
 #
 # See this wiki page to learn about the fit and fill options.
 # https://github.com/dylanaraps/neofetch/wiki/What-is-Waifu-Crop%3F
-crop_mode="normal"
+crop_mode='normal'
 
 # Crop offset
 # Note: Only affects 'normal' crop mode.
@@ -640,7 +641,7 @@ crop_mode="normal"
 # Values:   'northwest', 'north', 'northeast', 'west', 'center'
 #           'east', 'southwest', 'south', 'southeast'
 # Flag:     --crop_offset
-crop_offset="center"
+crop_offset='center'
 
 # Image size
 # The image is half the terminal width by default.
@@ -649,7 +650,7 @@ crop_offset="center"
 # Values:  'auto', '00px', '00%', 'none'
 # Flags:   --image_size
 #          --size
-image_size="auto"
+image_size='auto'
 
 # Ggap between image and text
 #
@@ -681,13 +682,13 @@ background_color=
 
 
 # Whether or not to always take a screenshot
-# You can manually take a screenshot with "--scrot" or "-s"
+# You can manually take a screenshot with '--scrot' or '-s'
 #
 # Default: 'off'
 # Values:  'on', 'off'
 # Flags:   --scrot
 #          -s
-scrot="off"
+scrot='off'
 
 # Screenshot Program
 # Neofetch will automatically use whatever screenshot tool
@@ -700,7 +701,7 @@ scrot="off"
 # Default: 'auto'
 # Values:  'auto' 'cmd -flags'
 # Flag:    --scrot_cmd
-scrot_cmd="auto"
+scrot_cmd='auto'
 
 # Screenshot Directory
 # Where to save the screenshots
@@ -710,7 +711,7 @@ scrot_cmd="auto"
 # Flag:    --scrot_dir
 #
 # Note: Neofetch won't create the directory if it doesn't exist.
-scrot_dir="$HOME/Pictures/"
+scrot_dir='$HOME/Pictures/'
 
 # Screenshot Filename
 # What to name the screenshots
@@ -718,7 +719,7 @@ scrot_dir="$HOME/Pictures/"
 # Default: 'neofetch-$(date +%F-%I-%M-%S-${RANDOM}).png'
 # Values:  'string'
 # Flag:    --scrot_name
-scrot_name="neofetch-$(date +%F-%I-%M-%S-${RANDOM}).png"
+scrot_name='neofetch-$(date +%F-%I-%M-%S-${RANDOM}).png'
 
 # Image upload host
 # Where to upload the image.
@@ -729,7 +730,7 @@ scrot_name="neofetch-$(date +%F-%I-%M-%S-${RANDOM}).png"
 #
 # NOTE: If you'd like another image host to be added to Neofetch.
 #       Open an issue on github.
-image_host="teknik"
+image_host='teknik'
 
 
 # Misc Options
@@ -739,5 +740,5 @@ image_host="teknik"
 #
 # NOTE: Don't change this value, neofetch reads this to determine
 # how to handle backwards compatibility.
-config_version="3.0.1"
+config_version='3.0.1'
 "

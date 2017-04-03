@@ -171,4 +171,10 @@
 # Problemas em limpeza do sistema corrigidos
 #############################################
 #
-###### versão 3.5
+###### versão 3.5 ###########################
+# Divisão das funções do script em partes separadas
+# Diminuição de linha de códigitado
+# Variável de verificar home do usuário adicionada
+# Opção de instalar imagens no terminal com neofetch adicionada
+# Variável para versão adicionado
+# Variáveis corrigidas

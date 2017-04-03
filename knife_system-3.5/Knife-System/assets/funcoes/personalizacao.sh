@@ -657,9 +657,9 @@ function terminalImg(){
   clear
   apt-get install -y w3m-img | pv -W > /dev/null
   clear
-  wget https://www.imagemagick.org/download/ImageMagick.tar.gz
-  tar xvzf ImageMagick.tar.gz
-  cd ImageMagick-*
+  wget https://www.imagemagick.org/download/ImageMagick.tar.gz -O /tmp/ImageMagick.tar.gz
+  tar xvzf /tmp/ImageMagick.tar.gz
+  cd /tmp/ImageMagick-*
   ./configure > /var/log/KS_log-ImageMagick
   if [ $? != 0 ];then
    echo -e "${verm}Erros foram encontrados ao instalar ImageMagick, cheque as dependências${NORMAL}"
@@ -687,6 +687,7 @@ fi
 
   mkdir $homeUser/.config/neofetch
   echo "$neofetchConfig" > /$homeUser/.config/neofetch/config
+fi
 }
 echo -e "${azul}1) ${amarelo}Instalar terminal${NORMAL}"
 echo -e "${azul}2) ${amarelo}Desinstalar terminal${NORMAL}"
@@ -706,6 +707,12 @@ case $terminalResp in
         reset;
         aparencia;
         ;;
+
+         3)reset;
+           terminalImg;
+           reset;
+           aparencia;
+           ;;
 
         *) reset;
            terminal;

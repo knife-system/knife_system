@@ -35,7 +35,6 @@ else
 fi
 
 function menu {
-clear
 echo -e $verm "====================================== ${NORMAL}"
 sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
