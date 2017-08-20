@@ -54,6 +54,7 @@ function infos() {
     srNum=`dmidecode -s system-serial-number`
     distroInfo=`lsb_release -a`
     totpacotes=`dpkg -l | grep -c ^i`
+    processadorName=`demidecode -s processor-version`
     echo -e "${amarelo}Informações da CPU e memória(HD)"
     echo ""
     echo -e "${amarelo}CPU:${NORMAL}"
@@ -81,6 +82,10 @@ function infos() {
     echo -e "${amarelo}Total de pacotes instalados${NORMAL}"
     sleep 1
     echo -e "${azul}$totpacotes${NORMAL}"
+    echo ""
+    echo -e "${amarelo}Nome do processador e versão:${NORMAL}"
+    sleep 1
+    echo -e "${azul}$processadorName${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
     read -n1 hardResp
@@ -358,6 +363,20 @@ function tempo() {
         esac
 }
 
+function ip-site() {
+  echo -e "${ciano}Digite a URL do site:${NORMAL}"
+  read urlSite
+  ipSite=`dig +short $urlSite`
+  clear
+  echo -e "${verde}O ip do site é:${branco} $ipSite"
+  echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
+  read -n1 ipResp
+  case $ipResp in
+    q | Q)reset;
+          infos;
+        esac
+}
+
   echo -e "${amarelo}Obter informaçõe do seu computador ou notebook:${NORMAL}"
   echo -e "${branco}Seu IP(externo): $myip"
   echo ""
@@ -380,6 +399,8 @@ function tempo() {
   echo -e "${verm}9) ${verde}Verificar distro completamente${branco}(lynis)${NORMAL}"
   sleep 0.1
   echo -e "${verm}10) ${verde}Previsão do tempo${NORMAL}"
+  sleep 0.1
+  echo -e "${verm}11) ${verde}Obter IP de um site${NORMAL}"
   echo ""
   echo -e "${verde}Q) ${verm}Voltar ao menu princípal${NORMAL}"
   read -n2 respInfo
@@ -444,6 +465,12 @@ function tempo() {
                          infos;
                          ;;
 
+                         11)reset;
+                             ip-site;
+                             reset;
+                             infos;
+                             ;;
+
              Q | q)fazer;
                    ;;
 
@@ -451,4 +478,3 @@ function tempo() {
                      infos;
     esac
 }
-

@@ -75,6 +75,10 @@ function firew() {
    iptables -A INPUT -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 5/m -j ACCEPT
    iptables -A FORWARD -m unclean -j DROP
 
+   ##Proteção contra Spoof
+   echo "nospoof on" >> /etc/host.conf
+   echo "spoofalert on" >> /etc/host.conf
+
   #Descomente o serviço que deseja que o firewall não bloqueie
 
   ##Apache - Servidor Web
@@ -233,7 +237,12 @@ function firew() {
      echo "0" > $i/log_martians
      echo "0" > $i/rp_filter
      done
- }
+
+     #Função abaixo remove as linhas de spoof do arquivo /etc/host.conf
+     linhasTotal=`cat /etc/host.conf | wc -l`
+     linhasRemovidas=`$((linhasTotal-2))`
+     sed "$linhasRemovidas, $linhasTotal\d" /etc/host.conf
+  }
 
 function permFire() {
  reset
@@ -294,6 +303,10 @@ function permFire() {
  iptables -t filter -A syn-chain -j DROP
  iptables -A INPUT -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 5/m -j ACCEPT
  iptables -A FORWARD -m unclean -j DROP
+
+ ##Proteção contra Spoof
+ echo "nospoof on" >> /etc/host.conf
+ echo "spoofalert on" >> /etc/host.conf
 
 #Descomente o serviço que deseja que o firewall não bloqueie
 

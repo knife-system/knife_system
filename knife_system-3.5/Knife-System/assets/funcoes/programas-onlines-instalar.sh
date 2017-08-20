@@ -1,4 +1,4 @@
-function programas() {
+function programas-online() {
 
   function conky-manage() {
   if [ $arch == x86_64 ];then
@@ -6,8 +6,8 @@ function programas() {
     sleep 1
     wget $conky64 -O Conky-Manager.deb
     clear
-    dpkg -i Conky-Manager.deb | pv -W >/dev/null
-    apt-get install -f -y --force-yes| pv -W >/dev/null
+    dpkg -i Conky-Manager.deb | pv -W >$pastaLogs/$horarioAtual-debug.log
+    apt-get install -f -y --force-yes| pv -W >$pastaLogs/$horarioAtual-debug.log
     rm Conky-Manager.deb
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -16,8 +16,8 @@ function programas() {
     sleep 1
     wget $conky32 -O Conky-Manager.deb
     clear
-    dpkg -i Conky-Manager.deb | pv -W >/dev/null
-    apt-get install -f -y --force-yes| pv -W >/dev/null
+    dpkg -i Conky-Manager.deb | pv -W >$pastaLogs/$horarioAtual-debug.log
+    apt-get install -f -y --force-yes| pv -W >$pastaLogs/$horarioAtual-debug.log
     rm Conky-Manager.deb
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -25,13 +25,13 @@ function programas() {
   }
 
 
-function skyp() {
+function skype() {
 if [ $arch = x86_64 ];then
   echo -e "${ciano}Instalando Skype. Aguarde...${NORMAL}"
   wget $skype32 -O skype.deb
   clear
-  dpkg -i skype.deb | pv -W >/dev/null
-  apt-get install -f -y --force-yes| pv -W > /dev/null
+  dpkg -i skype.deb | pv -W >$pastaLogs/$horarioAtual-debug.log
+  apt-get install -f -y --force-yes| pv -W > $pastaLogs/$horarioAtual-debug.log
   rm skype.deb
   echo -e "${verde}Instalação concluída!${NORMAL}"
   sleep 1
@@ -40,9 +40,9 @@ else
   dpkg --add-architecture i386
   wget $skype32 -O skype.deb
   clear
-  apt-get update | pv -e > /dev/null
-  dpkg -i skype.deb | pv -W >/dev/null
-  apt-get install -f -y --force-yes| pv -W > /dev/null
+  apt-get update | pv -e > $pastaLogs/$horarioAtual-debug.log
+  dpkg -i skype.deb | pv -W >$pastaLogs/$horarioAtual-debug.log
+  apt-get install -f -y --force-yes| pv -W > $pastaLogs/$horarioAtual-debug.log
   rm skype.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
@@ -54,47 +54,47 @@ function chrom() {
   echo -e "${ciano}Baixando e instalando o chrome...${NORMAL}"
   wget $chrome64 -O chrome.deb
   clear
-  dpkg -i chrome.deb | pv -W > /dev/null
-  apt-get install -f -y --force-yes | pv -W > /dev/null
+  dpkg -i chrome.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
+  apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
   rm chrome.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
   sleep 1
 }
 
-function atm() {
+function atom-editor() {
   echo -e "${ciano}Baixando e instalando o Atom...${NORMAL}"
   sleep 1
   wget $atom64 -O atom.deb
   clear
-  dpkg -i atom.deb | pv -W > /dev/null
-  apt-get install -f -y --force-yes | pv -W > /dev/null
+  dpkg -i atom.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
+  apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
   rm atom.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
   sleep 1
 }
 
-function team-view(){
+function team-viewer(){
   echo -e "${ciano}Baixando e instalando o Team-Viewer...${NORMAL}"
   sleep 1
   if [ $arch = x86_64 ];then
     wget $teamViewer -O TeamViewer.deb
     clear
     dpkg --add-architecture i386
-    dpkg -i TeamViewer.deb | pv -W >/dev/null
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    dpkg -i TeamViewer.deb | pv -W >$pastaLogs/$horarioAtual-debug.log
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     rm TeamViewer.deb
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   else
     wget $teamViewer -O TeamViewer.deb
     clear
-    dpkg -i TeamViewer.deb | pv -W >/dev/null
+    dpkg -i TeamViewer.deb | pv -W >$pastaLogs/$horarioAtual-debug.log
     rm TeamViewer.deb
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -102,14 +102,14 @@ function team-view(){
 
 }
 
-function videodown() {
+function videodownloader() {
 if [ $arch == x86_64 ];then
   echo -e "${ciano}Baixando e instalando o 4KVideoDownloader...${NORMAL}"
   sleep 1
   wget $video64 -O 4KVideoDownloader.deb
   clear
-  dpkg -i 4KVideoDownloader.deb | pv -W > /dev/null
-  apt-get install -f -y --force-yes | pv -W > /dev/null
+  dpkg -i 4KVideoDownloader.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
+  apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
   rm 4KVideoDownloader.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
@@ -119,8 +119,8 @@ else
   sleep 1
   wget $video32 -O 4KVideoDownloader.deb
   clear
-  dpkg -i 4KVideoDownloader.deb | pv -W > /dev/null
-  apt-get install -f -y --force-yes | pv -W > /dev/null
+  dpkg -i 4KVideoDownloader.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
+  apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
   rm 4KVideoDownloader.deb
   echo ""
   echo -e "${verde}Instalação concluída!${NORMAL}"
@@ -134,43 +134,43 @@ function sublime() {
   if [ $arch = x86_64 ];then
     wget $sublime64 -O sublime-text3.deb
     clear
-    dpkg -i sublime-text3.deb
+    dpkg -i sublime-text3.deb | pv -W $pastaLogs/$horarioAtual-debug.log
     rm sublime-text3.deb
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   else
     wget $sublime32 -O sublime-text3.deb
     clear
-    dpkg -i sublime-text3.deb
+    dpkg -i sublime-text3.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
     rm sublime-text3.deb
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   fi
 }
 function pycharm() {
-  function pyhcom() {
+  function pycharm-community() {
     echo -e "${ciano}Baixando e instalando o PyCharm-Community...${NORMAL}"
     sleep 1
-    wget $pycharmCom -O /opt/PyCharm-Community
+    wget $pycharmCom -O /opt/PyCharm-Community 
     cd /opt;tar -zxvf PyCharm-Community;rm -rf PyCharm-Community
     cd pycharm-community-2016.2.3/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   }
 
-  function pyhpro() {
+  function pycharm-pro() {
     echo -e "${ciano}Baixando e instalando o Pycharm-Professional...${NORMAL}"
     sleep 1
     wget $pycharmPro -O /opt/PyCharm-Professional
     cd /opt;tar -zxvf PyCharm-Professional;rm -rf PyCharm-Professional
     cd pycharm-2016.2.3/bin;cp -Rf pycharm.sh /bin;mv /bin/pycharm.sh /bin/pycharm;chmod +x /bin/pycharm;
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -184,19 +184,19 @@ echo -e "${verde}Escolha uma das opções:${NORMAL}"
 read -n1 pyrResp
 case $pyrResp in
   1)reset;
-    pyhcom;
+    pycharm-community;
     ;;
 
     2)reset;
-      pyhpro;
+      pycharm-pro;
       ;;
 
       *)reset;
-        programas;
+        programas-online;
   esac
 }
 
-function earth() {
+function google-earth() {
   echo -e "${ciano}Baixando e instalando o Google Earth...${NORMAL}"
   sleep 1
   if [ $arch = x86_64 ];then
@@ -204,7 +204,7 @@ function earth() {
     clear
     dpkg -i google-earth.deb
     rm google-earth.deb
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
@@ -213,13 +213,13 @@ function earth() {
     clear
     dpkg -i google-earth.deb
     rm google-earth.deb
-    apt-get install -f -y --force-yes | pv -W > /dev/null
+    apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log
     echo ""
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   fi
 }
-ping -c1 google.com > /dev/null
+ping -c1 google.com > $pastaLogs/$horarioAtual-debug.log
 if [ $? = 0 ];then
 echo -e "${verm}*************************************${NORMAL}"
 sleep 0.1
@@ -253,64 +253,64 @@ read -n1 proResp
  case $proResp in
 
    1)reset;
-     skyp;
+     skype;
      reset;
-     programas;
+     programas-online;
      ;;
 
      2)reset;
       conky-manage;
       reset;
-      programas;
+      programas-online;
       ;;
 
       3)reset;
        chrom;
        reset;
-       programas;
+       programas-online;
        ;;
 
        4)reset;
-         atm;
+         atom-editor;
          reset;
-         programas;
+         programas-online;
          ;;
 
          5)reset;
-           team-view;
+           team-viewer;
            reset;
-           programas;
+           programas-online;
            ;;
 
            6)reset;
-             videodown;
+             videodownloader;
              reset;
-             programas;
+             programas-online;
              ;;
 
              7)reset;
                sublime;
                reset;
-               programas;
+               programas-online;
                ;;
 
                8)reset;
                  pycharm;
                  reset;
-                 programas;
+                 programas-online;
                  ;;
 
                  9)reset;
-                   earth;
+                   google-earth;
                    reset;
-                   programas;
+                   programas-online;
                    ;;
 
          Q | q)fazer;
          ;;
 
   *) reset;
-     programas;
+     programas-online;
 
 esac
 done

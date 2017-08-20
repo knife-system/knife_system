@@ -35,6 +35,7 @@ else
 fi
 
 function menu {
+${notifyHello}
 echo -e $verm "====================================== ${NORMAL}"
 sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
@@ -161,12 +162,12 @@ while [ inst != '' ]
             menu;
             ;;
             B | b)reset;
-                  remov;
+                  remover-programas;
                   menu;
                   ;;
 
                   C | c)reset;
-                        achar;
+                        encontrar-programas;
                         menu;
                         ;;
 
