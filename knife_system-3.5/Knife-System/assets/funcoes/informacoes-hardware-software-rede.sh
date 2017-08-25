@@ -179,7 +179,7 @@ function infos() {
   }
 
   function scan-host() {
-    function netcat-inst() {
+    function instalar-netcat() {
       echo -e "${verm}Netcat não instalado${NORMAL}"
       sleep 1
       echo -e "${verde}Deseja instalar o Netcat? [N/S]${NORMAL}"
@@ -219,7 +219,7 @@ function infos() {
       fi
     else
       reset
-      netcat-inst
+      instalar-netcat
     fi
   }
 
