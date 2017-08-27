@@ -1,9 +1,9 @@
-function repair() {
+function reparar-pacotes-sistema() {
   echo -e $ciano "Reparando erros de dependencias... Isso pode demorar um pouco"$NORMAL
-  apt-get -f -y --force-yes install | pv -W > /var/log/KS_finstall.log
-  apt-get -y --force-yes autoremove | pv -W > /var/log/KS_autremove.log
-  apt-get clean | pv -W > /var/log/KS_clean.log
-  dpkg --configure -a | pv -W > /var/log/KS_configa.log
+  apt-get -f -y --force-yes install | pv -W 2> $pastaLogs/$horarioAtual-debug.log
+  apt-get -y --force-yes autoremove | pv -W 2> $pastaLogs/$horarioAtual-debug.log
+  apt-get clean | pv -W 2> $pastaLogs/$horarioAtual-debug.log
+  dpkg --configure -a | pv -W 2> $pastaLogs/$horarioAtual-debug.log
   clear
   sleep 1
   echo -e $ciano "Trecho de código desenvolvido Black Hat Sec e traduzido por Anônimo000"
@@ -44,48 +44,48 @@ function repair() {
   sleep 0.5
   echo ""
   echo -e $amarelo"[SFAGEAS]:Limpando kernels antigos..."$NORMAL
-  sudo aptitude purge $OLDKERNELS | pv -W > /dev/null
+  sudo aptitude purge $OLDKERNELS | pv -W 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
   echo ""
   echo -e $amarelo"[SFAGEAS]:Corrigindo pacotes quebrados..."$NORMAL
-  sudo apt-get check | pv -W > /dev/null ; sudo apt-get -f install | pv -W > /dev/null
+  sudo apt-get check | pv -W 2> $pastaLogs/$horarioAtual-debug.log ; sudo apt-get -f install | pv -W 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
   echo -e $amarelo"[SFAGEAS]:Limpando arquivos da lixeira..."$NORMAL
   sleep 0.5
-  rm -rf /home/*/.local/share/Trash/*/** &> /dev/null
+  rm -rf /home/*/.local/share/Trash/*/** 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
-  rm -rf /root/.local/share/Trash/*/** &> /dev/null
+  rm -rf /root/.local/share/Trash/*/** 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
-  sudo aptitude clean | pv -W > /dev/null
+  sudo aptitude clean | pv -W 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
-  sudo apt-get autoremove && sudo apt-get autoclean && sudo apt-get purge && sudo apt-get clean | pv -W > /dev/null
+  sudo apt-get autoremove && sudo apt-get autoclean && sudo apt-get purge && sudo apt-get clean | pv -W > $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
   echo ""
   echo ""
   echo -e $amarelo"[SFAGEAS]:Limpando configurações extras..."$NORMAL
-  sudo aptitude purge $OLDCONF
-  dpkg -l | grep '^rc' | awk '{print $2}' | sudo xargs dpkg --purge | pv -W > /dev/null
+  sudo aptitude purge $OLDCONF | pv -W 2> $pastaLogs/$horarioAtual-debug.log
+  dpkg -l | grep '^rc' | awk '{print $2}' | sudo xargs dpkg --purge | pv -W 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
   echo ""
   echo ""
   echo -e $amarelo"[SFAGEAS]:Limpando cache do apt novamente..."$NORMAL
-  sudo aptitude clean | pv -W > /dev/null
+  sudo aptitude clean | pv -W 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
   echo ""
   echo ""
   echo -e $amarelo"[SFAGEAS]:Removendo arquivos de configuração antigos novamente..."$NORMAL
   sudo aptitude purge $OLDCONF
   sleep 0.5
-  apt-get autoremove | pv -W >> /var/log/KS_autremove.log
+  apt-get autoremove | pv -W 2> /var/log/KS_autremove.log
   sleep 0.5
-  apt-get clean | pv -W > /dev/null
+  apt-get clean | pv -W 2> $pastaLogs/$horarioAtual-debug.log
   sleep 0.5
   echo -e $amarelo"[SFAGEAS]:Esvaziando lixeira..."$NORMAL
 
   echo ""
   echo ""
-  rm -rf /home/*/.local/share/Trash/*/** &> /dev/null
-  rm -rf /root/.local/share/Trash/*/** &> /dev/null
+  rm -rf /home/*/.local/share/Trash/*/** 2> $pastaLogs/$horarioAtual-debug.log
+  rm -rf /root/.local/share/Trash/*/** 2> $pastaLogs/$horarioAtual-debug.log
   echo ""
   clear
   echo -e $verm"###############################################"$NORMAL
@@ -96,6 +96,4 @@ function repair() {
   echo "Tenha um bom dia!"
   echo ""
   echo "Feito por D4RkNik0l4s, editado e traduzido por Anônimo000"
-  exit
-
 }

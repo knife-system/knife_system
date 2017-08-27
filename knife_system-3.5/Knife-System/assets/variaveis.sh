@@ -19,8 +19,10 @@ versaoKS="3.6"
 horarioAtual=`date +%H_%M_%S`
 pastaLogs="/var/log/KnifeSystem"
 
+# $pastaLogs/$horarioAtual-debug.log
+
 ## Verifica a arquitetura do sistema
-arch=`uname -m`
+arquiteturaProcessador=`uname -m`
 
 ## Variáveis de programas online que não
 ## estão disponíveis nos repositórios oficiais

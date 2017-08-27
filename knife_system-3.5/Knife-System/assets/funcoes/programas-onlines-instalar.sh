@@ -1,7 +1,7 @@
 function programas-online() {
 
-  function conky-manage() {
-  if [ $arch == x86_64 ];then
+  function conky-manager() {
+  if [ $arquiteturaProcessador == x86_64 ];then
     echo -e "${ciano}Baixando e instalando o Conky-Manager${NORMAL}"
     sleep 1
     wget $conky64 -O Conky-Manager.deb
@@ -26,7 +26,7 @@ function programas-online() {
 
 
 function skype() {
-if [ $arch = x86_64 ];then
+if [ $arquiteturaProcessador = x86_64 ];then
   echo -e "${ciano}Instalando Skype. Aguarde...${NORMAL}"
   wget $skype32 -O skype.deb
   clear
@@ -50,7 +50,7 @@ else
 fi
 }
 
-function chrom() {
+function chrome() {
   echo -e "${ciano}Baixando e instalando o chrome...${NORMAL}"
   wget $chrome64 -O chrome.deb
   clear
@@ -78,7 +78,7 @@ function atom-editor() {
 function team-viewer(){
   echo -e "${ciano}Baixando e instalando o Team-Viewer...${NORMAL}"
   sleep 1
-  if [ $arch = x86_64 ];then
+  if [ $arquiteturaProcessador = x86_64 ];then
     wget $teamViewer -O TeamViewer.deb
     clear
     dpkg --add-architecture i386
@@ -102,8 +102,8 @@ function team-viewer(){
 
 }
 
-function videodownloader() {
-if [ $arch == x86_64 ];then
+function video-downloader() {
+if [ $arquiteturaProcessador == x86_64 ];then
   echo -e "${ciano}Baixando e instalando o 4KVideoDownloader...${NORMAL}"
   sleep 1
   wget $video64 -O 4KVideoDownloader.deb
@@ -128,10 +128,10 @@ else
 fi
 }
 
-function sublime() {
+function sublime-text() {
   echo -e "${ciano}Baixando e instalando o Sublime Text 3...${NORMAL}"
   sleep 1
-  if [ $arch = x86_64 ];then
+  if [ $arquiteturaProcessador = x86_64 ];then
     wget $sublime64 -O sublime-text3.deb
     clear
     dpkg -i sublime-text3.deb | pv -W $pastaLogs/$horarioAtual-debug.log
@@ -164,7 +164,7 @@ function pycharm() {
     sleep 1
   }
 
-  function pycharm-pro() {
+  function pycharm-professional() {
     echo -e "${ciano}Baixando e instalando o Pycharm-Professional...${NORMAL}"
     sleep 1
     wget $pycharmPro -O /opt/PyCharm-Professional
@@ -177,8 +177,8 @@ function pycharm() {
   }
 
 
-echo -e "${ciano}1) ${verm}Pycharm-Professional${branco}(completo)${NORMAL}"
-echo -e "${ciano}2) ${verm}Pycharm-community${NORMAL}"
+echo -e "${ciano}1) ${verm}Pycharm Professional${branco}(completo)${NORMAL}"
+echo -e "${ciano}2) ${verm}Pycharm Community${NORMAL}"
 echo ""
 echo -e "${verde}Escolha uma das opções:${NORMAL}"
 read -n1 pyrResp
@@ -188,7 +188,7 @@ case $pyrResp in
     ;;
 
     2)reset;
-      pycharm-pro;
+      pycharm-professional;
       ;;
 
       *)reset;
@@ -199,7 +199,7 @@ case $pyrResp in
 function google-earth() {
   echo -e "${ciano}Baixando e instalando o Google Earth...${NORMAL}"
   sleep 1
-  if [ $arch = x86_64 ];then
+  if [ $arquiteturaProcessador = x86_64 ];then
     wget $earth64 -O google-earth.deb
     clear
     dpkg -i google-earth.deb
@@ -219,7 +219,7 @@ function google-earth() {
     sleep 1
   fi
 }
-ping -c1 google.com > $pastaLogs/$horarioAtual-debug.log
+ping -c1 google.com > /dev/null
 if [ $? = 0 ];then
 echo -e "${verm}*************************************${NORMAL}"
 sleep 0.1
@@ -248,9 +248,9 @@ echo -e "${amarelo} 9)${azul} GoogleEarth${branco}(i386+amd64)${NORMAL}"
 echo ""
 echo "pressione [ Q ] para voltar ao menu principal"
 echo -e "${verm}Escolha qual pacote deseja instalar:${NORMAL}"
-read -n1 proResp
- while [ proResp != '' ]; do
- case $proResp in
+read -n1 voltarProgramasOnline
+ while [ voltarProgramasOnline != '' ]; do
+ case $voltarProgramasOnline in
 
    1)reset;
      skype;
@@ -259,13 +259,13 @@ read -n1 proResp
      ;;
 
      2)reset;
-      conky-manage;
+      conky-manager;
       reset;
       programas-online;
       ;;
 
       3)reset;
-       chrom;
+       chrome;
        reset;
        programas-online;
        ;;
@@ -283,13 +283,13 @@ read -n1 proResp
            ;;
 
            6)reset;
-             videodownloader;
+             video-downloader;
              reset;
              programas-online;
              ;;
 
              7)reset;
-               sublime;
+               sublime-text;
                reset;
                programas-online;
                ;;

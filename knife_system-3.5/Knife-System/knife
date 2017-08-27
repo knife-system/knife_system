@@ -23,19 +23,20 @@ source assets/variaveis.sh
 echo -e "${azul}Verificando sua conexão...${NORMAL}"
 ping -c1 google.com > /dev/null
 if [ $? == 0 ];then
-myip=`curl -s https://wtfismyip.com/text`
+meuEnderecoIp=`curl -s https://wtfismyip.com/text`
 echo -e "${verde}Conectado${NORMAL}"
 sleep 1
 echo ""
 else
-  myip=`echo -e "${verm}Não conectado${NORMAL}"`
+  meuEnderecoIp=`echo -e "${verm}Não conectado${NORMAL}"`
   echo -e "${verm}Não conectado a internet${NORMAL}"
   sleep 1
   echo ""
 fi
 
+mkdir /var/log/KnifeSystem
+
 function menu {
-${notifyHello}
 echo -e $verm "====================================== ${NORMAL}"
 sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
@@ -172,7 +173,7 @@ while [ inst != '' ]
                         ;;
 
                         D | d)reset;
-                              repair;
+                              reparar-pacotes-sistema;
                               menu;
                               ;;
 

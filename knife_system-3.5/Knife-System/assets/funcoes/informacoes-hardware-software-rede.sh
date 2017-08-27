@@ -378,7 +378,7 @@ function ip-site() {
 }
 
   echo -e "${amarelo}Obter informaçõe do seu computador ou notebook:${NORMAL}"
-  echo -e "${branco}Seu IP(externo): $myip"
+  echo -e "${branco}Seu IP(externo): $meuEnderecoIp"
   echo ""
   echo -e "${verm}1) ${verde}Informações de rede${NORMAL}"
   sleep 0.1
