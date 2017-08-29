@@ -23,19 +23,21 @@ source assets/variaveis.sh
 echo -e "${azul}Verificando sua conexão...${NORMAL}"
 ping -c1 google.com > /dev/null
 if [ $? == 0 ];then
-meuEnderecoIp=`curl -s https://wtfismyip.com/text`
-echo -e "${verde}Conectado${NORMAL}"
-sleep 1
-echo ""
+   meuEnderecoIp=`curl -s https://wtfismyip.com/text`
+   echo -e "${verde}Conectado${NORMAL}"
+   sleep 1
+   echo ""
 else
-  meuEnderecoIp=`echo -e "${verm}Não conectado${NORMAL}"`
-  echo -e "${verm}Não conectado a internet${NORMAL}"
-  sleep 1
-  echo ""
+   meuEnderecoIp=`echo -e "${verm}Não conectado${NORMAL}"`
+   echo -e "${verm}Não conectado a internet${NORMAL}"
+   sleep 1
+   echo ""
 fi
-
-mkdir /var/log/KnifeSystem
-
+      if [ -e /var/log/KnifeSystem ];then
+            echo "" > /dev/null
+      else 
+            mkdir /var/log/KnifeSystem
+      fi
 function menu {
 echo -e $verm "====================================== ${NORMAL}"
 sleep 0.1
@@ -73,7 +75,7 @@ echo -e "${ciano}1)${amarelo} Atualizar script${NORMAL}"
 echo -e "${ciano}0)${amarelo} Sair${NORMAL}"
 echo -e $verm "Escolha uma das opções:"
 
-read -n1 inst
+read -n1 opcaoMenu
 }
 
 
@@ -154,10 +156,10 @@ function atualizarKs() {
 function fazer() {
   reset
   menu
-while [ inst != '' ]
+while [ opcaoMenu != '' ]
     do
 
-    case $inst in
+    case $opcaoMenu in
       A | a)reset;
             instal;
             menu;
@@ -178,7 +180,7 @@ while [ inst != '' ]
                               ;;
 
                               E | e)reset;
-                                    github;
+                                    github-ajuda-iniciantes;
                                     menu;
                                     ;;
 
@@ -208,7 +210,7 @@ while [ inst != '' ]
                                                                   ;;
 
                                                                   K | k)reset;
-                                                                        down;
+                                                                        baixar-arquivos-online;
                                                                         menu;
                                                                         ;;
 

@@ -10,16 +10,17 @@ NORMAL="\033[m"
 ciano="\033[01;36m"
 
 ## Obtém o diretório home do usuário que não é root
-usr=`users`
-usuario=`echo ${usr##* }`
+listaUsuarios=`users`
+usuario=`echo ${listaUsuarios##* }`
 homeUser=`cat /etc/passwd |grep ^$usuario | cut -d : -f 6`
-versaoKS="3.6"
+versaoKS="3.5"
 
 ## Obter o horário atual para gerar logs
 horarioAtual=`date +%H_%M_%S`
 pastaLogs="/var/log/KnifeSystem"
 
 # $pastaLogs/$horarioAtual-debug.log
+# $pastaLogs/baixar-arquivos/
 
 ## Verifica a arquitetura do sistema
 arquiteturaProcessador=`uname -m`

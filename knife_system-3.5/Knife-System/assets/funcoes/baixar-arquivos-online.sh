@@ -1,22 +1,32 @@
-function down() {
+function baixar-arquivos-online() {
+  
+  # Cria a pasta onde ficará os logs de arquivos baixados
+
+  pastaLogsBaixar=${pastaLogs}/baixar-arquivos
+  if [ -e /var/log/KnifeSystem ];then
+            echo "" > /dev/null
+      else 
+            mkdir $pastaLogsBaixar
+      fi
+
   function baixar() {
     echo -e "${azul}Digite o link do arquivo à ser baixado:${NORMAL}"
-    read downResp
+    read linkArquivoBaixar
     clear
     echo -e "${azul}Selecione o local e o nome para o arquivo, não esqueça de colocar sua extensão${NORMAL}"
     echo -e "${branco}Ex: arquivo${ciano}.deb ${branco}arquivo${ciano}.tar.gz${NORMAL}"
     sleep 2
     echo ""
-    direResp=`zenity --file-selection --save`
+    diretorioSalvarArquivo=`zenity --file-selection --save`
     clear
     echo -e "${verde}Baixando arquivo${NORMAL}"
     echo -e "${branco}Pressione CTRL + C, para pausar"${NORMAL}
     echo ""
     sleep 2
-    echo "$downResp" > /var/log/KS_arqdown.log
-    echo "$direResp" > /var/log/KS_dirdown.log
-    wget -O $direResp $downResp
-    rm /var/log/KS_*.log
+    echo "$linkArquivoBaixar" > $pastaLogsBaixar/baixar-arquivo.log
+    echo "$diretorioSalvarArquivo" > $pastaLogsBaixar/baixar-diretorio.log
+    wget -O $diretorioSalvarArquivo $linkArquivoBaixar
+    rm $pastaLogsBaixar/*
     echo ""
     echo -e "${verde}Download concluído${NORMAL}"
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
@@ -29,23 +39,23 @@ function down() {
   esac
   }
 
-function contBaixar() {
-  if [ -e /var/log/KS_dirdown.log ];then
+function continuar-baixar() {
+  if [ -e $pastaLogsBaixar/baixar-diretorio.log ];then
   echo -e "${azul}Continuando download anterior...${NORMAL}"
   echo -e "${branco}Pressione CTRL + C, para pausar"${NORMAL}
   echo ""
   sleep 2
-  arqDown=`cat /var/log/KS_arqdown.log`
-  dirDown=`cat /var/log/KS_dirdown.log`
-  wget -c -O $dirDown $arqDown
+  arquivoContinuarBaixando=`cat $pastaLogsBaixar/baixar-arquivo.log`
+  pastaContinuarBaixando=`cat $pastaLogsBaixar/baixar-diretorio.log`
+  wget -c -O $pastaContinuarBaixando $arquivoContinuarBaixando
   if [ $? = 0 ];then
   echo ""
   echo -e "${verde}Download concluído${NORMAL}"
-  rm /var/log/KS_*.log
+  rm $pastaLogsBaixar/*
 fi
   echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
-  read -n1 concluVOL
-  case $concluVol in
+  read -n1 continuarBaixarResp
+  case $continuarBaixarResp in
     Q | q)fazer;
     ;;
 
@@ -53,20 +63,16 @@ fi
 esac
 
 else
-  echo -e "${verm}Não há downloads${NORMAL}"
+  echo -e "${verm}Não há downloads pendentes${NORMAL}"
   sleep 2
-  reset
-  down
 fi
 }
 
-function histDown() {
+function limpar-historico() {
   echo -e "${azul}Excluindo histórico...${NORMAL}"
-  rm /var/log/KS_*.log
+  rm $pastaLogsBaixar/*
   echo -e "${verde}Concluído!${NORMAL}"
   sleep 1
-  reset
-  down
 }
 
 ping -c1 google.com > /dev/null
@@ -76,7 +82,7 @@ echo ""
 echo -e "${verm}1) ${amarelo}Baixar arquivo${NORMAL}"
 echo -e "${verm}2) ${amarelo}Continuar download${NORMAL}"
 echo -e "${verm}3) ${amarelo}Limpar histórico de download${NORMAL}"
-if [ -e /var/log/KS_dirdown.log ] && [ -e /var/log/KS_dirdown.log ];then
+if [ -e $pastaLogsBaixar/baixar-arquivo.log ] && [ -e $pastaLogsBaixar/baixar-diretorio.log ];then
   echo -e "${ciano}Você tem [1] download pendente${NORMAL}"
 fi
 echo ""
@@ -87,26 +93,26 @@ case $wgetResp in
   1)reset;
     baixar;
     reset;
-    down;
+    baixar-arquivos-online;
     ;;
 
     2)reset;
-      contBaixar;
+      continuar-baixar;
       reset;
-      down;
+      baixar-arquivos-online;
       ;;
 
       3)reset;
-        histDown;
+        limpar-historico;
         reset;
-        down;
+        baixar-arquivos-online;
         ;;
 
       q | Q)fazer;
       ;;
 
       *)reset;
-        down;
+        baixar-arquivos-online;
 esac
 else
   echo -e "${verm}Não conectado${NORMAL}"

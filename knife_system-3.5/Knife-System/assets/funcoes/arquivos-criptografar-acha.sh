@@ -1,19 +1,19 @@
-function arquivos() {
+function tarefas-arquivos() {
 
-function arqpgp() {
+function criptografar-descriptografar() {
 
  which pgp > /dev/null
  if [ $? == 0 ];then
 
-function arqCrypt() {
+function criptografar-arquivo() {
   echo -e "${ciano}Selecione o arquivo que deseja criptografar:${NORMAL}"
-  sleeep 1
-  arqCrp=`zenity --file-selection --title="Selecione o arquivo"`
+  sleep 1
+  arquivoSelecionadoCriptografar=`zenity --file-selection --title="Selecione o arquivo"`
   reset
-  echo -e "${amarelo}Insira a senha do arquivo${NORMAL}"
-  pgp -c $arqCrp
+  echo -e "${amarelo}Insira a senha do arquivo a ser criptografado:${NORMAL}"
+  pgp -c $arquivoSelecionadoCriptografar
   if [ $? == 0 ];then
-    echo -e "${verde}Arquivo criptagrafado com sucesso, procure o arquivo $arqCrp com extensão .pgp"
+    echo -e "${verde}Arquivo criptografado com sucesso, procure o arquivo $arquivoSelecionadoCriptografar com extensão .pgp"
     sleep 2
   else
     echo -e "${verm}Erro ao criptografar arquivo! Tente Novamente.${NORMAL}"
@@ -21,15 +21,15 @@ function arqCrypt() {
   fi
 }
 
-function arqdecry() {
+function descriptografar-arquivo() {
   echo -e "${ciano}Selecione o arquivo .pgp que deseja descriptografar, em seguida digite a senha dele:${NORMAL}"
   sleep 3
-  arqDcry=`zenity --file-selection --file-filter=*.pgp --title="Selecione o arquivo .pgp"`
+  arquivoSelecionadoDescriptografar=`zenity --file-selection --file-filter=*.pgp --title="Selecione o arquivo .pgp"`
   reset
   echo -e "${ciano}Insira a senha para descriptografar:${NORMAL}"
-  pgp $arqDcry
+  pgp $arquivoSelecionadoDescriptografar
   if [ $? == 0 ];then
-    echo -e "${verde}Arquivo descriptagrafado com sucesso!"
+    echo -e "${verde}Arquivo descriptagrafado com sucesso!${NORMAL}"
     sleep 1
   else
     echo -e "${verm}Erro ao descriptografar arquivo! Tente Novamente.${NORMAL}"
@@ -45,14 +45,14 @@ read -n1 cryptResp
 
 case $cryptResp in
   1)reset;
-    arqCrypt;
+    criptografar-arquivo;
     reset;
     fazer;
 
     ;;
 
     2)reset;
-    arqdecry;
+    descriptografar-arquivo;
     reset;
     fazer;
     ;;
@@ -61,7 +61,7 @@ case $cryptResp in
     ;;
 
     *)reset;
-    arqpgp;
+    criptografar-descriptografar;
     ;;
 
   esac
@@ -72,29 +72,21 @@ else
 fi
 
 }
-function location() {
-   echo -e $verm"#############################################${NORMAL}"
-   echo -e "                   ${verde}Procurar               ${NORMAL}"
-   echo -e $verm"#############################################${NORMAL}"
+function procurar-arquivo() {
+   echo -e "${amarelo}Digite o nome do arquivo a ser procurado:${NORMAL}"
+   read arquivoEncontrar 
+   find $homeUser -user $usuario -name $arquivoEncontrar | grep $arquivoEncontrar
    echo ""
-   echo -e $amarelo"Digite o nome do arquivo:${NORMAL}"
-   read arquivoEncontrar
-   echo -e "${verm}Atualizando banco de dados, dependendo do espaço ocupado no seu HD isso${NORMAL}"
-   echo -e "${verm}poderá levar alguns minutos. Aguarde...${NORMAL}"
-   echo ""
-   updatedb
-   locate $arquivoEncontrar | grep $arquivoEncontrar
-   echo ""
-   echo -e "${verde}Pressione ${amarelo}[ Q ] ${verde}para voltar${NORMAL}"
-   read -n1 locatResp
+   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
+   read -n1 localizarArquivoResp
 
-   case $locatResp in
+   case $localizarArquivoResp in
 
      Q | q)fazer;
            ;;
 
       *)reset;
-        location;
+        procurar-arquivo;
     esac
 }
 
@@ -108,18 +100,18 @@ read -n1 arquivosResposta
 case $arquivosResposta in
 
   1)reset;
-    location;
+    procurar-arquivo;
     ;;
 
     2)reset;
-      arqpgp;
+      criptografar-descriptografar;
       ;;
 
       Q | q)fazer;
       ;;
 
       *)reset;
-      arquivos;
+      tarefas-arquivos;
 
     esac
 
