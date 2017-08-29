@@ -36,7 +36,7 @@ fi
       if [ -e /var/log/KnifeSystem ];then
             echo "" > /dev/null
       else 
-            mkdir /var/log/KnifeSystem
+            mkdir $pastaLogs
       fi
 function menu {
 echo -e $verm "====================================== ${NORMAL}"
