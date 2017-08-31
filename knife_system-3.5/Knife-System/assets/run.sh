@@ -13,5 +13,5 @@ else
    echo -e "${ciano}Boa noite! ${verde}$USER${nml}"
 fi
 echo ""
-echo -e "${verm}Digite sua senha para entrar no KS:${nml}"
+echo -e "${ciano}Digite sua senha para entrar no KS:${nml}"
 sudo bash /opt/Knife-System/knife

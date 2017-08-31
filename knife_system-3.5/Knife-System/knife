@@ -33,7 +33,7 @@ else
    sleep 1
    echo ""
 fi
-      if [ -e /var/log/KnifeSystem ];then
+      if [ -e $pastaLogs ];then
             echo "" > /dev/null
       else 
             mkdir $pastaLogs
@@ -131,20 +131,20 @@ source assets/funcoes/programas-onlines-instalar.sh
 
 
 # Função que serve para atuzalizar o script Knife System para versão mais recente
-function atualizarKs() {
+function atualizar-script-ks() {
   echo -e "${ciano}Atualizando script aguarde...${NORMAL}"
   echo ""
   wget https://anony000.github.io/assets/knifesystem.deb
-  dpkg -i knifesystem.deb | pv -W > /var/log/attKS.log
+  dpkg -i knifesystem.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
+  apt-get -f -y --foce-yes install
   if [ $? == 0 ];then
     clear
     echo -e "${verde}Atualização concluída!${NORMAL}"
     sleep 1
     rm knifesystem.deb
   else
-    echo -e "${verm}Erro na atualização, para mais informações confira em /var/log/attKS.log"
+    echo -e "${verm}Erro na atualização, para mais informações confira em ${pastaLogs}"
     sleep 1
-    knifesystem.deb
     fazer
   fi
 }
@@ -205,7 +205,7 @@ while [ opcaoMenu != '' ]
                                                             ;;
 
                                                             J | j)reset;
-                                                                  infos;
+                                                                  informacoes-sistema;
                                                                   menu;
                                                                   ;;
 
@@ -217,7 +217,7 @@ while [ opcaoMenu != '' ]
 
 
           1) reset;
-             atualizarKs;
+             atualizar-script-ks;
              exit;
              ;;
 
