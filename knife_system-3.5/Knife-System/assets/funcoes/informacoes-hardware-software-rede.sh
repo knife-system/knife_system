@@ -173,7 +173,7 @@ function informacoes-sistema() {
     if [ $? == 0 ];then
     nmap -sV localhost
     echo ""
-    echo -e "${verde}Voltar [Q]${NORMAL}"
+    echo -e "${branco}Voltar [Q]${NORMAL}"
     read -n1 voltResp
     case $voltResp in
       Q | Q)fazer;
@@ -187,14 +187,14 @@ function informacoes-sistema() {
     function instalar-netcat() {
       echo -e "${verm}Netcat não instalado${NORMAL}"
       sleep 1
-      echo -e "${verde}Deseja instalar o Netcat? [N/S]${NORMAL}"
+      echo -e "${ciano}Deseja instalar o Netcat? [N/S]${NORMAL}"
       read -n1 netcatResp
       case $netcatResp in
       
         S | s)echo "";
-            echo -e "${branco}Instalando Netcat.... Aguarde...${NORMAL}";
+            echo -e "${azul}Instalando Netcat.... Aguarde...${NORMAL}";
             echo "";
-            apt-get -y install netcat | pv -W > $pastaLogs/$horarioAtual-debug.log;
+            apt-get -y --force-yes install netcat | pv -W > $pastaLogs/$horarioAtual-debug.log;
             reset;
             informacoes-sistema;
              ;;
@@ -208,19 +208,19 @@ function informacoes-sistema() {
     which netcat > /dev/null
     if [ $? == 0 ];then
       echo -e "${ciano}Digite o IP ou DNS do host remoto: ${NORMAL}"
-      read remoteHost
+      read hostEscaneadoNetcat
       reset
       echo -e "${ciano}Digite o número da porta à ser verificada:${NORMAL}"
-      read remotePort
+      read portaHostEscaneadoNetcat
       reset
-      echo -e "${branco}Realizando scaneamento...${NORMAL}"
-      netcat -w 1 $remoteHost $remotePort >/dev/null
+      echo -e "${azul}Realizando scaneamento...${NORMAL}"
+      netcat -w 1 $hostEscaneadoNetcat $portaHostEscaneadoNetcat >/dev/null
       if [ $? == 0 ];then
-        echo -e "${verde}Porta $remotePort aberta!${NORMAL}"
+        echo -e "${verde}Porta $portaHostEscaneadoNetcat aberta!${NORMAL}"
         sleep 2
 
       else
-        echo -e "${verm}Porta $remotePort fechada!${NORMAL}"
+        echo -e "${verm}Porta $portaHostEscaneadoNetcat fechada!${NORMAL}"
         sleep 2
       fi
     else
@@ -229,17 +229,17 @@ function informacoes-sistema() {
     fi
   }
 
-  function verifiVul() {
-    function debsecan-inst() {
+  function verificar-falhas-locais() {
+    function instalar-debsecan() {
       echo -e "${verm}Debsecan não instalado${NORMAL}"
       sleep 1
-      echo -e "${verde}Deseja instalar o Debsecan? [N/S]${NORMAL}"
-      read -n1 secanResp
-      case $secanResp in
+      echo -e "${ciano}Deseja instalar o Debsecan? [N/S]${NORMAL}"
+      read -n1 debsecanResp
+      case $debsecanResp in
         S | s)echo "";
-            echo -e "${branco}Instalando Debsecan.... Aguarde...${NORMAL}";
+            echo -e "${azul}Instalando Debsecan.... Aguarde...${NORMAL}";
             echo "";
-            apt-get -y install debsecan | pv -W > $pastaLogs/$horarioAtual-debug.log
+            apt-get -y --force-yes install debsecan | pv -W > $pastaLogs/$horarioAtual-debug.log;
             reset;
             informacoes-sistema;
              ;;
@@ -252,38 +252,35 @@ function informacoes-sistema() {
     }
     which debsecan > /dev/null
     if [ $? == 0 ];then
-      echo -e "${ciano}Verificando todas as vulnerabilidades...${NORMAL}"
+      echo -e "${ciano}Verificando todas as vulnerabilidades da sua máquina local${NORMAL}"
       sleep 1
       debsecan --format detail
       echo ""
       echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
-      read -n1 debScResp
-      case $debScResp in
+      read -n1 debsecanVoltar
+      case $debsecanVoltar in
         Q | q)reset;
               informacoes-sistema;
               ;;
-              *)clear;
-                echo -e "${verm}Opção inválida!${NORMAL}";
-                sleep 1;
-                reset;
+              *)reset;
               esac
     else
       reset
-      debsecan-inst
+      instalar-debsecan
     fi
   }
 
-function geoip() {
-  function geoip-inst {
+function verificar-geolocalizacao-remota() {
+  function instalar-lynx {
     echo -e "${verm}Lynx não instalado${NORMAL}"
     sleep 1
-    echo -e "${verde}Deseja instalar o Lynx? [N/S]${NORMAL}"
+    echo -e "${ciano}Deseja instalar o Lynx? [N/S]${NORMAL}"
     read -n1 lynxResp
     case $lynxResp in
       S | s)echo "";
-          echo -e "${branco}Instalando Lynx.... Aguarde...${NORMAL}";
+          echo -e "${azul}Instalando Lynx.... Aguarde...${NORMAL}";
           echo "";
-          apt-get -y install lynx | pv -W > /dev/null;
+          apt-get -y --force-yes install lynx | pv -W > $pastaLogs/$horarioAtual-debug.log;
           reset;
           informacoes-sistema;
            ;;
@@ -298,35 +295,35 @@ function geoip() {
   if [ $? == 0 ];then
   echo -e "${ciano}Digite o IP a ser localizado:${NORMAL}"
   read geoResp
-  echo -e "${verde}Obtendo localização...${NORMAL}"
+  echo -e "${azul}Obtendo localização...${NORMAL}"
   sleep 1
   echo ""
   lynx -dump http://www.ip-adress.com/ip_tracer/$geoResp | awk '/IP country code/,/Local time in/' | tail -12 | sort | uniq -c | sort -n | awk {'print $2,$3,$4,$5,$6,$7,$8,$9'}
   echo ""
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 geoResp
-  case $geResp in
+  read -n1 geoipVoltar
+  case $geoipVoltar in
     q | Q)reset;
           informacoes-sistema;
         esac
 
  else
    reset;
-   geoip-inst
+   instalar-lynx
  fi
 }
 
-function checar() {
-  function check-inst {
+function verificar-irregularidades-localmente() {
+  function instalar-lynis {
     echo -e "${verm}Lynis não instalado${NORMAL}"
     sleep 1
-    echo -e "${verde}Deseja instalar o Lynx? [N/S]${NORMAL}"
-    read -n1 lynisInstall
-    case $lynisInstall in
+    echo -e "${ciano}Deseja instalar o Lynx? [N/S]${NORMAL}"
+    read -n1 lynisResp
+    case $lynisResp in
       S | s)echo "";
-          echo -e "${branco}Instalando Lynis.... Aguarde...${NORMAL}";
+          echo -e "${azul}Instalando Lynis.... Aguarde...${NORMAL}";
           echo "";
-          apt-get -y --force-yes install lynis | pv -W > /dev/null;
+          apt-get -y --force-yes install lynis | pv -W > $pastaLogs/$horarioAtual-debug.log;
           reset;
           informacoes-sistema;
            ;;
@@ -344,40 +341,40 @@ function checar() {
   lynis --check-all
   echo ""
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 checkoutResp
-  case $checkoutResp in
+  read -n1 lynisVoltar
+  case $lynisVoltar in
     q | Q)reset;
           informacoes-sistema;
         esac
 
  else
    reset;
-   check-inst
+   instalar-lynis
  fi
 }
 
-function tempo() {
-  echo -e "${ciano}Previsão do tempo para todo o Brasil${NORMAL}"
+function previsao-tempo-brasil() {
+  echo -e "${ciano}Previsão do previsao-tempo-brasil para todo o Brasil${NORMAL}"
   echo ""
   curl wttr.in/brasil
   echo ""
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 tempResp
-  case $tempResp in
+  read -n1 tempoVoltar
+  case $tempoVoltar in
     q | Q)reset;
-          informacoes-sistema;
+          informacoes-sistema;ss
         esac
 }
 
-function ip-site() {
+function obter-ip-site() {
   echo -e "${ciano}Digite a URL do site:${NORMAL}"
   read urlSite
   ipSite=`dig +short $urlSite`
   clear
-  echo -e "${verde}O ip do site é:${branco} $ipSite"
+  echo -e "${ciano}O ip do site é:${branco} $ipSite"
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 ipResp
-  case $ipResp in
+  read -n1 ipVoltar
+  case $ipVoltar in
     q | Q)reset;
           informacoes-sistema;
         esac
@@ -402,7 +399,7 @@ function ip-site() {
   sleep 0.1
   echo -e "${verm}8) ${verde}Obter geolocalização de um IP${branco}(lynx)${NORMAL}"
   sleep 0.1
-  echo -e "${verm}9) ${verde}Verificar distro completamente${branco}(lynis)${NORMAL}"
+  echo -e "${verm}9) ${verde}Exibir o máximo de informações da distro${branco}(lynis)${NORMAL}"
   sleep 0.1
   echo -e "${verm}10) ${verde}Previsão do tempo${NORMAL}"
   sleep 0.1
@@ -448,31 +445,31 @@ function ip-site() {
                  ;;
 
                  7)reset;
-                   verifiVul;
+                   verificar-falhas-locais;
                    reset;
                    informacoes-sistema;
                    ;;
 
                    8)reset;
-                     geoip;
+                     verificar-geolocalizacao-remota;
                      reset;
                      informacoes-sistema;
                      ;;
 
                      9)reset;
-                      checar;
+                      verificar-irregularidades-localmente;
                       reset;
                       informacoes-sistema;
                       ;;
 
                       10)reset;
-                         tempo;
+                         previsao-tempo-brasil;
                          reset;
                          informacoes-sistema;
                          ;;
 
                          11)reset;
-                             ip-site;
+                             obter-ip-site;
                              reset;
                              informacoes-sistema;
                              ;;

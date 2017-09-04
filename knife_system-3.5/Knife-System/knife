@@ -161,7 +161,7 @@ while [ opcaoMenu != '' ]
 
     case $opcaoMenu in
       A | a)reset;
-            instal;
+            instalar-pacotes;
             menu;
             ;;
             B | b)reset;
