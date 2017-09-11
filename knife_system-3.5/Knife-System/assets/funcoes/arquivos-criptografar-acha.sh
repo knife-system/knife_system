@@ -89,11 +89,10 @@ function procurar-arquivo() {
         procurar-arquivo;
     esac
 }
-
-echo -e "${ciano}O que deseja fazer?${NORMAL}"
+banner "Criptografar e descriptografar arquivos"
 echo ""
-echo -e "${verm}1) ${verde}Procurar arquivos${NORMAL}"
-echo -e "${verm}2) ${verde}Criptografar/Descriptografar arquivos${NORMAL}"
+submenu-item 1 "Procurar arquivos"
+submenu-item 2 "Criptografar/Descriptografar arquivos"
 echo ""
 echo -e "${branco}Pressione [Q] para voltar ${NORMAL}"
 read -n1 arquivosResposta

@@ -190,7 +190,7 @@ while [ opcaoMenu != '' ]
                                           ;;
 
                                           G | g)reset;
-                                                arquivos;
+                                                tarefas-arquivos;
                                                 menu;
                                                 ;;
 

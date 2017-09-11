@@ -77,11 +77,11 @@ function limpar-historico() {
 
 ping -c1 google.com > /dev/null
 if [ $? = 0 ];then
-echo -e "${verde}Baixar arquivos da internet${NORMAL}"
+banner "Baixar arquivos da internet"
 echo ""
-echo -e "${verm}1) ${amarelo}Baixar arquivo${NORMAL}"
-echo -e "${verm}2) ${amarelo}Continuar download${NORMAL}"
-echo -e "${verm}3) ${amarelo}Limpar histórico de download${NORMAL}"
+submenu-item 1 "Baixar arquivo"
+submenu-item 2 "Continuar download"
+submenu-item 3 "Limpar histórico de download"
 if [ -e $pastaLogsBaixar/baixar-arquivo.log ] && [ -e $pastaLogsBaixar/baixar-diretorio.log ];then
   echo -e "${ciano}Você tem [1] download pendente${NORMAL}"
 fi

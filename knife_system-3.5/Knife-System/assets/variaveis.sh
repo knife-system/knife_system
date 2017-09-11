@@ -41,3 +41,20 @@ pycharmPro="https://www.dropbox.com/s/8qg98lz1ls8ipo4/pycharm-professional-2016.
 pycharmCom="https://www.dropbox.com/s/ddhhq3lmqjqo5sv/pycharm-community-2016.2.3.tar.gz?dl=0"
 earth64="https://www.dropbox.com/s/lm88k992eto51vw/google-earth-stable_current_amd64.deb?dl=0"
 earth32="https://www.dropbox.com/s/d0zubhqb322ys2v/google-earth-stable_current_i386.deb?dl=0"
+
+## Função responsável por gerar os banners de cada menu
+function banner() {
+    echo -e "${branco}########################################${NORMAL}"
+    echo -e "${amarelo}$1                     ${NORMAL}"              
+    echo -e "${branco}########################################${NORMAL}"
+}
+
+## Função responsável por padronizar cores dos submenus 
+function submenu-item() {
+    if [[ $3 == "" ]];then 
+        echo -e "${amarelo}$1) ${azul}$2${NORMAL}"
+    else 
+        echo -e "${amarelo}$1) ${azul}$2 ${branco}($3)${NORMAL}"
+    fi
+        sleep 0.1
+}

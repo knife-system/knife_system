@@ -380,32 +380,23 @@ function obter-ip-site() {
         esac
 }
 
-  echo -e "${amarelo}Obter informaçõe do seu computador ou notebook:${NORMAL}"
+  banner "Obter informações da sua máquina"
+  echo ""
   echo -e "${branco}Seu IP(externo): $meuEnderecoIp"
   echo ""
-  echo -e "${verm}1) ${verde}Informações de rede${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}2) ${verde}Informações do sistema${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}3) ${verde}Informações do kernel${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}4) ${verde}Arquitetura do processador${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}5) ${verde}Serviços e portas${branco}(Nmap)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}6) ${verde}Verificar serviço de um host remoto${branco}(netcat)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}7) ${verde}Verificar vulnerabilidades do sistema${branco}(debsecan)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}8) ${verde}Obter geolocalização de um IP${branco}(lynx)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}9) ${verde}Exibir o máximo de informações da distro${branco}(lynis)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}10) ${verde}Previsão do tempo${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}11) ${verde}Obter IP de um site${NORMAL}"
+  submenu-item 1 "Informações de rede"
+  submenu-item 2 "Informações do sistema"
+  submenu-item 3 "Informações do kernel"
+  submenu-item 4 "Arquitetura do processador"
+  submenu-item 5 "Serviços e portas" "NMap"
+  submenu-item 6 "Verificar serviço de um host remoto" "netcat"
+  submenu-item 7 "Verificar vulnerabilidades do sistema" "debsecan"
+  submenu-item 8 "Obter geolocalização de um IP" "Lynx"
+  submenu-item 9 "Exibir o máximo de informações da distro" "Lynis"
+  submenu-item 10 "Previsão do tempo"
+  submenu-item 11 "Obter IP de um site"
   echo ""
-  echo -e "${verde}Q) ${verm}Voltar ao menu princípal${NORMAL}"
+  echo -e "${branco}Pressione [ Q ] para voltar ao menu principal${NORMAL}"
   read -n2 respInfo
   case $respInfo in
     1) reset;

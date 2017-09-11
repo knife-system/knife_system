@@ -30,12 +30,11 @@ function instalar-pacotes() {
     echo -e "${verde}Instalação concluída!${NORMAL}"
     sleep 1
   }
-
+  
+   banner "Instalador de pacotes"
    echo ""
-   echo -e "${amarelo}Como deseja instalar?${NORMAL}"
-   echo ""
-   echo -e "${ciano}1) ${azul}Pacote .deb localmente${NORMAL}"
-   echo -e "${ciano}2) ${azul}Direto do repositório${NORMAL}"
+   submenu-item 1 "Pacote .deb localmente"
+   submenu-item 2 "Direto do repositório"
    echo ""
    echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
    read -n1 pacoteResp

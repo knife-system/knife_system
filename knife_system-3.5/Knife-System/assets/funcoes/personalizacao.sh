@@ -298,21 +298,21 @@ function instalar-tema() {
 
  ##### Ícones #####
 
-  function icone() {
-    function instIcon() {
+  function opcoes-icone() {
+    function instalar-icone() {
     echo -e "${ciano}Selecione a pasta onde se encontra seu ícone${NORMAL}"
     echo -e "${ciano}Basta clicar em cima da pasta uma vez e em seguida em OK${NORMAL}"
     sleep 3
-    icon=`zenity --file-selection --confirm-overwrite --directory --title="Selecione seu ícone"`
+    iconeInstalarSelecionado=`zenity --file-selection --confirm-overwrite --directory --title="Selecione seu ícone"`
 
-    if [ -z $icon ];then
+    if [ -z $iconeInstalarSelecionado ];then
       echo -e "${verm}Nenhum ícone selecionado!${NORMAL}"
       sleep 1
       reset
       opcoes-tema
     else
     clear
-    mv -f $icon /usr/share/icons
+    mv -f $iconeInstalarSelecionado /usr/share/icons
     sleep 2
     echo -e "${verde}Ícone adicionado com sucesso!${NORMAL}"
     sleep 1
@@ -325,14 +325,14 @@ function instalar-tema() {
 
 ###### Remover ícones ######
 
-  function rmIcones() {
+  function remover-icones() {
     echo -e "${branco}Insira o nome do ícone a ser removido:${NORMAL}"
     echo ""
-    read rmicon
+    read iconeRemovidoSelecionado
 
-    if [ -e /usr/share/icons/$rmicon ];then
+    if [ -e /usr/share/icons/$iconeRemovidoSelecionado ];then
       sleep 2
-      rm -r /usr/share/icons/$rmicon
+      rm -r /usr/share/icons/$iconeRemovidoSelecionado
       echo -e "${verde}Ícone removido com sucesso!${NORMAL}"
       sleep 1
       echo -e "${branco}Basta apenas você ir em aparência e muda-lo${NORMAL}"
@@ -343,7 +343,7 @@ function instalar-tema() {
       echo -e "${verm}Ícone não encontrado!${NORMAL}"
       sleep 2
       clear
-      rmIcones
+      remover-icones
     fi
   }
   function iconOn() {
@@ -351,7 +351,7 @@ function instalar-tema() {
       echo -e "${ciano}Instalando ícone Paper, aguarde...${NORMAL}"
       add-apt-repository ppa:snwh/pulp -y
       apt-get update | pv -W > $pastaLogs/$horarioAtual-debug.log
-      apt-get install -y --force-yes paper-icon-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
+      apt-get install -y --force-yes paper-iconeInstalarSelecionado-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
       clear
       echo -e "${branco}O ícone já está pronto para ser instalado, basta apenas${NORMAL}"
       echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
@@ -361,7 +361,7 @@ function instalar-tema() {
       echo -e "${ciano}Instalando ícone Moka, aguarde...${NORMAL}"
       add-apt-repository ppa:moka/stable -y
       apt-get update | pv -W > $pastaLogs/$horarioAtual-debug.log
-      apt-get install -y --force-yes moka-icon-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
+      apt-get install -y --force-yes moka-iconeInstalarSelecionado-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
       clear
       echo -e "${branco}O ícone já está pronto para ser instalado, basta apenas${NORMAL}"
       echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
@@ -411,31 +411,31 @@ function instalar-tema() {
       1)reset;
         iconon-pape;
         reset;
-        icone;
+        opcoes-icone;
         ;;
 
         2)reset;
           iconon-moka;
           reset;
-          icone;
+          opcoes-icone;
           ;;
 
           3)reset;
             iconon-viva;
             reset;
-            icone;
+            opcoes-icone;
             ;;
 
             4)reset;
               iconon-spfl;
               reset;
-              icone;
+              opcoes-icone;
               ;;
 
               5)reset;
                 iconon-acv;
                 reset;
-                icone;
+                opcoes-icone;
                 ;;
 
                 q | Q)reset;
@@ -458,13 +458,13 @@ function instalar-tema() {
   read -n1 temaResp
   case $temaResp in
     1)reset;
-      instIcon;
+      instalar-icone;
       reset;
       aparencia;
       ;;
 
       2)reset;
-        rmIcones;
+        remover-icones;
         reset;
         aparencia;
         ;;
@@ -480,7 +480,7 @@ function instalar-tema() {
                 ;;
 
                 *)reset;
-                  icone;
+                  opcoes-icone;
                 esac
 }
 function tool() {
@@ -1456,7 +1456,7 @@ case $terminalResp in
             ;;
 
             3) reset;
-               icone;
+               opcoes-icone;
                reset;
                aparencia;
                ;;
