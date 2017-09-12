@@ -9,10 +9,13 @@ branco="\033[0;37m"
 NORMAL="\033[m"
 ciano="\033[01;36m"
 
-## Obtém o diretório home do usuário que não é root
-listaUsuarios=`users`
-usuario=`echo ${listaUsuarios##* }`
-homeUser=`cat /etc/passwd |grep ^$usuario | cut -d : -f 6`
+echo -e "${ciano}Informe o nome do seu usuário principal:${NORMAL}"
+# O comando abaixo foi retirado de https://askubuntu.com/questions/645236/command-to-list-all-users-with-their-uid
+# No qual serve para listar todos os usuários que possuam uma pasta home, e também um UID
+awk -F: '/\/home/ && ($3 >= 1000) {printf "%s:%s\n",$1,$3}' /etc/passwd | cut -d: -f 1
+echo ""
+read usuario;reset
+homeUser="/home/$usuario"
 versaoKS="3.5"
 
 ## Obter o horário atual para gerar logs
@@ -57,4 +60,10 @@ function submenu-item() {
         echo -e "${amarelo}$1) ${azul}$2 ${branco}($3)${NORMAL}"
     fi
         sleep 0.1
+}
+
+## Função responsável pela aparência do menu principal
+function menu-item() {
+    echo -e "${azul}$1) ${amarelo}$2${NORMAL}"
+    sleep 0.1
 }
