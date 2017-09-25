@@ -40,7 +40,7 @@ else
   dpkg --add-architecture i386
   wget $skype32 -O skype.deb
   clear
-  apt-get update | pv -e > $pastaLogs/$horarioAtual-debug.log
+  apt-get update | pv -W > $pastaLogs/$horarioAtual-debug.log
   dpkg -i skype.deb | pv -W >$pastaLogs/$horarioAtual-debug.log
   apt-get install -f -y --force-yes| pv -W > $pastaLogs/$horarioAtual-debug.log
   rm skype.deb
@@ -221,30 +221,20 @@ function google-earth() {
 }
 ping -c1 google.com > /dev/null
 if [ $? = 0 ];then
-echo -e "${verm}*************************************${NORMAL}"
-sleep 0.1
-echo -e "${verde}            PROGRAMAS               ${NORMAL}"
-sleep 0.1
-echo -e "${verm}*************************************${NORMAL}"
-sleep 0.1
+banner "Instalar programas remotos"
+
 echo ""
-echo -e "${amarelo} 1)${azul} Skype${branco}(amd64+i386)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 2)${azul} Conky-Manager${branco}(amd64+i386)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 3)${azul} Chrome${branco}(amd64)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 4)${azul} Atom${branco}(amd64)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 5)${azul} Team-Viewer${branco}(amd64+i386)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 6)${azul} 4KVideoDownloader${branco}(amd64+i386)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 7)${azul} Sublime-Text3${branco}(amd64+i386)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 8)${azul} PyCharm${branco}(amd64)${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} 9)${azul} GoogleEarth${branco}(i386+amd64)${NORMAL}"
+
+submenu-item 1 "Skype" "amd64+i386"
+submenu-item 2 "Conky-Manager" "amd64+i386"
+submenu-item 3 "Chrome" "amd6"
+submenu-item 4 "Atom" "amd64"
+submenu-item 5 "Team Viewer" "amd64+i386"
+submenu-item 6 "4KVideoDownloader" "amd64+i386"
+submenu-item 7 "Sublime Text 3" "amd64+i386"
+submenu-item 8 "PyCharm" "amd64"
+submenu-item 9 "GoogleEarth" "amd64+i386"
+
 echo ""
 echo "pressione [ Q ] para voltar ao menu principal"
 echo -e "${verm}Escolha qual pacote deseja instalar:${NORMAL}"

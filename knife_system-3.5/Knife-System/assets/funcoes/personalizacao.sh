@@ -1416,13 +1416,16 @@ case $terminalResp in
   esac
 
 }
-  echo -e "${amarelo}1) ${azul} Temas${NORMAL}"
-  echo -e "${amarelo}2) ${azul} Cursores${NORMAL}"
-  echo -e "${amarelo}3) ${azul} Ícones${NORMAL}"
-  echo -e "${amarelo}4) ${azul} Conky${NORMAL}"
-  echo -e "${amarelo}5) ${azul} Terminal${NORMAL}"
-  echo -e "${amarelo}6) ${azul} Gnome-Tweak-Tool${NORMAL}"
-  echo -e "${amarelo}7) ${azul} PhotoGimp${branco}(extra)${NORMAL}"
+
+  banner "Aparência"
+  echo ""
+  submenu-item 1 "Temas"
+  submenu-item 2 "Cursores"
+  submenu-item 3 "Ícones"
+  submenu-item 4 "Conky"
+  submenu-item 5 "Terminal"
+  submenu-item 6 "Gnome-Tweak-Tool"
+  submenu-item 7 "PhotoGimp"
   echo ""
   echo -e "${azul}X) ${amarelo}Voltar ao menu principal${NORMAL}"
   read -n1 temeInsta

@@ -1,19 +1,17 @@
 function remover-programas() {
-   echo -e $verm"#############################################${NORMAL}"
-   echo -e "                   ${verde}Remover               ${NORMAL}"
-   echo -e $verm"#############################################${NORMAL}"
-   echo ""
-   echo -e $amarelo"Digite o nome do programa a ser removido:${NORMAL}"
-   read programaRemovido
-   sleep 1
-   echo -e "${azul}Removendo $programaRemovido. Por favor, aguarde...${NORMAL}"
-   apt-get -y --force-yes purge $programaRemovido | pv -W > $pastaLogs/$horarioAtual-debug.log
+  banner "Remover programas instalados"
+  echo ""
+  echo -e $amarelo"Digite o nome do programa a ser removido:${NORMAL}"
+  read programaRemovido
+  sleep 1
+  echo -e "${azul}Removendo $programaRemovido. Por favor, aguarde...${NORMAL}"
+  apt-get -y --force-yes purge $programaRemovido | pv -W > $pastaLogs/$horarioAtual-debug.log
    if [ $? != 0 ];then
-     echo -e "${verm}Erro ao remover programa! Para mais informações consulte /var/log/KnifeSystem"
-     sleep 2
+     echo -e "${verm}Erro ao remover programa! Para mais informações consulte ${pastaLogs}${NORMAL}"
+     sleep 1
      reset
      exit 1
-   fi
+  fi
 
    apt-get -y --force-yes autoremove | pv -W > $pastaLogs/$horarioAtual-debug.log
    echo ""
