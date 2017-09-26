@@ -46,36 +46,25 @@ sleep 0.1
 echo -e $verm" ====================================== ${NORMAL}"
 echo -e "${branco} http://knifesystem.com.br          $versaoKS"
 echo ""
-sleep 0.1
-echo -e "${amarelo} A)${ciano} Instalar programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} B)${ciano} Remover programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} C)${ciano} Procurar programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} D)${ciano} Reparar e limpar${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} E)${ciano} Usando o git de forma fácil${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} F)${ciano} Lista de programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} G)${ciano} Arquivos${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} H)${ciano} Aparência${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} I)${ciano} Segurança${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} J)${ciano} Informações diversas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} K)${ciano} Baixar arquivos${NORMAL}"
-sleep 0.1
+menu-item "A" "Instalar programas"
+menu-item "B" "Remover programas"
+menu-item "C" "Procurar programas"
+menu-item "D" "Reparar e limpar"
+menu-item "E" "Usando o git de forma fácil"
+menu-item "F" "Lista de programas"
+menu-item "G" "Arquivos"
+menu-item "H" "Aparência"
+menu-item "I" "Segurança"
+menu-item "J" "Informações diversas"
+menu-item "K" "Baixar arquivos"
 
 echo ""
-echo -e "${ciano}1)${amarelo} Atualizar script${NORMAL}"
-echo -e "${ciano}0)${amarelo} Sair${NORMAL}"
-echo -e $verm "Escolha uma das opções:"
+menu-item 1 "Atualizar script"
+menu-item 2 "Sair"
+echo -e "${branco}------------------------------${NORMAL}"
+echo -e "${branco}Informe a opção desejada:${NORMAL}"
 
-read -n1 opcaoMenu
+read -n1 opcaoMenu 
 }
 
 

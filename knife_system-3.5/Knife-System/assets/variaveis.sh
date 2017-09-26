@@ -10,12 +10,24 @@ NORMAL="\033[m"
 ciano="\033[01;36m"
 
 echo -e "${ciano}Informe o nome do seu usuário principal:${NORMAL}"
-# O comando abaixo foi retirado de https://askubuntu.com/questions/645236/command-to-list-all-users-with-their-uid
-# No qual serve para listar todos os usuários que possuam uma pasta home, e também um UID
-awk -F: '/\/home/ && ($3 >= 1000) {printf "%s:%s\n",$1,$3}' /etc/passwd | cut -d: -f 1
+# O comando para a listagem de usuários foi retirado de https://askubuntu.com/questions/645236/command-to-list-all-users-with-their-uid
+# O comando para numeração de usário e de escolha foi desenvolvido por: https://github.com/kumroute
+listaUsuarios=`awk -F: '/\/home/ && ($3 >= 1000) {printf "%s:%s\n",$1,$3}' /etc/passwd | cut -d: -f 1`
+quantidadeUsuarios=`echo "$listaUsuarios" | wc -l`
+
+for (( i=1 ; i<=$quantidadeUsuarios ; ++i )) ; do
+   usuarioNumerado=`echo "$listaUsuarios" | head -$i | tail -1`
+   echo "$i) $usuarioNumerado"
+done
 echo ""
-read usuario;reset
-homeUser="/home/$usuario"
+read -p "Digite seu número: " escolha
+if [[ $escolha >  $quantidadeUsuarios ]];then 
+clear
+echo -e "${verm}Número inválido, digite um número de 1 a $quantidadeUsuarios${NORMAL}"
+exit
+fi
+usuario=`echo "$listaUsuarios" | head -$escolha | tail -1`
+homeUser=`cat /etc/passwd | grep $usuario | cut -d':' -f 6 `
 versaoKS="3.5"
 
 ## Obter o horário atual para gerar logs
