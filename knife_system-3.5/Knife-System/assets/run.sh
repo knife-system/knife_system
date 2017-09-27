@@ -13,5 +13,5 @@ else
    echo -e "${ciano}Boa noite! ${verde}$USER${nml}"
 fi
 echo ""
-echo -e "${ciano}O Knife System requer permissões de root para funcionar, por favor digite sua senha:${nml}"
-sudo bash /opt/Knife-System/knife
+echo -e "${ciano}O Knife System requer permissões de root para funcionar, digite sua senha:${nml}"
+sudo knife
