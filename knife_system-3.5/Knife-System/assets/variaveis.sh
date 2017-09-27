@@ -11,7 +11,6 @@ ciano="\033[01;36m"
 
 echo -e "${ciano}Informe o nome do seu usuário principal:${NORMAL}"
 # O comando para a listagem de usuários foi retirado de https://askubuntu.com/questions/645236/command-to-list-all-users-with-their-uid
-# O comando para numeração de usário e de escolha foi desenvolvido por: https://github.com/kumroute
 listaUsuarios=`awk -F: '/\/home/ && ($3 >= 1000) {printf "%s:%s\n",$1,$3}' /etc/passwd | cut -d: -f 1`
 quantidadeUsuarios=`echo "$listaUsuarios" | wc -l`
 

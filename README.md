@@ -50,11 +50,12 @@ Em breve....
 
 Atualmente o script se encontra na versão 3.5, a partir desta versão foi implementado as TAG's de versão
 
-## Authors
+## Autores
 
-* **Luan AP** - *Desenvolvedor inical* - [PurpleBooth](https://github.com/anony000)
+* **Luan AP** - *Desenvolvedor principal* - [Github](https://github.com/anony000)
+* **Kum Route** - *Contribuidor* - [Github](https://github.com/kumroute)
 
-## License
+## Licença
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Livre de direitos autorais, apenas é pedido que não retire os devidos créditos.
 

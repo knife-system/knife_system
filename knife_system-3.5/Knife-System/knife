@@ -222,7 +222,7 @@ while [ opcaoMenu != '' ]
 done
 }
 
-if [ `whoami` == "root" ]; then
+if [ `$UID` -eq 0 ]; then
 	fazer;
 else
     echo ""
