@@ -123,7 +123,7 @@ source assets/funcoes/programas-onlines-instalar.sh
 function atualizar-script-ks() {
   echo -e "${ciano}Atualizando script aguarde...${NORMAL}"
   echo ""
-  wget https://github.com/anony000/knife_system/raw/dev-3.5/knifesystem.deb
+  wget https://github.com/anony000/knife_system/raw/master/knifesystem.deb
   dpkg -i knifesystem.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
   apt-get -f -y --foce-yes install
   if [ $? == 0 ];then
