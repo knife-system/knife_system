@@ -213,6 +213,7 @@ while [ opcaoMenu != '' ]
           0)reset;
            echo -e "${ciano}Até mais${NORMAL}"
            exit;
+           killall knife;
            ;;
 
      *) reset;

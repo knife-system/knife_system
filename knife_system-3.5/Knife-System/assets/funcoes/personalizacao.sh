@@ -1411,6 +1411,10 @@ case $terminalResp in
            aparencia;
            ;;
 
+           Q | q)reset; 
+                 aparencia;
+                 ;;
+
         *) reset;
            opcoes-terminal;
   esac
