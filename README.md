@@ -2,6 +2,8 @@
 
 Script em bash que serve para automatizar inúmeras tarefas, além de lhe trazer informções sobre sua rede e seu sistema. Também proporciona um scan total da sua máquina a procura de falhas, além de outras funcionalidades como obter portas de servidores remotos.
 
+Para saber mais sobre o funcionamento do script e suas funcionalizades, [leia a documentação](https://github.com/anony000/knife_system/wiki).
+
 ### Prerequisitos
 
 * [pv](https://linux.die.net/man/1/pv)
@@ -58,4 +60,3 @@ Atualmente o script se encontra na versão 3.5, a partir desta versão foi imple
 ## Licença
 
 Livre de direitos autorais, apenas é pedido que não retire os devidos créditos.
-
