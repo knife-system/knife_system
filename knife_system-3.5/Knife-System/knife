@@ -23,19 +23,22 @@ source assets/variaveis.sh
 echo -e "${azul}Verificando sua conexão...${NORMAL}"
 ping -c1 google.com > /dev/null
 if [ $? == 0 ];then
-myip=`curl -s https://wtfismyip.com/text`
-echo -e "${verde}Conectado${NORMAL}"
-sleep 1
-echo ""
+   meuEnderecoIp=`curl -s https://wtfismyip.com/text`
+   echo -e "${verde}Conectado${NORMAL}"
+   sleep 1
+   echo ""
 else
-  myip=`echo -e "${verm}Não conectado${NORMAL}"`
-  echo -e "${verm}Não conectado a internet${NORMAL}"
-  sleep 1
-  echo ""
+   meuEnderecoIp=`echo -e "${verm}Não conectado${NORMAL}"`
+   echo -e "${verm}Não conectado a internet${NORMAL}"
+   sleep 1
+   echo ""
 fi
-
+      if [ -e $pastaLogs ];then
+            echo "" > /dev/null
+      else 
+            mkdir $pastaLogs
+      fi
 function menu {
-${notifyHello}
 echo -e $verm "====================================== ${NORMAL}"
 sleep 0.1
 echo -e $amarelo "            Knife System             ${NORMAL}"
@@ -43,36 +46,25 @@ sleep 0.1
 echo -e $verm" ====================================== ${NORMAL}"
 echo -e "${branco} http://knifesystem.com.br          $versaoKS"
 echo ""
-sleep 0.1
-echo -e "${amarelo} A)${ciano} Instalar programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} B)${ciano} Remover programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} C)${ciano} Procurar programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} D)${ciano} Reparar e limpar${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} E)${ciano} Usando o git de forma fácil${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} F)${ciano} Lista de programas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} G)${ciano} Arquivos${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} H)${ciano} Aparência${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} I)${ciano} Segurança${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} J)${ciano} Informações diversas${NORMAL}"
-sleep 0.1
-echo -e "${amarelo} K)${ciano} Baixar arquivos${NORMAL}"
-sleep 0.1
+menu-item "A" "Instalar programas"
+menu-item "B" "Remover programas"
+menu-item "C" "Procurar programas"
+menu-item "D" "Reparar e limpar"
+menu-item "E" "Usando o git de forma fácil"
+menu-item "F" "Lista de programas"
+menu-item "G" "Arquivos"
+menu-item "H" "Aparência"
+menu-item "I" "Segurança"
+menu-item "J" "Informações diversas"
+menu-item "K" "Baixar arquivos"
 
 echo ""
-echo -e "${ciano}1)${amarelo} Atualizar script${NORMAL}"
-echo -e "${ciano}0)${amarelo} Sair${NORMAL}"
-echo -e $verm "Escolha uma das opções:"
+menu-item 1 "Atualizar script"
+menu-item 2 "Sair"
+echo -e "${branco}------------------------------${NORMAL}"
+echo -e "${branco}Informe a opção desejada:${NORMAL}"
 
-read -n1 inst
+read -n1 opcaoMenu 
 }
 
 
@@ -128,20 +120,20 @@ source assets/funcoes/programas-onlines-instalar.sh
 
 
 # Função que serve para atuzalizar o script Knife System para versão mais recente
-function atualizarKs() {
+function atualizar-script-ks() {
   echo -e "${ciano}Atualizando script aguarde...${NORMAL}"
   echo ""
-  wget https://anony000.github.io/assets/knifesystem.deb
-  dpkg -i knifesystem.deb | pv -W > /var/log/attKS.log
+  wget https://github.com/anony000/knife_system/raw/master/knifesystem.deb
+  dpkg -i knifesystem.deb | pv -W > $pastaLogs/$horarioAtual-debug.log
+  apt-get -f -y --foce-yes install
   if [ $? == 0 ];then
     clear
     echo -e "${verde}Atualização concluída!${NORMAL}"
     sleep 1
     rm knifesystem.deb
   else
-    echo -e "${verm}Erro na atualização, para mais informações confira em /var/log/attKS.log"
+    echo -e "${verm}Erro na atualização, para mais informações confira em ${pastaLogs}"
     sleep 1
-    knifesystem.deb
     fazer
   fi
 }
@@ -153,12 +145,12 @@ function atualizarKs() {
 function fazer() {
   reset
   menu
-while [ inst != '' ]
+while [ opcaoMenu != '' ]
     do
 
-    case $inst in
+    case $opcaoMenu in
       A | a)reset;
-            instal;
+            instalar-pacotes;
             menu;
             ;;
             B | b)reset;
@@ -172,12 +164,12 @@ while [ inst != '' ]
                         ;;
 
                         D | d)reset;
-                              repair;
+                              reparar-pacotes-sistema;
                               menu;
                               ;;
 
                               E | e)reset;
-                                    github;
+                                    github-ajuda-iniciantes;
                                     menu;
                                     ;;
 
@@ -187,7 +179,7 @@ while [ inst != '' ]
                                           ;;
 
                                           G | g)reset;
-                                                arquivos;
+                                                tarefas-arquivos;
                                                 menu;
                                                 ;;
 
@@ -202,25 +194,26 @@ while [ inst != '' ]
                                                             ;;
 
                                                             J | j)reset;
-                                                                  infos;
+                                                                  informacoes-sistema;
                                                                   menu;
                                                                   ;;
 
                                                                   K | k)reset;
-                                                                        down;
+                                                                        baixar-arquivos-online;
                                                                         menu;
                                                                         ;;
 
 
 
           1) reset;
-             atualizarKs;
+             atualizar-script-ks;
              exit;
              ;;
 
           0)reset;
            echo -e "${ciano}Até mais${NORMAL}"
            exit;
+           killall knife;
            ;;
 
      *) reset;

@@ -4,8 +4,8 @@
 
 function seguranca() {
 
-function firew() {
- startFire() {
+function firewall() {
+ iniciar-firewall() {
    clear
    echo -e "${verm} ATENÇÃO!${NORMAL}"
    echo ""
@@ -79,140 +79,11 @@ function firew() {
    echo "nospoof on" >> /etc/host.conf
    echo "spoofalert on" >> /etc/host.conf
 
-  #Descomente o serviço que deseja que o firewall não bloqueie
-
-  ##Apache - Servidor Web
-  #iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
-
-  ##Apache TomCat - Servidor Web
-  #iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-
-  ##Bind - Servidor DNS
-  #iptables -A INPUT -p udp --dport 53 -j ACCEPT
-
-  ##DanGuardian - Servidor Proxy
-  #iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-
-  ##ProFTP - Servidor FTP
-  #iptables -A INPUT -p tcp --dport 21 -j ACCEPT
-  #iptables -A INPUT -p tcp -m multiport --dports 49152:49162 -j ACCEPT
-
-  ##Postfix - Servidor de E-mail
-  #iptables -A INPUT -i $ilan -p tcp -m multiport --dports 25,110 -j ACCEPT
-  #iptables -A INPUT -i $ilan -p tcp -m multiport --dports 465,995 -j ACCEPT
-  #iptables -A INPUT -i $ilan -p tcp --sport 25 -j ACCEPT
-
-  ##PostgreSQL - Servidor Postgresql
-  #iptables -A INPUT -i $ilan -p tcp --dport 5432 -j ACCEPT
-
-  ##SSH - Servidor SSH
-  #iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 300 --hitcount 3 -j DROP
-  #iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
-  #iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-
-  ##VNC - Servidor de Acesso Remoto
-  #iptables -A INPUT -p tcp --dport 5900 -j ACCEPT
-  #########################
-  ##PROTOCOLOS E SERVIÇOS##
-  #########################
-
-  ##AIM
-  #iptables -A INPUT -i $inet -p tcp --sport 5190 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 5190 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 5190 -j ACCEPT
-
-  ##DNS - Serviço de Nomes de Dominios
-  #iptables -A INPUT -p tcp -m multiport --sports 53,5353 -j ACCEPT
-  #iptables -A INPUT -p udp -m multiport --sports 53,5353 -j ACCEPT
-  #iptables -A FORWARD -p tcp -m multiport --sports 53,5353 -j ACCEPT
-  #iptables -A FORWARD -p udp -m multiport --sports 53,5353 -j ACCEPT
-  #iptables -A FORWARD -p tcp -m multiport --dports 53,5353 -j ACCEPT
-  #iptables -A FORWARD -p udp -m multiport --dports 53,5353 -j ACCEPT
-
-  ##FTP - Protocolo de Transferência de Arquivo
-  #iptables -A INPUT -i $inet -p tcp --sport 21 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 21 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 21 -j ACCEPT
-
-  # HTTP - Protocolo de Transferência de Hypertext
-  #iptables -A INPUT -i $inet -p tcp -m multiport --sports 80,8080 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp -m multiport --sports 80,8080 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp -m multiport --dports 80,8080 -j ACCEPT
-
-  ##HTTPS - Protocolo de Transferência de Hypertext Seguro
-  #iptables -A INPUT -i $inet -p tcp --sport 443 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 443 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 443 -j ACCEPT
-
-  ##IAPP - Protocolo de Ponto de Acesso
-  #iptables -A INPUT -i $ilan -p udp --sport 2313 -j ACCEPT
-
-  ##IPP - Protocolo de Impressão na Internet
-  #iptables -A INPUT -i $ilan -p tcp --dport 631 -j ACCEPT
-  #iptables -A INPUT -i $ilan -p udp -m multiport --dports 138,631 -j ACCEPT
-
-  ##IRC - Internet Relay Chat
-  #iptables -A INPUT -i $inet -p tcp --sport 6667 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 6667 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 6667 -j ACCEPT
-
-  ##Microsoft-DS - Serviços de Diretório da Microsoft
-  #iptables -A INPUT -i $ilan -p tcp --dport 445 -j ACCEPT
-  #iptables -A INPUT -i $ilan -p tcp -m multiport --sports 139,445 -j ACCEPT
-
-  ##MSNMS - Serviço de Mensageiro de Rede da Microsoft
-  #iptables -A INPUT -i $inet -p tcp -m multiport --sports 1863,1900 -j ACCEPT
-  #iptables -A INPUT -i $inet -p udp --sport 1900 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp -m multiport --sports 1863,7001 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p udp --sport 7001 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp -m multiport --dports 1863,7001 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p udp --dport 7001 -j ACCEPT
-
-  ##NETBIOS-SSN - Serviço de Sessão NetBIOS
-  #iptables -A INPUT -i $ilan -p udp -m multiport --dports 137,138 -j ACCEPT
-  #iptables -A INPUT -i $ilan -p tcp --dport 139 -j ACCEPT
-
-  ##NO-IP - Provedor de DNS Dinâmico
-  #iptables -A INPUT -i $inet -p tcp --sport 8245 -j ACCEPT
-
-  ##NTP - Protocolo para sincronização dos relógios
-  #iptables -A INPUT -i $inet -p udp --sport 123 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p udp --sport 123 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p udp --dport 123 -j ACCEPT
-
-  ##POP3S - Protocolo de Correio Seguro
-  #iptables -A INPUT -i $inet -p tcp --sport 995 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 995 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 995 -j ACCEPT
-
-  ##SSDP - Protocolo para Descoberta de Serviços Simples
-  #iptables -A INPUT -i $ilan -p udp --dport 1900 -j ACCEPT
-
-  ##SSH - Shell Seguro
-  #iptables -A INPUT -p tcp --sport 22 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 22 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 22 -j ACCEPT
-
-  ##SSMTP - Protocolo Simples para Transferência de Correio Seguro
-  #iptables -A INPUT -i $inet -p tcp -m multiport --sports 465,587 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 465 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 465 -j ACCEPT
-
-  ##TELNET
-  #iptables -A INPUT -p tcp --sport 23 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 23 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 23 -j ACCEPT
-
-  ##VNC - Computação em Rede Virtual
-  #iptables -A INPUT -p tcp --sport 5900 -j ACCEPT
-  #iptables -A FORWARD -i $inet -p tcp --sport 5900 -j ACCEPT
-  #iptables -A FORWARD -o $inet -p tcp --dport 5900 -j ACCEPT
-
     echo ""
     echo -e "${verde}Firewall ativado com sucesso.${NORMAL}"
     sleep 1
 }
- function stopFire() {
+ function parar-firewall() {
      clear
      echo -e "${verm} Parando firewall..."
      sleep 2
@@ -244,7 +115,7 @@ function firew() {
      sed "$linhasRemovidas, $linhasTotal\d" /etc/host.conf
   }
 
-function permFire() {
+function iniciar-firewall-permanente() {
  reset
  echo -e "${verde}Esse firewall será 'ativado' toda vez que o sistema for inicializado${NORMAL}"
  sleep 3
@@ -307,135 +178,6 @@ function permFire() {
  ##Proteção contra Spoof
  echo "nospoof on" >> /etc/host.conf
  echo "spoofalert on" >> /etc/host.conf
-
-#Descomente o serviço que deseja que o firewall não bloqueie
-
-##Apache - Servidor Web
-#iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
-
-##Apache TomCat - Servidor Web
-#iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-
-##Bind - Servidor DNS
-#iptables -A INPUT -p udp --dport 53 -j ACCEPT
-
-##DanGuardian - Servidor Proxy
-#iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-
-##ProFTP - Servidor FTP
-#iptables -A INPUT -p tcp --dport 21 -j ACCEPT
-#iptables -A INPUT -p tcp -m multiport --dports 49152:49162 -j ACCEPT
-
-##Postfix - Servidor de E-mail
-#iptables -A INPUT -i $ilan -p tcp -m multiport --dports 25,110 -j ACCEPT
-#iptables -A INPUT -i $ilan -p tcp -m multiport --dports 465,995 -j ACCEPT
-#iptables -A INPUT -i $ilan -p tcp --sport 25 -j ACCEPT
-
-##PostgreSQL - Servidor Postgresql
-#iptables -A INPUT -i $ilan -p tcp --dport 5432 -j ACCEPT
-
-##SSH - Servidor SSH
-#iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 300 --hitcount 3 -j DROP
-#iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
-#iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-
-##VNC - Servidor de Acesso Remoto
-#iptables -A INPUT -p tcp --dport 5900 -j ACCEPT
-#########################
-##PROTOCOLOS E SERVIÇOS##
-#########################
-
-##AIM
-#iptables -A INPUT -i $inet -p tcp --sport 5190 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 5190 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 5190 -j ACCEPT
-
-##DNS - Serviço de Nomes de Dominios
-#iptables -A INPUT -p tcp -m multiport --sports 53,5353 -j ACCEPT
-#iptables -A INPUT -p udp -m multiport --sports 53,5353 -j ACCEPT
-#iptables -A FORWARD -p tcp -m multiport --sports 53,5353 -j ACCEPT
-#iptables -A FORWARD -p udp -m multiport --sports 53,5353 -j ACCEPT
-#iptables -A FORWARD -p tcp -m multiport --dports 53,5353 -j ACCEPT
-#iptables -A FORWARD -p udp -m multiport --dports 53,5353 -j ACCEPT
-
-##FTP - Protocolo de Transferência de Arquivo
-#iptables -A INPUT -i $inet -p tcp --sport 21 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 21 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 21 -j ACCEPT
-
-# HTTP - Protocolo de Transferência de Hypertext
-#iptables -A INPUT -i $inet -p tcp -m multiport --sports 80,8080 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp -m multiport --sports 80,8080 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp -m multiport --dports 80,8080 -j ACCEPT
-
-##HTTPS - Protocolo de Transferência de Hypertext Seguro
-#iptables -A INPUT -i $inet -p tcp --sport 443 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 443 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 443 -j ACCEPT
-
-##IAPP - Protocolo de Ponto de Acesso
-#iptables -A INPUT -i $ilan -p udp --sport 2313 -j ACCEPT
-
-##IPP - Protocolo de Impressão na Internet
-#iptables -A INPUT -i $ilan -p tcp --dport 631 -j ACCEPT
-#iptables -A INPUT -i $ilan -p udp -m multiport --dports 138,631 -j ACCEPT
-
-##IRC - Internet Relay Chat
-#iptables -A INPUT -i $inet -p tcp --sport 6667 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 6667 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 6667 -j ACCEPT
-
-##Microsoft-DS - Serviços de Diretório da Microsoft
-#iptables -A INPUT -i $ilan -p tcp --dport 445 -j ACCEPT
-#iptables -A INPUT -i $ilan -p tcp -m multiport --sports 139,445 -j ACCEPT
-
-##MSNMS - Serviço de Mensageiro de Rede da Microsoft
-#iptables -A INPUT -i $inet -p tcp -m multiport --sports 1863,1900 -j ACCEPT
-#iptables -A INPUT -i $inet -p udp --sport 1900 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp -m multiport --sports 1863,7001 -j ACCEPT
-#iptables -A FORWARD -i $inet -p udp --sport 7001 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp -m multiport --dports 1863,7001 -j ACCEPT
-#iptables -A FORWARD -o $inet -p udp --dport 7001 -j ACCEPT
-
-##NETBIOS-SSN - Serviço de Sessão NetBIOS
-#iptables -A INPUT -i $ilan -p udp -m multiport --dports 137,138 -j ACCEPT
-#iptables -A INPUT -i $ilan -p tcp --dport 139 -j ACCEPT
-
-##NO-IP - Provedor de DNS Dinâmico
-#iptables -A INPUT -i $inet -p tcp --sport 8245 -j ACCEPT
-
-##NTP - Protocolo para sincronização dos relógios
-#iptables -A INPUT -i $inet -p udp --sport 123 -j ACCEPT
-#iptables -A FORWARD -i $inet -p udp --sport 123 -j ACCEPT
-#iptables -A FORWARD -o $inet -p udp --dport 123 -j ACCEPT
-
-##POP3S - Protocolo de Correio Seguro
-#iptables -A INPUT -i $inet -p tcp --sport 995 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 995 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 995 -j ACCEPT
-
-##SSDP - Protocolo para Descoberta de Serviços Simples
-#iptables -A INPUT -i $ilan -p udp --dport 1900 -j ACCEPT
-
-##SSH - Shell Seguro
-#iptables -A INPUT -p tcp --sport 22 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 22 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 22 -j ACCEPT
-
-##SSMTP - Protocolo Simples para Transferência de Correio Seguro
-#iptables -A INPUT -i $inet -p tcp -m multiport --sports 465,587 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 465 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 465 -j ACCEPT
-
-##TELNET
-#iptables -A INPUT -p tcp --sport 23 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 23 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 23 -j ACCEPT
-
-##VNC - Computação em Rede Virtual
-#iptables -A INPUT -p tcp --sport 5900 -j ACCEPT
-#iptables -A FORWARD -i $inet -p tcp --sport 5900 -j ACCEPT
-#iptables -A FORWARD -o $inet -p tcp --dport 5900 -j ACCEPT
 " > firewall.sh
       bash firewall.sh
       mv firewall.sh /etc/init.d
@@ -444,7 +186,7 @@ function permFire() {
   sleep 1
   }
 
-function permStopFire() {
+function parar-firewall-permanente() {
  reset
  echo -e "${azul}Parando firewall...${NORMAL}"
  sleep 2
@@ -475,7 +217,7 @@ function permStopFire() {
  sleep 2
 }
 
-function newFire() {
+function novo-firewall() {
     echo -e "${ciano}Desenvolver firewall${NORMAL}"
     echo -e "${branco}Escreva as regras que seu firewall deverá ter${NORMAL}"
     echo -e "${branco}O script o configurará para inicio automático${NORMAL}"
@@ -491,7 +233,7 @@ function newFire() {
     sleep 1
 }
 
-function blockSite() {
+function bloquear-site() {
   echo -e "${ciano}Digite o endereço do site que deseja bloquear${branco}(ex:https://facebook.com)${NORMAL}"
   read blockResp
   clear
@@ -516,40 +258,40 @@ function blockSite() {
 
  case $respFire in
 
-  1) startFire;
+  1) iniciar-firewall;
      reset;
-     firew;
+     firewall;
      ;;
-    2) permFire;
+    2) iniciar-firewall-permanente;
        reset;
-       firew;
+       firewall;
        ;;
 
-   0) stopFire;
+   0) parar-firewall;
       reset;
-      firew;
+      firewall;
       ;;
 
-   9) permStopFire;
+   9) parar-firewall-permanente;
       reset;
-      firew;
+      firewall;
       ;;
 
       5)reset;
-        newFire;
-        firew;
+        novo-firewall;
+        firewall;
         ;;
 
         6)reset;
-          blockSite;
-          firew;
+          bloquear-site;
+          firewall;
           ;;
 
     X | x) fazer;
            ;;
 
      *) reset;
-        firew;
+        firewall;
 
  esac
 }
@@ -592,11 +334,11 @@ fi
 }
 
 function anonimato() {
-  function anonyStart() {
-    which tor > /dev/null
+  function iniciar-modo-anonimo() {
+    which tor > $pastaLogs/$horarioAtual-debug.log
     if [ $? == 0 ];then
       echo -e "${ciano}Iniciando serviço...${NORMAL}"
-      service tor start > /dev/null
+      service tor start > $pastaLogs/$horarioAtual-debug.log
       clear
       echo -e "${verde}Serviço inicializado!${NORMAL}"
       echo -e "${branco}Lembrando que essa opção não é 100% eficaz${NORMAL}"
@@ -611,11 +353,11 @@ function anonimato() {
       case $torInstResp in
         s | S)echo -e "${ciano}Instalado o TOR...Aguarde${NORMAL}";
               echo "";
-              apt-get install -y --force-yes tor | pv -W > /dev/null;
+              apt-get install -y --force-yes tor | pv -W > $pastaLogs/$horarioAtual-debug.log;
               echo "";
               echo -e "${verde}TOR instalado!${NORMAL}";
               sleep 1;
-              anonyStart;
+              iniciar-modo-anonimo;
               ;;
 
         n | N) seguranca
@@ -626,9 +368,9 @@ function anonimato() {
     fi
   }
 
-function anonyStop() {
+function parar-modo-anonimo() {
   echo -e "${ciano}Parando serviço de anonimato...${NORMAL}"
-  service tor stop > /dev/null
+  service tor stop > $pastaLogs/$horarioAtual-debug.log
   echo ""
   echo -e "${verde}Serviço parado!${NORMAL}"
   sleep 1
@@ -644,13 +386,13 @@ read -n1 anonimatoResp
 case $anonimatoResp in
 
   1)reset;
-    anonyStart;
+    iniciar-modo-anonimo;
     reset;
     seguranca;
     ;;
 
     2)reset;
-      anonyStop;
+      parar-modo-anonimo;
       reset;
       seguranca;
       ;;
@@ -664,16 +406,16 @@ case $anonimatoResp in
           esac
 }
 
-echo -e "${amarelo}1) ${verde}Firewall${NORMAL}"
-echo -e "${amarelo}2) ${verde}Senhas${NORMAL}"
-echo -e "${amarelo}3)${verde} Anonimato${NORMAL}"
+submenu-item 1 "Firewall"
+submenu-item 2 "Senhas"
+submenu-item 3 "Anonimato"
 echo ""
 echo -e "${branco}Escolha uma das opção ou [Q] para voltar${NORMAL}"
 read -n1 segResp
 case $segResp in
 
   1)reset;
-    firew;
+    firewall;
     seguranca;
     ;;
 

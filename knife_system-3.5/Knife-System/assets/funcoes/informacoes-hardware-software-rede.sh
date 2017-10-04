@@ -1,163 +1,168 @@
-function infos() {
-  function rede() {
-    iwco=`iwconfig`
-    ifco=`ifconfig`
-    dns=`cat /etc/resolv.conf`
-    rot=`route`
-    mywifi=`awk -F= '/^(psk|id)/{print $2}' /etc/NetworkManager/system-connections/"$(iwgetid -r)"`
-    conexoes=`netstat -ant | awk '{print $NF,$3,$4,$5}' | grep -v '[a-z]' | sort | uniq -c`
-    echo -e "${amarelo}Informações sobre a sua rede${NORMAL}"
+function informacoes-sistema() {
+  function informacoes-rede() {
+    informacoesIwconfig=`iwconfig`
+    informacoesIfconfig=`ifconfig`
+    informacoesDns=`cat /etc/resolv.conf`
+    informacoesRoute=`route`
+    informacoesRedeLocal=`awk -F= '/^(psk|id)/{print $2}' /etc/NetworkManager/system-connections/"$(iwgetid -r)"`
+    informacoesConexoesRede=`netstat -ant | awk '{print $NF,$3,$4,$5}' | grep -v '[a-z]' | sort | uniq -c`
+    echo -e "${azul}Informações sobre a sua rede${NORMAL}"
     echo ""
-    sleep 2
-    echo -e "${amarelo}Equivale ao iwconfig:${NORMAL}"
+    echo -e "${ciano}Equivale ao iwconfig:${NORMAL}"
     sleep 1
-    echo -e "${azul} $iwco ${NORMAL}"
+    echo -e "${branco} $iwconfig ${NORMAL}"
     echo ""
-    echo -e "${amarelo}Equivale ao ifconfig:${NORMAL}"
-    echo -e "${azul}$ifco${NORMAL}"
+    echo -e "${ciano}Equivale ao ifconfig:${NORMAL}"
+    echo -e "${branco}$ifconfig${NORMAL}"
     sleep 1
     echo ""
-    echo -e "${amarelo}Informções do DNS:${NORMAL}"
+    echo -e "${ciano}Informções do DNS:${NORMAL}"
     sleep 1
-    echo -e "${azul}$dns${NORMAL}"
+    echo -e "${branco}$informacoesDns${NORMAL}"
     echo ""
-    echo -e "${amarelo}ROUTE:${NORMAL}"
+    echo -e "${ciano}ROUTE:${NORMAL}"
     sleep 1
-    echo -e "${azul}$rot${NORMAL}"
+    echo -e "${branco}$informacoesRoute${NORMAL}"
     echo ""
-    echo -e "${amarelo}Rede que está conectado e senha:${NORMAL}"
+    echo -e "${ciano}Rede que está conectado e senha:${NORMAL}"
     sleep 1
-    echo -e "${azul}$mywifi${NORMAL}"
+    echo -e "${branco}$informacoesRedeLocal${NORMAL}"
     echo ""
-    echo -e "${amarelo}Lista de conexões estabelecidas:${NORMAL}"
+    echo -e "${ciano}Lista de conexões estabelecidas:${NORMAL}"
     sleep 1
-    echo -e "${azul}$conexoes${NORMAL}"
+    echo -e "${branco}$informacoesConexoesRede${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
     read -n1 redeResp
     case $redeResp in
       Q | q)reset;
-            infos;
+            informacoes-sistema;
             ;;
-     *)echo -e "${verm}Opção inválida${NORMAL}";
+     *)echo -e "${branco}Opção inválida${NORMAL}";
        sleep 2;
-       rede;
+       informacoes-rede;
       ;;
     esac
   }
 
-  function hard() {
-    cpui=`cat /proc/cpuinfo;echo "";lscpu`
-    memi=`cat /proc/meminfo`
-    disc=`df -H /`
-    fre=`free -m`
-    srNum=`dmidecode -s system-serial-number`
-    distroInfo=`lsb_release -a`
-    totpacotes=`dpkg -l | grep -c ^i`
-    processadorName=`demidecode -s processor-version`
-    echo -e "${amarelo}Informações da CPU e memória(HD)"
+  function informacoes-hardware() {
+
+    informacoesCPU=`cat /proc/cpuinfo;echo "";lscpu`
+    informacoesMemoriaRam=`cat /proc/meminfo`
+    informacoesEspacoDisco=`df -H /`
+    informacoesRamUsada=`free -m`
+    numeroSerial=`dmidecode -s system-serial-number`
+    informacoesDistro=`lsb_release -a`
+    totalPacotesInstalados=`dpkg -l | grep -c ^i`
+    informacoesProcessador=`dmidecode -s processor-version`
+    
+    echo -e "${azul}Informações da CPU e memória(HD)"
     echo ""
-    echo -e "${amarelo}CPU:${NORMAL}"
+    echo -e "${ciano}CPU:${NORMAL}"
     sleep 1
-    echo -e "${azul} $cpui ${NORMAL}"
+    echo -e "${branco} $informacoesCPU ${NORMAL}"
     echo ""
-    echo -e "${amarelo}RAM:${NORMAL}"
+    echo -e "${ciano}RAM:${NORMAL}"
     sleep 1
-    echo -e "${azul} $memi ${NORMAL}"
+    echo -e "${branco} $informacoesMemoriaRam ${NORMAL}"
     echo ""
-    echo -e "${azul} $fre ${NORMAL}"
+    echo -e "${branco}$informacoesRamUsada ${NORMAL}"
     echo ""
-    echo -e "${amarelo}HD:${NORMAL}"
+    echo -e "${ciano}HD:${NORMAL}"
     sleep 1
-    echo -e "${azul}$disc${NORMAL}"
+    echo -e "${branco}$informacoesEspacoDisco${NORMAL}"
     echo ""
-    echo -e "${amarelo}Número de série:${NORMAL}"
+    echo -e "${ciano}Número de série:${NORMAL}"
     sleep 1
-    echo -e "${azul}$srNum${NORMAL}"
+    echo -e "${branco}$numeroSerial${NORMAL}"
     echo ""
-    echo -e "${amarelo}Informação da distro instalada:${NORMAL}"
+    echo -e "${ciano}Informação da distro instalada:${NORMAL}"
     sleep 1
-    echo -e "${azul}$distroInfo${NORMAL}"
+    echo -e "${branco}$informacoesDistro${NORMAL}"
     echo ""
-    echo -e "${amarelo}Total de pacotes instalados${NORMAL}"
+    echo -e "${ciano}Total de pacotes instalados${NORMAL}"
     sleep 1
-    echo -e "${azul}$totpacotes${NORMAL}"
+    echo -e "${branco}$totalPacotesInstalados${NORMAL}"
     echo ""
-    echo -e "${amarelo}Nome do processador e versão:${NORMAL}"
+    echo -e "${ciano}Nome do processador e versão:${NORMAL}"
     sleep 1
-    echo -e "${azul}$processadorName${NORMAL}"
+    echo -e "${branco}$informacoesProcessador${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
-    read -n1 hardResp
-    case $hardResp in
+    read -n1 hardwareResp
+    case $hardwareResp in
       Q | q)reset;
-            infos;
+            informacoes-sistema;
             ;;
+
      *)echo -e "${verm}Opção inválida${NORMAL}";
-       sleep 2;
-       hard;
+       sleep 1;
+       informacoes-hardware;
       ;;
+
     esac
   }
 
-  function arqui() {
+  function informacoes-arquitetura-processador() {
     echo -e "${amarelo}Arquitetura da sua máquina(x86_64 ou i386)${NORMAL}"
     echo ""
-    archi=`arch`
-    echo -e "${azul}A arquiteura da sua máquina é: ${verm}$archi${NORMAL}"
+    arquiteturaProcessador=`arch`
+    echo -e "${branco}A arquiteura da sua máquina é: ${verm}$arquiteturaProcessador${NORMAL}"
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
-    read -n1 arquiResp
-    case $arquiResp in
+    read -n1 arquiteturaResp
+    case $arquiteturaResp in
+
       Q | q)reset;
-            infos;
+            informacoes-sistema;
             ;;
      *)reset;
        echo -e "${verm}Opção inválida${NORMAL}";
        sleep 2;
-       arqui;
+       informacoes-arquitetura-processador;
       ;;
     esac
   }
-  function ker() {
-    unn=`uname -n`
-    unr=`uname -r`
-    unv=`uname -v`
-    echo -e "${amarelo}Informações sobre o kernel${NORMAL}"
+  function informacoes-kernel() {
+    usuarioMaquina=`uname -n`
+    kernelVersao=`uname -r`
+    kernelExtra=`uname -v`
+    echo -e "${ciano}Informações sobre o kernel${NORMAL}"
     echo ""
-    echo -e ${verm} $unn ${azul}$unr ${verde}$unv ${NORMAL}
+    echo -e ${verm} $usuarioMaquina ${branco}$kernelVersao ${verde}$kernelExtra ${NORMAL}
     echo ""
     echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
-    read -n1 kerResp
-    case $kerResp in
+    read -n1 kernelResp
+    case $kernelResp in
       Q | q)reset;
-            infos;
+            informacoes-sistema;
             ;;
      *)reset;
        echo -e "${verm}Opção inválida${NORMAL}";
        sleep 2;
-       ker;
+       informacoes-kernel;
       ;;
     esac
   }
 
-  function ports() {
-    function pergNmap() {
+  function informacoes-portas() {
+    function verificar-nmap() {
       echo -e "${verm}Nmap não instalado${NORMAL}"
       sleep 1
-      echo -e "${verde}Deseja instalar o Nmap? [N/S]${NORMAL}"
+      echo -e "${ciano}Deseja instalar o Nmap? [N/S]${NORMAL}"
       read -n1 nmapResp
       case $nmapResp in
         S | s)echo "";
-            echo -e "${azul}Instalando Nmap.... Aguarde...${NORMAL}";
+            echo -e "${branco}Instalando Nmap.... Aguarde...${NORMAL}";
             echo "";
-            apt-get -y install nmap | pv -W >/dev/null;
+            apt-get -y --force-yes install nmap | pv -W > $pastaLogs/$horarioAtual-debug.log;
+            apt-get install -f -y --force-yes | pv -W > $pastaLogs/$horarioAtual-debug.log;
             reset;
-            infos;
+            informacoes-sistema;
              ;;
 
         N | n)reset;
-              infos;
+              informacoes-sistema;
               ;;
       esac
 
@@ -168,33 +173,33 @@ function infos() {
     if [ $? == 0 ];then
     nmap -sV localhost
     echo ""
-    echo -e "${verde}Voltar [Q]${NORMAL}"
+    echo -e "${branco}Voltar [Q]${NORMAL}"
     read -n1 voltResp
     case $voltResp in
       Q | Q)fazer;
     esac
   else
-    reset;pergNmap
+    reset;verificar-nmap
   fi
   }
-
-  function scan-host() {
+  function escanear-maquina-remota() {
     function instalar-netcat() {
       echo -e "${verm}Netcat não instalado${NORMAL}"
       sleep 1
-      echo -e "${verde}Deseja instalar o Netcat? [N/S]${NORMAL}"
+      echo -e "${ciano}Deseja instalar o Netcat? [N/S]${NORMAL}"
       read -n1 netcatResp
       case $netcatResp in
+      
         S | s)echo "";
             echo -e "${azul}Instalando Netcat.... Aguarde...${NORMAL}";
             echo "";
-            apt-get -y install netcat | pv -W > /dev/null;
+            apt-get -y --force-yes install netcat | pv -W > $pastaLogs/$horarioAtual-debug.log;
             reset;
-            infos;
+            informacoes-sistema;
              ;;
 
         N | n)reset;
-              infos;
+              informacoes-sistema;
               ;;
 
       esac
@@ -202,19 +207,19 @@ function infos() {
     which netcat > /dev/null
     if [ $? == 0 ];then
       echo -e "${ciano}Digite o IP ou DNS do host remoto: ${NORMAL}"
-      read remoteHost
+      read hostEscaneadoNetcat
       reset
       echo -e "${ciano}Digite o número da porta à ser verificada:${NORMAL}"
-      read remotePort
+      read portaHostEscaneadoNetcat
       reset
       echo -e "${azul}Realizando scaneamento...${NORMAL}"
-      netcat -w 1 $remoteHost $remotePort >/dev/null
+      netcat -w 1 $hostEscaneadoNetcat $portaHostEscaneadoNetcat >/dev/null
       if [ $? == 0 ];then
-        echo -e "${verde}Porta $remotePort aberta!${NORMAL}"
+        echo -e "${verde}Porta $portaHostEscaneadoNetcat aberta!${NORMAL}"
         sleep 2
 
       else
-        echo -e "${verm}Porta $remotePort fechada!${NORMAL}"
+        echo -e "${verm}Porta $portaHostEscaneadoNetcat fechada!${NORMAL}"
         sleep 2
       fi
     else
@@ -223,67 +228,64 @@ function infos() {
     fi
   }
 
-  function verifiVul() {
-    function debsecan-inst() {
+  function verificar-falhas-locais() {
+    function instalar-debsecan() {
       echo -e "${verm}Debsecan não instalado${NORMAL}"
       sleep 1
-      echo -e "${verde}Deseja instalar o Debsecan? [N/S]${NORMAL}"
-      read -n1 secanResp
-      case $secanResp in
+      echo -e "${ciano}Deseja instalar o Debsecan? [N/S]${NORMAL}"
+      read -n1 debsecanResp
+      case $debsecanResp in
         S | s)echo "";
             echo -e "${azul}Instalando Debsecan.... Aguarde...${NORMAL}";
             echo "";
-            apt-get -y install debsecan | pv -W > /dev/null;
+            apt-get -y --force-yes install debsecan | pv -W > $pastaLogs/$horarioAtual-debug.log;
             reset;
-            infos;
+            informacoes-sistema;
              ;;
 
         N | n)reset;
-              infos;
+              informacoes-sistema;
               ;;
 
       esac
     }
     which debsecan > /dev/null
     if [ $? == 0 ];then
-      echo -e "${ciano}Verificando todas as vulnerabilidades...${NORMAL}"
+      echo -e "${ciano}Verificando todas as vulnerabilidades da sua máquina local${NORMAL}"
       sleep 1
       debsecan --format detail
       echo ""
       echo -e "${branco}Pressione [Q] para voltar${NORMAL}"
-      read -n1 debScResp
-      case $debScResp in
+      read -n1 debsecanVoltar
+      case $debsecanVoltar in
         Q | q)reset;
-              infos;
+              informacoes-sistema;
               ;;
-              *)clear;
-                echo -e "${verm}Opção inválida!${NORMAL}";
-                sleep 1;
-                reset;
+              *)reset;
               esac
     else
       reset
-      debsecan-inst
+      instalar-debsecan
     fi
   }
 
-function geoip() {
-  function geoip-inst {
+function verificar-geolocalizacao-remota() {
+  function instalar-lynx {
     echo -e "${verm}Lynx não instalado${NORMAL}"
     sleep 1
-    echo -e "${verde}Deseja instalar o Lynx? [N/S]${NORMAL}"
+    echo -e "${ciano}Deseja instalar o Lynx? [N/S]${NORMAL}"
     read -n1 lynxResp
     case $lynxResp in
       S | s)echo "";
           echo -e "${azul}Instalando Lynx.... Aguarde...${NORMAL}";
           echo "";
-          apt-get -y install lynx | pv -W > /dev/null;
+          apt-get -y --force-yes install lynx | pv -W > $pastaLogs/$horarioAtual-debug.log;
           reset;
-          infos;
+          informacoes-sistema;
            ;;
 
       N | n)reset;
-            infos;
+            informacoes-sistema;
             ;;
 
     esac
@@ -292,41 +294,41 @@ function geoip() {
   if [ $? == 0 ];then
   echo -e "${ciano}Digite o IP a ser localizado:${NORMAL}"
   read geoResp
-  echo -e "${verde}Obtendo localização...${NORMAL}"
+  echo -e "${azul}Obtendo localização...${NORMAL}"
   sleep 1
   echo ""
   lynx -dump http://www.ip-adress.com/ip_tracer/$geoResp | awk '/IP country code/,/Local time in/' | tail -12 | sort | uniq -c | sort -n | awk {'print $2,$3,$4,$5,$6,$7,$8,$9'}
   echo ""
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 geoResp
-  case $geResp in
+  read -n1 geoipVoltar
+  case $geoipVoltar in
     q | Q)reset;
-          infos;
+          informacoes-sistema;
         esac
 
  else
    reset;
-   geoip-inst
+   instalar-lynx
  fi
 }
 
-function checar() {
-  function check-inst {
+function verificar-irregularidades-localmente() {
+  function instalar-lynis {
     echo -e "${verm}Lynis não instalado${NORMAL}"
     sleep 1
-    echo -e "${verde}Deseja instalar o Lynx? [N/S]${NORMAL}"
-    read -n1 lynisInstall
-    case $lynisInstall in
+    echo -e "${ciano}Deseja instalar o Lynx? [N/S]${NORMAL}"
+    read -n1 lynisResp
+    case $lynisResp in
       S | s)echo "";
           echo -e "${azul}Instalando Lynis.... Aguarde...${NORMAL}";
           echo "";
-          apt-get -y --force-yes install lynis | pv -W > /dev/null;
+          apt-get -y --force-yes install lynis | pv -W > $pastaLogs/$horarioAtual-debug.log;
           reset;
-          infos;
+          informacoes-sistema;
            ;;
 
       N | n)reset;
-            infos;
+            informacoes-sistema;
             ;;
 
     esac
@@ -338,143 +340,134 @@ function checar() {
   lynis --check-all
   echo ""
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 checkoutResp
-  case $checkoutResp in
+  read -n1 lynisVoltar
+  case $lynisVoltar in
     q | Q)reset;
-          infos;
+          informacoes-sistema;
         esac
 
  else
    reset;
-   check-inst
+   instalar-lynis
  fi
 }
 
-function tempo() {
-  echo -e "${ciano}Previsão do tempo para todo o Brasil${NORMAL}"
+function previsao-tempo-brasil() {
+  echo -e "${ciano}Previsão do previsao-tempo-brasil para todo o Brasil${NORMAL}"
   echo ""
   curl wttr.in/brasil
   echo ""
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 tempResp
-  case $tempResp in
+  read -n1 tempoVoltar
+  case $tempoVoltar in
     q | Q)reset;
-          infos;
+          informacoes-sistema;ss
         esac
 }
 
-function ip-site() {
+function obter-ip-site() {
   echo -e "${ciano}Digite a URL do site:${NORMAL}"
   read urlSite
   ipSite=`dig +short $urlSite`
   clear
-  echo -e "${verde}O ip do site é:${branco} $ipSite"
+  echo -e "${ciano}O ip do site é:${branco} $ipSite"
   echo -e "${branco}Pressione [ Q ] para voltar${NORMAL}"
-  read -n1 ipResp
-  case $ipResp in
+  read -n1 ipVoltar
+  case $ipVoltar in
     q | Q)reset;
-          infos;
+          informacoes-sistema;
         esac
 }
 
-  echo -e "${amarelo}Obter informaçõe do seu computador ou notebook:${NORMAL}"
-  echo -e "${branco}Seu IP(externo): $myip"
+  banner "Obter informações da sua máquina"
   echo ""
-  echo -e "${verm}1) ${verde}Informações de rede${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}2) ${verde}Informações do sistema${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}3) ${verde}Informações do kernel${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}4) ${verde}Arquitetura do processador${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}5) ${verde}Serviços e portas${branco}(Nmap)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}6) ${verde}Verificar serviço de um host remoto${branco}(netcat)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}7) ${verde}Verificar vulnerabilidades do sistema${branco}(debsecan)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}8) ${verde}Obter geolocalização de um IP${branco}(lynx)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}9) ${verde}Verificar distro completamente${branco}(lynis)${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}10) ${verde}Previsão do tempo${NORMAL}"
-  sleep 0.1
-  echo -e "${verm}11) ${verde}Obter IP de um site${NORMAL}"
+  echo -e "${branco}Seu IP(externo): $meuEnderecoIp"
   echo ""
-  echo -e "${verde}Q) ${verm}Voltar ao menu princípal${NORMAL}"
+  submenu-item 1 "Informações de rede"
+  submenu-item 2 "Informações do sistema"
+  submenu-item 3 "Informações do kernel"
+  submenu-item 4 "Arquitetura do processador"
+  submenu-item 5 "Serviços e portas" "NMap"
+  submenu-item 6 "Verificar serviço de um host remoto" "netcat"
+  submenu-item 7 "Verificar vulnerabilidades do sistema" "debsecan"
+  submenu-item 8 "Obter geolocalização de um IP" "Lynx"
+  submenu-item 9 "Exibir o máximo de informações da distro" "Lynis"
+  submenu-item 10 "Previsão do tempo"
+  submenu-item 11 "Obter IP de um site"
+  echo ""
+  echo -e "${branco}Pressione [ Q ] para voltar ao menu principal${NORMAL}"
   read -n2 respInfo
   case $respInfo in
     1) reset;
-       rede;
+       informacoes-rede;
        reset;
-       infos;
+       informacoes-sistema;
        ;;
 
        2)reset;
-         hard;
+         informacoes-hardware;
          reset;
-         infos;
+         informacoes-sistema;
          ;;
 
          3)reset;
-           ker;
+           informacoes-kernel;
            reset;
-           infos;
+           informacoes-sistema;
            ;;
 
            4)reset;
-             arqui;
+             Informacoes-arquitetura-processador;
              reset;
-             infos;
+             informacoes-sistema;
              ;;
 
              5)reset;
-               ports;
+               informacoes-portas;
                reset;
-               infos;
+               informacoes-sistema;
                ;;
 
                6)reset;
-                 scan-host;
+                 escanear-maquina-remota;
                  reset;
-                 infos;
+                 informacoes-sistema;
                  ;;
 
                  7)reset;
-                   verifiVul;
+                   verificar-falhas-locais;
                    reset;
-                   infos;
+                   informacoes-sistema;
                    ;;
 
                    8)reset;
-                     geoip;
+                     verificar-geolocalizacao-remota;
                      reset;
-                     infos;
+                     informacoes-sistema;
                      ;;
 
                      9)reset;
-                      checar;
+                      verificar-irregularidades-localmente;
                       reset;
-                      infos;
+                      informacoes-sistema;
                       ;;
 
                       10)reset;
-                         tempo;
+                         previsao-tempo-brasil;
                          reset;
-                         infos;
+                         informacoes-sistema;
                          ;;
 
                          11)reset;
-                             ip-site;
+                             obter-ip-site;
                              reset;
-                             infos;
+                             informacoes-sistema;
                              ;;
 
              Q | q)fazer;
                    ;;
 
                    *)reset;
-                     infos;
+                     informacoes-sistema;
     esac
 }

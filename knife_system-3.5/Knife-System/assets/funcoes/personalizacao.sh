@@ -298,21 +298,21 @@ function instalar-tema() {
 
  ##### Ícones #####
 
-  function icone() {
-    function instIcon() {
+  function opcoes-icone() {
+    function instalar-icone() {
     echo -e "${ciano}Selecione a pasta onde se encontra seu ícone${NORMAL}"
     echo -e "${ciano}Basta clicar em cima da pasta uma vez e em seguida em OK${NORMAL}"
     sleep 3
-    icon=`zenity --file-selection --confirm-overwrite --directory --title="Selecione seu ícone"`
+    iconeInstalarSelecionado=`zenity --file-selection --confirm-overwrite --directory --title="Selecione seu ícone"`
 
-    if [ -z $icon ];then
+    if [ -z $iconeInstalarSelecionado ];then
       echo -e "${verm}Nenhum ícone selecionado!${NORMAL}"
       sleep 1
       reset
       opcoes-tema
     else
     clear
-    mv -f $icon /usr/share/icons
+    mv -f $iconeInstalarSelecionado /usr/share/icons
     sleep 2
     echo -e "${verde}Ícone adicionado com sucesso!${NORMAL}"
     sleep 1
@@ -325,14 +325,14 @@ function instalar-tema() {
 
 ###### Remover ícones ######
 
-  function rmIcones() {
+  function remover-icones() {
     echo -e "${branco}Insira o nome do ícone a ser removido:${NORMAL}"
     echo ""
-    read rmicon
+    read iconeRemovidoSelecionado
 
-    if [ -e /usr/share/icons/$rmicon ];then
+    if [ -e /usr/share/icons/$iconeRemovidoSelecionado ];then
       sleep 2
-      rm -r /usr/share/icons/$rmicon
+      rm -r /usr/share/icons/$iconeRemovidoSelecionado
       echo -e "${verde}Ícone removido com sucesso!${NORMAL}"
       sleep 1
       echo -e "${branco}Basta apenas você ir em aparência e muda-lo${NORMAL}"
@@ -343,31 +343,31 @@ function instalar-tema() {
       echo -e "${verm}Ícone não encontrado!${NORMAL}"
       sleep 2
       clear
-      rmIcones
+      remover-icones
     fi
   }
-  function iconOn() {
-    function iconon-pape() {
+  function icones-online() {
+    function icone-online-paper() {
       echo -e "${ciano}Instalando ícone Paper, aguarde...${NORMAL}"
       add-apt-repository ppa:snwh/pulp -y
       apt-get update | pv -W > $pastaLogs/$horarioAtual-debug.log
-      apt-get install -y --force-yes paper-icon-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
+      apt-get install -y --force-yes paper-icone-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
       clear
-      echo -e "${branco}O ícone já está pronto para ser instalado, basta apenas${NORMAL}"
-      echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
+      echo -e "${verde}O ícone já está pronto para ser instalado, basta apenas${NORMAL}"
+      echo -e "${verde}você ir nas configurações e muda-lo${NORMAL}"
       sleep 3
     }
-    function iconon-moka() {
+    function icone-online-moka() {
       echo -e "${ciano}Instalando ícone Moka, aguarde...${NORMAL}"
       add-apt-repository ppa:moka/stable -y
       apt-get update | pv -W > $pastaLogs/$horarioAtual-debug.log
-      apt-get install -y --force-yes moka-icon-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
+      apt-get install -y --force-yes moka-iconeInstalarSelecionado-theme | pv -W > $pastaLogs/$horarioAtual-debug.log
       clear
       echo -e "${branco}O ícone já está pronto para ser instalado, basta apenas${NORMAL}"
       echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
       sleep 3
     }
-    function iconon-viva() {
+    function icone-online-vivacious() {
       echo -e "${ciano}Instalando ícone Vivacious, aguarde...${NORMAL}"
       add-apt-repository ppa:ravefinity-project/ppa -y
       apt-get update | pv -W > $pastaLogs/$horarioAtual-debug.log
@@ -377,7 +377,7 @@ function instalar-tema() {
       echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
       sleep 3
     }
-    function iconon-spfl() {
+    function icone-online-super-flat() {
       echo -e "${ciano}Instalando ícone Super Flat, aguarde...${NORMAL}"
       wget https://www.dropbox.com/s/630d0imj0i5q2vn/Super%20Flat%20Remix.zip?dl=0 -O SuperFlat.zip
       unzip SuperFlat.zip -d /usr/share/themes; rm SuperFlat.zip
@@ -386,7 +386,7 @@ function instalar-tema() {
       echo -e "${branco}você ir nas configurações e muda-lo${NORMAL}"
       sleep 3
     }
-    function iconon-acv() {
+    function icone-online-acvamarin() {
       echo -e "${ciano}Instalando ícone Acvamarin, aguarde...${NORMAL}"
       wget https://www.dropbox.com/s/soeoqd7seivfqrr/acvamarin_1.0_all.deb?dl=0 -O Acvamarin.deb
       dpkg -i Acvamarin.deb | pv -W > $pastaLogs/$horarioAtual-debug.log;rm Acvamarin.deb
@@ -409,33 +409,33 @@ function instalar-tema() {
     read -n1 temaOnResp
     case $temaOnResp in
       1)reset;
-        iconon-pape;
+        icone-online-paper;
         reset;
-        icone;
+        opcoes-icone;
         ;;
 
         2)reset;
-          iconon-moka;
+          icone-online-moka;
           reset;
-          icone;
+          opcoes-icone;
           ;;
 
           3)reset;
-            iconon-viva;
+            icone-online-vivacious;
             reset;
-            icone;
+            opcoes-icone;
             ;;
 
             4)reset;
-              iconon-spfl;
+              icone-online-super-flat;
               reset;
-              icone;
+              opcoes-icone;
               ;;
 
               5)reset;
-                iconon-acv;
+                icone-online-acvamarin;
                 reset;
-                icone;
+                opcoes-icone;
                 ;;
 
                 q | Q)reset;
@@ -458,19 +458,19 @@ function instalar-tema() {
   read -n1 temaResp
   case $temaResp in
     1)reset;
-      instIcon;
+      instalar-icone;
       reset;
       aparencia;
       ;;
 
       2)reset;
-        rmIcones;
+        remover-icones;
         reset;
         aparencia;
         ;;
 
         3)reset;
-          iconOn;
+          icones-online;
           reset;
           aparencia;
           ;;
@@ -480,38 +480,26 @@ function instalar-tema() {
                 ;;
 
                 *)reset;
-                  icone;
+                  opcoes-icone;
                 esac
-}
-function tool() {
-  echo -e "${azul}Instalando gnome-tweak-tool${NORMAL}"
-  sleep 1
-  echo ""
-  which gnome-tweak-tool > $pastaLogs/$horarioAtual-debug.log
-  if [ $? == 0 ];then
-  apt-get -y install gnome-tweak-tool | pv -W > $pastaLogs/$horarioAtual-debug.log
-else
-  echo -e "${verm}Programa já instalado!${NORMAL}"
-  sleep 1
-fi
 }
 
 ## InstalarConky
-function conk() {
-  function instConk() {
+function opcoes-conky() {
+  function instalar-conky() {
   echo -e "${ciano}Selecione a pasta onde se encontra seu conky${NORMAL}"
   echo -e "${ciano}Basta clicar em cima da pasta uma vez e em seguida em OK${NORMAL}"
   sleep 3
-  conkyResp=`zenity --file-selection --directory --title="Selecione seu tema para o conky"`
+  conkyInstalarSelecionado=`zenity --file-selection --directory --title="Selecione seu tema para o conky"`
   if [ -e .conky ];then
-    if [ -z $conkyResp ];then
+    if [ -z $conkyInstalarSelecionado ];then
       echo -e "${verm}Nenhum tema para o conky selecionado!${NORMAL}"
       sleep 1
       reset
       opcoes-tema
     else
       echo -e "${azul}Instalando conky...${NORMAL}"
-      mv $conkyResp .conky
+      mv $conkyInstalarSelecionado .conky
       sleep 1
       echo -e "${verde}Concluído!${NORMAL}"
       sleep 1
@@ -534,19 +522,19 @@ function conk() {
     echo -e "${ciano}Tente novamente${NORMAL}"
     sleep 1
     reset
-    conk
+    opcoes-conky
   fi
 }
 
 ##Remover conky
-function rmConk() {
+function remover-conky() {
   echo -e "${ciano}Digite o nome do conky à ser removido${NORMAL}"
   echo -e "${branco}Levando em conta que você esteja em sua pasta home${NORMAL}"
   echo ""
-  read rmConkResp
-  if [ -e .conky/$rmConkResp ];then
+  read conkyRemoverSelecionado
+  if [ -e .conky/$conkyRemoverSelecionado ];then
     echo -e "${azul}Removendo tema do conky...${NORMAL}"
-    rm .conky/$rmConkResp
+    rm .conky/$conkyRemoverSelecionado
     sleep 1
     echo -e "${verde}Concluído!${NORMAL}"
     sleep 1
@@ -561,7 +549,7 @@ function rmConk() {
     rmConHom=`zenity --file-selection --directory`
     cd $rmConHom
     reset
-    rmConk
+    remover-conky
   fi
 }
 echo -e "${ciano}             Conky${NORMAL}"
@@ -574,13 +562,13 @@ echo -e "${verm}Escolha uma opção:${NORMAL}"
 read -n1 conkResp
 case $conkResp in
   1)reset;
-    instConk;
+    instalar-conky;
     reset;
     aparencia;
     ;;
 
     2)reset;
-      rmConk;
+      remover-conky;
       reset;
       aparencia;
       ;;
@@ -593,7 +581,7 @@ case $conkResp in
               curso;
             esac
 }
-function temgimp() {
+function tema-gimp-diolinux() {
   echo -e "${ciano}Instalando tema do PhotoShop no gimp, aguarde...${NORMAL}"
   echo -e "${branco}by Diolinux${NORMAL}"
   sleep 2
@@ -610,11 +598,11 @@ function temgimp() {
     echo -e "${branco}Certifique-se de estar em sua home e que o gimp esteja instalado${NORMAL}"
     sleep 2
     reset
-    temgimp
+    tema-gimp-diolinux
   fi
 }
 
-function terminal() {
+function opcoes-terminal() {
 function terminalInstall(){
   echo -e "${ciano}Instalando terminal personalizado com tema do ParrotSec${NORMAL}"
   sleep 1
@@ -625,7 +613,7 @@ function terminalInstall(){
   sleep 1
 }
 
-function terminalRemove() {
+function remover-terminal() {
   checarBashrc=`cat $homeUser/.bashrc | grep knifesystem`
   if [ -e $homeUser/.bashrc ];then
     if [ $checarBashrc == "knifesystem" ];then
@@ -647,8 +635,8 @@ function terminalRemove() {
   fi
 }
 
-function terminalImg(){
-  neofetchVersion=`neofetch --version | grep Neofetch | cut -d' ' -f 2`
+function setar-imagem-terminal(){
+  neofetchVersao=`neofetch --version | grep Neofetch | cut -d' ' -f 2`
   echo -e "${ciano}Preparando sistema para instalar a imagem no terminal, aguarde...${NORMAL}"
   echo -e ${branco}Cheque se as dependências estão satisfeitas${NORMAL}
   sleep 2
@@ -1395,7 +1383,7 @@ image_host="teknik"
 #
 # NOTE: Don't change this value, neofetch reads this to determine
 # how to handle backwards compatibility.
-config_version="$neofetchVersion"
+config_version="$neofetchVersao"
   " > ~/.config/neofetch/config
 }
 echo -e "${azul}1) ${amarelo}Instalar terminal${NORMAL}"
@@ -1412,29 +1400,36 @@ case $terminalResp in
      ;;
 
       2)reset;
-        terminalRemove;
+        remover-terminal;
         reset;
         aparencia;
         ;;
 
          3)reset;
-           terminalImg;
+           setar-imagem-terminal;
            reset;
            aparencia;
            ;;
 
+           Q | q)reset; 
+                 aparencia;
+                 ;;
+
         *) reset;
-           terminal;
+           opcoes-terminal;
   esac
 
 }
-  echo -e "${amarelo}1) ${azul} Temas${NORMAL}"
-  echo -e "${amarelo}2) ${azul} Cursores${NORMAL}"
-  echo -e "${amarelo}3) ${azul} Ícones${NORMAL}"
-  echo -e "${amarelo}4) ${azul} Conky${NORMAL}"
-  echo -e "${amarelo}5) ${azul} Terminal${NORMAL}"
-  echo -e "${amarelo}6) ${azul} Gnome-Tweak-Tool${NORMAL}"
-  echo -e "${amarelo}7) ${azul} PhotoGimp${branco}(extra)${NORMAL}"
+
+  banner "Aparência"
+  echo ""
+  submenu-item 1 "Temas"
+  submenu-item 2 "Cursores"
+  submenu-item 3 "Ícones"
+  submenu-item 4 "Conky"
+  submenu-item 5 "Terminal"
+  submenu-item 6 "Gnome-Tweak-Tool"
+  submenu-item 7 "PhotoGimp"
   echo ""
   echo -e "${azul}X) ${amarelo}Voltar ao menu principal${NORMAL}"
   read -n1 temeInsta
@@ -1456,34 +1451,28 @@ case $terminalResp in
             ;;
 
             3) reset;
-               icone;
+               opcoes-icone;
                reset;
                aparencia;
                ;;
 
                4)reset;
-                 conk;
+                 opcoes-conky;
                  reset;
                  aparencia;
                  ;;
 
               5)reset;
-                terminal;
+                opcoes-terminal;
                 reset;
                 aparencia;
                 ;;
 
                6) reset;
-                  tool;
+                  tema-gimp-diolinux;
                   reset;
                   aparencia;
                   ;;
-
-                  7)reset;
-                    temgimp;
-                    reset;
-                    aparencia;
-                    ;;
 
                   x) fazer;
                      ;;

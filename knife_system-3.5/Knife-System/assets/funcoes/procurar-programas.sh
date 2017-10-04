@@ -1,9 +1,7 @@
 function encontrar-programas() {
-   echo -e $verm"#############################################${NORMAL}"
-   echo -e "                   ${verde}Procurar               ${NORMAL}"
-   echo -e $verm"#############################################${NORMAL}"
+   banner "Procurar programas"
    echo ""
-   echo -e $amarelo"Digite o nome do programa:${NORMAL}"
+   echo -e "${amarelo}Digite o nome do programa:${NORMAL}"
    read programaPesquisado
    echo -e $ciano""
    apt-cache pkgnames $programaPesquisado | grep $programaPesquisado
